@@ -36,3 +36,11 @@ export function loadReadingProgress() {
 export function saveReadingProgress(progress) {
   save('reading', progress)
 }
+
+// Study history: [{ date: 'YYYY-MM-DD', articleId, title }]
+export function loadHistory() { return load('history', []) }
+export function saveHistory(h) { save('history', h) }
+
+// Vocabulary list: [{ id, word, context, addedAt }]
+export function loadVocab() { return load('vocab', []) }
+export function saveVocab(v) { save('vocab', v) }

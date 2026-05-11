@@ -1,79 +1,114 @@
 .app {
-  min-height: 100svh;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   background: var(--bg);
+  overflow: hidden;
 }
 
-/* Vignette — WKW framing device */
+/* Cinematic vignette */
 .app::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%);
+  z-index: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.45) 100%);
 }
 
+/* ─── Header ─── */
 .app-header {
   position: relative;
   z-index: 10;
-  padding: 28px 32px 0;
-  text-align: center;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px 13px;
   border-bottom: 1px solid var(--border);
-  background: linear-gradient(to bottom, rgba(30,16,9,0.95), rgba(20,11,7,0.85));
-  backdrop-filter: blur(8px);
+  background: rgba(20, 11, 7, 0.96);
+  backdrop-filter: blur(10px);
 }
 
-.app-header h1 {
+.app-title-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.app-title-btn h1 {
   font-family: var(--font-display);
-  font-size: 38px;
-  font-weight: 300;
-  letter-spacing: 0.18em;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-h);
-  margin: 0 0 24px;
-  /* WKW — title card feel */
-  text-shadow: 0 0 40px rgba(196, 135, 58, 0.25);
+  text-shadow: 0 0 28px rgba(196,135,58,0.2);
+  margin: 0;
 }
 
-.tabs {
-  display: flex;
-  gap: 0;
-  justify-content: center;
-}
-
-.tab-btn {
-  padding: 10px 24px 14px;
-  border: none;
-  border-bottom: 2px solid transparent;
-  background: transparent;
-  color: var(--text-dim);
-  font-family: var(--font-body);
-  font-size: 13px;
-  letter-spacing: 0.12em;
+.app-tagline {
+  font-size: 10px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: color 0.7s ease, border-color 0.7s ease;
+  color: var(--text-dim);
+  margin: 0;
 }
 
-.tab-btn:hover {
-  color: var(--text);
+.app-header-date {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  text-transform: capitalize;
 }
 
-.tab-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-.app-main {
+/* ─── Three-panel body ─── */
+.app-body {
   flex: 1;
-  padding: 40px 24px;
-  max-width: 680px;
-  margin: 0 auto;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 210px 1fr 260px;
+  min-height: 0;
+  overflow: hidden;
   position: relative;
-  z-index: 2;
+  z-index: 1;
+}
+
+.panel-left {
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  background: rgba(14, 8, 4, 0.6);
+}
+
+.panel-center {
+  overflow-y: auto;
+  padding: 36px 40px;
+}
+
+.panel-right {
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  background: rgba(14, 8, 4, 0.6);
+}
+
+/* Custom scrollbars */
+.panel-left::-webkit-scrollbar,
+.panel-center::-webkit-scrollbar,
+.panel-right::-webkit-scrollbar { width: 3px; }
+
+.panel-left::-webkit-scrollbar-track,
+.panel-center::-webkit-scrollbar-track,
+.panel-right::-webkit-scrollbar-track { background: transparent; }
+
+.panel-left::-webkit-scrollbar-thumb,
+.panel-center::-webkit-scrollbar-thumb,
+.panel-right::-webkit-scrollbar-thumb {
+  background: rgba(196, 135, 58, 0.18);
+  border-radius: 2px;
 }
 
 /* ─── Shared card ─── */
@@ -81,7 +116,7 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 32px;
+  padding: 28px;
   box-shadow: var(--shadow);
   transition: box-shadow 0.8s ease, border-color 0.8s ease;
 }
@@ -93,98 +128,31 @@
 
 /* ─── Buttons ─── */
 .btn {
-  padding: 9px 22px;
+  padding: 8px 20px;
   border-radius: 2px;
   border: 1px solid transparent;
   font-family: var(--font-body);
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: opacity 0.7s ease, background 0.7s ease, border-color 0.7s ease;
-}
-
-.btn:hover { opacity: 0.78; }
-
-.btn-primary {
-  background: var(--accent);
-  color: #1A0A02;
-  font-weight: 600;
-  border-color: var(--accent);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--accent);
-  border-color: var(--accent-border);
-}
-
-.btn-success {
-  background: transparent;
-  color: var(--success);
-  border-color: rgba(123, 174, 134, 0.4);
-}
-
-.btn-danger {
-  background: transparent;
-  color: var(--danger);
-  border-color: rgba(168, 82, 82, 0.4);
-}
-
-.btn-warn {
-  background: transparent;
-  color: var(--warn);
-  border-color: rgba(196, 148, 58, 0.4);
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 300;
+  font-size: 12px;
   letter-spacing: 0.1em;
-  color: var(--text-h);
-  margin: 0 0 24px;
-}
-
-/* Control group reuse */
-.fc-control-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.fc-control-group label {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.fc-control-group select {
-  padding: 7px 12px;
-  border-radius: 2px;
-  border: 1px solid var(--border);
-  background: var(--bg-elevated);
-  color: var(--text-h);
-  font-family: var(--font-body);
-  font-size: 13px;
   cursor: pointer;
-  transition: border-color 0.7s ease;
-  appearance: none;
+  transition: opacity 0.6s ease, background 0.6s ease, border-color 0.6s ease;
+}
+.btn:hover { opacity: 0.75; }
+
+.btn-primary  { background: var(--accent); color: #1A0A02; font-weight: 600; border-color: var(--accent); }
+.btn-secondary { background: transparent; color: var(--accent); border-color: var(--accent-border); }
+.btn-ghost    { background: transparent; color: var(--text-dim); border-color: var(--border); }
+
+/* Responsive — tablet */
+@media (max-width: 960px) {
+  .app-body { grid-template-columns: 1fr 240px; }
+  .panel-left { display: none; }
 }
 
-.fc-control-group select:focus {
-  outline: none;
-  border-color: var(--accent-border);
-}
-
-.session-badge {
-  margin-left: auto;
-  font-size: 13px;
-  color: var(--accent);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  align-self: flex-end;
-  padding-bottom: 2px;
+/* Responsive — mobile */
+@media (max-width: 640px) {
+  .app-body { grid-template-columns: 1fr; }
+  .panel-right { display: none; }
+  .panel-center { padding: 20px 16px; }
 }
