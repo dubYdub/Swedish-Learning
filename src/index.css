@@ -1,49 +1,59 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #ffffff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #006aa7;
-  --accent-bg: rgba(0, 106, 167, 0.1);
-  --accent-border: rgba(0, 106, 167, 0.4);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow: rgba(0,0,0,0.07) 0 4px 12px;
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+/* ─── Wong Kar-wai / In the Mood for Love ─── */
+/* Color grade #19: saturate(1.4) contrast(1.15) brightness(0.9) hue-rotate(-10deg) sepia(0.12) */
 
-  font: 16px/150% var(--sans);
+:root {
+  --bg:            #140B07;
+  --bg-card:       #1E1009;
+  --bg-elevated:   #2A180D;
+  --border:        rgba(196, 135, 58, 0.16);
+  --border-glow:   rgba(196, 135, 58, 0.38);
+  --accent:        #C4873A;
+  --accent-bg:     rgba(196, 135, 58, 0.10);
+  --accent-border: rgba(196, 135, 58, 0.38);
+  --text:          #9E7E62;
+  --text-h:        #F0DEC8;
+  --text-dim:      #6B5240;
+  --success:       #7BAE86;
+  --danger:        #A85252;
+  --warn:          #C4943A;
+  --shadow:        0 4px 24px rgba(0,0,0,0.55), 0 0 48px rgba(196,135,58,0.05);
+  --shadow-hover:  0 8px 36px rgba(0,0,0,0.65), 0 0 60px rgba(196,135,58,0.10);
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
   color: var(--text);
-  background: #f8f8fb;
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #1a1b23;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #4da3d4;
-    --accent-bg: rgba(77, 163, 212, 0.15);
-    --accent-border: rgba(77, 163, 212, 0.4);
-    --shadow: rgba(0,0,0,0.3) 0 4px 12px;
-    background: #111318;
-  }
+/* Grain overlay — silk-like surface */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 
 * { box-sizing: border-box; }
-
 body { margin: 0; }
-
 #root { min-height: 100svh; }
 
 h1, h2, h3 {
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 400;
   color: var(--text-h);
   margin: 0;
+  letter-spacing: 0.02em;
 }
 
 p { margin: 0; }
-
-button { font-family: inherit; }
+button { font-family: var(--font-body); }

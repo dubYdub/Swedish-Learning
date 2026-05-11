@@ -1,107 +1,135 @@
+/* Stats — commanding number display: large type, slow bar animations */
+
 .stats {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
+  animation: fadeUp 0.8s ease both;
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
 }
 
 .stat-card {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 16px;
+  gap: 6px;
+  padding: 20px 18px 18px;
   text-align: center;
+  transition: border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-hover);
 }
 
 .stat-label {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--text);
+  color: var(--text-dim);
   margin: 0;
 }
 
+/* Number — Cormorant Garamond, commanding */
 .stat-value {
-  font-size: 32px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
   margin: 4px 0;
   line-height: 1;
+  text-shadow: 0 0 20px currentColor;
+  opacity: 0.9;
 }
 
 .stat-sub {
-  font-size: 12px;
-  color: var(--text);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
   margin: 0;
 }
 
 .stat-bar {
-  height: 4px;
-  background: var(--border);
-  border-radius: 2px;
+  height: 1px;
+  background: rgba(196, 135, 58, 0.12);
+  border-radius: 1px;
   overflow: hidden;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .stat-bar-fill {
   height: 100%;
-  border-radius: 2px;
-  transition: width 0.6s ease;
+  border-radius: 1px;
+  /* slow, deliberate fill */
+  animation: barFill 1.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: 0.3s;
 }
 
+@keyframes barFill {
+  from { width: 0 !important; }
+}
+
+/* Section label */
 .stats-section-label {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: var(--text-dim);
   margin: 0;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
 }
 
 .stats-categories {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .stats-cat-row {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .stats-cat-name {
-  width: 110px;
+  width: 100px;
   flex-shrink: 0;
-  font-size: 14px;
-  color: var(--text-h);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text);
   text-transform: capitalize;
 }
 
 .stats-cat-bar-wrap {
   flex: 1;
-  height: 8px;
-  background: var(--border);
-  border-radius: 4px;
+  height: 1px;
+  background: rgba(196, 135, 58, 0.12);
+  border-radius: 1px;
   overflow: hidden;
 }
 
 .stats-cat-bar {
   height: 100%;
   background: var(--accent);
-  border-radius: 4px;
-  transition: width 0.6s ease;
+  border-radius: 1px;
+  animation: barFill 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: 0.2s;
 }
 
 .stats-cat-count {
-  width: 44px;
+  width: 36px;
   flex-shrink: 0;
-  font-size: 13px;
-  color: var(--text);
+  font-size: 12px;
+  color: var(--text-dim);
   text-align: right;
+  letter-spacing: 0.04em;
 }
