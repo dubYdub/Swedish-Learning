@@ -1,0 +1,99 @@
+.app {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--sans);
+}
+
+.app-header {
+  background: var(--bg);
+  border-bottom: 2px solid var(--border);
+  padding: 16px 24px 0;
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 0 0 16px;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.tab-btn {
+  padding: 8px 20px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab-btn:hover {
+  color: var(--text-h);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+.app-main {
+  flex: 1;
+  padding: 32px 24px;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Shared card style */
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn:hover { opacity: 0.85; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+
+.btn-success { background: #22c55e; color: #fff; }
+.btn-danger  { background: #ef4444; color: #fff; }
+.btn-warn    { background: #f59e0b; color: #fff; }
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0 0 20px;
+}
