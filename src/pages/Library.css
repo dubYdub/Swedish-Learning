@@ -33,6 +33,7 @@
 
 .lib-tab + .lib-tab { border-left: 1px solid var(--border); }
 
+
 .lib-tab:hover {
   color: var(--text-h);
   background: var(--bg-card);
@@ -43,6 +44,8 @@
   color: var(--text-h);
   border-top-color: var(--accent);
 }
+
+.lib-tab-icon { font-size: 18px; line-height: 1; }
 
 .lib-tab-count {
   background: var(--accent);
@@ -268,6 +271,14 @@
   width: 100%;
 }
 
+/* Dictionary tab: full-width, no sidebar (would duplicate the vocab list) */
+.lib-body.dict-active {
+  grid-template-columns: 1fr;
+}
+.lib-body.dict-active .lib-sidebar {
+  display: none;
+}
+
 .lib-main {
   display: flex;
   flex-direction: column;
@@ -304,6 +315,7 @@
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding: 18px 0;
+  animation: fadeUp 0.4s ease both;
 }
 
 .lib-stats-row {
@@ -385,7 +397,7 @@
 .lib-filter:hover { background: var(--bg-card); }
 .lib-filter.active {
   background: var(--text-h);
-  color: var(--bg-card);
+  color: #FFF8EA;
   border-color: var(--text-h);
 }
 

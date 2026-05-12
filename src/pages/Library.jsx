@@ -108,17 +108,17 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
           className={`lib-tab ${activeTab === 'articles' ? 'active' : ''}`}
           onClick={() => { setActiveTab('articles'); setFlashMode(false) }}
         >
-          📰 Artiklar
+          <span className="lib-tab-icon">📰</span> Artiklar
         </button>
         <button
           className={`lib-tab ${activeTab === 'dictionary' ? 'active' : ''}`}
           onClick={() => { setActiveTab('dictionary'); setFlashMode(false) }}
         >
-          📖 Ordlista {vocab.length > 0 && <span className="lib-tab-count">{vocab.length}</span>}
+          <span className="lib-tab-icon">📖</span> Ordlista {vocab.length > 0 && <span className="lib-tab-count">{vocab.length}</span>}
         </button>
       </div>
 
-      <div className="lib-body">
+      <div className={`lib-body ${activeTab === 'dictionary' ? 'dict-active' : ''}`}>
         <main className="lib-main">
           {/* ── Dashboard ── */}
           <section className="lib-dashboard">

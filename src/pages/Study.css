@@ -26,19 +26,24 @@
 }
 
 .st-back-btn {
-  background: transparent;
+  background: var(--bg-elevated);
   border: 1px solid var(--border);
   color: var(--text-h);
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 5px 12px;
+  padding: 8px 16px;
   cursor: pointer;
-  transition: background 0.15s ease;
+  box-shadow: 2px 2px 0 0 var(--border);
+  transition: background 0.15s, transform 0.12s, box-shadow 0.12s;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.st-back-btn:hover { background: var(--bg-card); }
+.st-back-btn:hover  { background: var(--bg-card); transform: translate(-1px, -1px); box-shadow: 3px 3px 0 0 var(--border); }
+.st-back-btn:active { transform: translate(1px, 1px); box-shadow: 0 0 0 0 var(--border); }
 
 .st-issue-meta {
   flex: 1;
@@ -224,7 +229,10 @@
 .phase-done-btn.done {
   background: var(--sage);
   color: #FFF8EA;
+  cursor: default;
 }
+
+.phase-done-btn.done:hover { transform: none; box-shadow: 2px 2px 0 0 var(--border); }
 
 @media (max-width: 960px) {
   .st-body { grid-template-columns: 1fr; }
