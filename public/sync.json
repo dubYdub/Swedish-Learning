@@ -1,6 +1,66 @@
 {
   "vocab": [
     {
+      "id": 1778581811075,
+      "word": "Arbetsförmedlingen",
+      "context": "the Swedish Public Employment Service",
+      "addedAt": "2026-05-12T10:30:11.076Z"
+    },
+    {
+      "id": 1778581809914,
+      "word": "gårdsvärd",
+      "context": "caretaker / building janitor (lit. yard guardian)",
+      "addedAt": "2026-05-12T10:30:09.914Z"
+    },
+    {
+      "id": 1778581809537,
+      "word": "bidrag",
+      "context": "welfare benefit, allowance",
+      "addedAt": "2026-05-12T10:30:09.537Z"
+    },
+    {
+      "id": 1778581809071,
+      "word": "likvärdig",
+      "context": "equivalent, of equal value",
+      "addedAt": "2026-05-12T10:30:09.072Z"
+    },
+    {
+      "id": 1778581808626,
+      "word": "hyran",
+      "context": "the rent",
+      "addedAt": "2026-05-12T10:30:08.626Z"
+    },
+    {
+      "id": 1778581807202,
+      "word": "stärka upp",
+      "context": "to strengthen, to build up (skills/qualifications)",
+      "addedAt": "2026-05-12T10:30:07.203Z"
+    },
+    {
+      "id": 1778581806755,
+      "word": "hemland",
+      "context": "home country",
+      "addedAt": "2026-05-12T10:30:06.755Z"
+    },
+    {
+      "id": 1778581805944,
+      "word": "satsningen",
+      "context": "the initiative, the investment (in a project)",
+      "addedAt": "2026-05-12T10:30:05.944Z"
+    },
+    {
+      "id": 1778581805361,
+      "word": "trapphus",
+      "context": "stairwell",
+      "addedAt": "2026-05-12T10:30:05.361Z"
+    },
+    {
+      "id": 1778581804880,
+      "word": "fastighetsbolaget",
+      "context": "the property company",
+      "addedAt": "2026-05-12T10:30:04.880Z"
+    },
+    {
       "id": 1778579853449,
       "word": "arbetslöshet",
       "context": "unemployment",
@@ -29,9 +89,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T09:04:09.265Z",
+      "lastStudied": "2026-05-12T10:30:14.728Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 1609
+      "studyTimeSec": 1621
     },
     "horseltest": {
       "status": "not-started",
@@ -118,5 +178,5 @@
       }
     ]
   },
-  "syncedAt": "2026-05-12T10:29:55.457Z"
+  "syncedAt": "2026-05-12T10:30:21.773Z"
 }
