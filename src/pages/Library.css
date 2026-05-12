@@ -59,6 +59,42 @@
   flex-wrap: wrap;
 }
 
+.lib-sync-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lib-sync-btn {
+  padding: 5px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.lib-sync-btn:hover    { background: var(--bg-card); color: var(--text-h); border-color: var(--border); }
+.lib-sync-btn.ok       { background: var(--sage-bg); color: #4F6B4A; border-color: var(--sage); }
+.lib-sync-btn:disabled { opacity: 0.6; cursor: default; }
+
+.lib-sync-error {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #B03030;
+  letter-spacing: 0.06em;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .lib-flash-btn {
   padding: 9px 20px;
   background: var(--accent);

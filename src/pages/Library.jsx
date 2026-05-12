@@ -13,7 +13,7 @@ function localToday() {
 
 const ISSUE_NO = 4 // editorial flair — could increment monthly
 
-export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab, onUpdateVocab, onAnswerVocab }) {
+export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab, onUpdateVocab, onAnswerVocab, onPublishVocab, syncStatus, syncError }) {
   const today = localToday()
   const stats = computeStats(progress)
   const streak = computeStreak(progress, today)
@@ -40,7 +40,21 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
           <span className="metadata">
             {new Date().toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' })}
           </span>
-          <span className="metadata">Sverige · Skandinavien</span>
+          <div className="lib-sync-wrap">
+            {syncStatus === 'error' && (
+              <span className="lib-sync-error" title={syncError}>⚠ {syncError}</span>
+            )}
+            <button
+              className={`lib-sync-btn ${syncStatus === 'ok' ? 'ok' : ''}`}
+              onClick={onPublishVocab}
+              disabled={syncStatus === 'pending'}
+              title="Publicera ordlistan till GitHub så alla enheter synkas"
+            >
+              {syncStatus === 'pending' ? '⏳ Synkar…'
+                : syncStatus === 'ok'  ? '✓ Synkad'
+                : '🌐 Synka ordlista'}
+            </button>
+          </div>
         </div>
         <h1 className="lib-title">Svenska Dagligen</h1>
         <p className="lib-tagline">A reader for students of the Swedish language · Issue {ISSUE_NO}</p>

@@ -4,6 +4,7 @@ import Study from './pages/Study'
 import { loadVocab, saveVocab } from './utils/storage'
 import { loadProgress, saveProgress } from './utils/progress'
 import * as srs from './utils/srs'
+import * as sync from './utils/sync'
 import { articles } from './data/articles'
 import './App.css'
 
@@ -15,6 +16,22 @@ export default function App() {
   // Persisted global state
   const [progress, setProgress]     = useState(() => loadProgress())
   const [vocab, setVocab]           = useState(() => loadVocab())
+
+  // Sync status for publish button
+  const [syncStatus, setSyncStatus] = useState(null)  // null | 'pending' | 'ok' | 'error'
+  const [syncError, setSyncError]   = useState('')
+
+  // On mount: silently merge remote vocab into local
+  useEffect(() => {
+    sync.fetchRemoteVocab().then(remote => {
+      if (!remote || !Array.isArray(remote) || remote.length === 0) return
+      setVocab(prev => {
+        const merged = sync.mergeVocab(prev, remote)
+        if (merged.length !== prev.length) saveVocab(merged)
+        return merged.length !== prev.length ? merged : prev
+      })
+    }).catch(() => {})
+  }, [])
 
   function openStudy(articleId) {
     setStudyId(articleId)
@@ -53,6 +70,19 @@ export default function App() {
     })
   }, [])
 
+  const publishVocab = useCallback(async () => {
+    setSyncStatus('pending')
+    setSyncError('')
+    try {
+      await sync.publishVocab(vocab)
+      setSyncStatus('ok')
+      setTimeout(() => setSyncStatus(null), 3000)
+    } catch (err) {
+      setSyncStatus('error')
+      setSyncError(err.message)
+    }
+  }, [vocab])
+
   const updateVocabSRS = useCallback((id, correct) => {
     setVocab(prev => {
       const updated = prev.map(v => v.id === id ? { ...v, ...srs.advance(v, correct) } : v)
@@ -82,6 +112,9 @@ export default function App() {
           onRemoveVocab={removeFromVocab}
           onUpdateVocab={updateVocabContext}
           onAnswerVocab={updateVocabSRS}
+          onPublishVocab={publishVocab}
+          syncStatus={syncStatus}
+          syncError={syncError}
         />
       )}
       {view === 'study' && currentArticle && (
