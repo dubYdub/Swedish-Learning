@@ -1,52 +1,58 @@
 {
   "vocab": [
     {
-      "id": 1778621579887.0393,
+      "id": 1778622160173.3098,
+      "word": "behåller",
+      "context": "keeps, retains",
+      "addedAt": "2026-05-12T21:42:40.173Z"
+    },
+    {
+      "id": 1778621579888.9082,
       "word": "räddat",
       "context": "saved, rescued",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.0889,
+      "id": 1778621579889,
       "word": "dammar",
       "context": "ponds",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.0046,
+      "id": 1778621579888.087,
       "word": "släpper ut",
       "context": "release, let out",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.4902,
+      "id": 1778621579888.3506,
       "word": "dumpar",
       "context": "dumps, abandons",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.9092,
+      "id": 1778621579888.1467,
       "word": "ekosystemet",
       "context": "the ecosystem",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.072,
+      "id": 1778621579888.8203,
       "word": "förändras",
       "context": "changes, is altered",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.4487,
+      "id": 1778621579888.6106,
       "word": "fisklösa",
       "context": "fishless",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.163,
+      "id": 1778621579888.6768,
       "word": "omplacerat",
       "context": "relocated, rehomed",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
       "id": 1778619679340,
@@ -311,6 +317,19 @@
       "lastStudied": "2026-05-12T21:35:01.842Z",
       "firstStarted": "2026-05-12T21:35:01.842Z",
       "studyTimeSec": 122
+    },
+    "custom-1778622158099": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T21:43:59.799Z",
+      "firstStarted": "2026-05-12T21:43:59.799Z",
+      "studyTimeSec": 80
     }
   },
   "timestamps": {
@@ -383,38 +402,38 @@
         "end": 130.78
       }
     ],
-    "custom-1778621577342": [
+    "custom-1778622158099": [
       {
-        "id": "custom-1778621565519-1",
+        "id": "custom-1778622150531-1",
         "start": 0,
-        "end": 16.96
+        "end": 16.87
       },
       {
-        "id": "custom-1778621565519-2",
-        "start": 16.96,
-        "end": 25.55
+        "id": "custom-1778622150531-2",
+        "start": 16.87,
+        "end": 25.3
       },
       {
-        "id": "custom-1778621565519-3",
-        "start": 25.55,
-        "end": 45.6
+        "id": "custom-1778622150531-3",
+        "start": 25.3,
+        "end": 45.76
       },
       {
-        "id": "custom-1778621565519-4",
-        "start": 45.6,
-        "end": 56.56
+        "id": "custom-1778622150531-4",
+        "start": 45.76,
+        "end": 56.44
       },
       {
-        "id": "custom-1778621565519-5",
-        "start": 56.56,
-        "end": 74.84
+        "id": "custom-1778622150531-5",
+        "start": 56.44,
+        "end": 74.87
       },
       {
-        "id": "custom-1778621565519-6",
-        "start": 74.84,
+        "id": "custom-1778622150531-6",
+        "start": 74.87,
         "end": 90.74
       }
     ]
   },
-  "syncedAt": "2026-05-12T21:35:05.080Z"
+  "syncedAt": "2026-05-12T21:44:01.078Z"
 }
