@@ -81,11 +81,13 @@ export default function App() {
         setCustomArticles(prev => {
           const merged = sync.mergeCustomArticles(prev, remote.customArticles)
           if (merged.length !== prev.length) {
-            // Persist newly arrived articles to localStorage
+            // Persist newly arrived articles to localStorage (addCustomArticle is idempotent)
             const prevIds = new Set(prev.map(a => a.id))
             merged.filter(a => !prevIds.has(a.id)).forEach(a => addCustomArticle(a))
           }
-          return merged
+          // Deduplicate state defensively
+          const seen = new Set()
+          return merged.filter(a => { if (seen.has(a.id)) return false; seen.add(a.id); return true })
         })
       }
 
