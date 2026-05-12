@@ -302,7 +302,7 @@ export default function Library({
   articles, progress, vocab,
   onOpenArticle, onAddVocab, onRemoveVocab, onUpdateVocab, onUpdateMnemonic,
   onAnswerVocab, onPublishVocab, syncStatus, syncError,
-  onGenerateMnemonics, generatingMnemonics,
+  onEnrichVocab, enrichProgress,
   onAddCustomArticle, onRemoveArticle, onReprocessArticle,
 }) {
   const today = localToday()
@@ -463,16 +463,21 @@ export default function Library({
                   <h2 className="lib-toc-title">Ordlista</h2>
                   <div className="lib-dict-actions">
                     {vocab.length > 0 && ds.getKey() && (() => {
-                      const missing = vocab.filter(v => !v.mnemonic).length
-                      return missing > 0 ? (
+                      const missing = vocab.filter(v => !v.context || !v.mnemonic).length
+                      return (
                         <button
-                          className="lib-mnemonic-btn"
-                          onClick={onGenerateMnemonics}
-                          disabled={generatingMnemonics}
+                          className={`lib-enrich-btn${enrichProgress ? ' loading' : ''}`}
+                          onClick={onEnrichVocab}
+                          disabled={!!enrichProgress || missing === 0}
+                          title={missing === 0 ? 'Alla ord har betydelse och minnestips' : `Berika ${missing} ord med AI`}
                         >
-                          {generatingMnemonics ? '⏳ Genererar…' : `🧠 Minnestips (${missing})`}
+                          {enrichProgress
+                            ? `✦ ${enrichProgress.done}/${enrichProgress.total}`
+                            : missing === 0
+                              ? '✦ Alla klara'
+                              : `✦ Berika ord (${missing})`}
                         </button>
-                      ) : null
+                      )
                     })()}
                     {vocab.length > 0 && (
                       <button className="lib-flash-btn" onClick={() => setFlashMode(true)}>

@@ -447,23 +447,24 @@
   flex-wrap: wrap;
 }
 
-.lib-mnemonic-btn {
+.lib-enrich-btn {
   padding: 9px 20px;
-  background: var(--blue-bg);
-  border: 1px solid var(--blue);
-  color: var(--blue);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
+  color: var(--accent);
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 2px 2px 0 0 var(--blue);
+  box-shadow: 2px 2px 0 0 var(--accent);
   transition: transform 0.12s var(--ease-spring), box-shadow 0.12s ease, background 0.15s;
 }
-.lib-mnemonic-btn:hover:not(:disabled)  { transform: translate(-1px,-1px); box-shadow: var(--shadow-sm); background: var(--blue); color: #fff; }
-.lib-mnemonic-btn:active:not(:disabled) { transform: translate(1px,1px); box-shadow: 0 0 0 0; }
-.lib-mnemonic-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+.lib-enrich-btn:hover:not(:disabled)  { transform: translate(-1px,-1px); box-shadow: var(--shadow-sm); background: var(--accent); color: #fff; }
+.lib-enrich-btn:active:not(:disabled) { transform: translate(1px,1px); box-shadow: 0 0 0 0; }
+.lib-enrich-btn:disabled              { opacity: 0.5; cursor: default; transform: none; }
+.lib-enrich-btn.loading               { animation: pulse 1.2s ease-in-out infinite; cursor: wait; }
 
 .lib-flash-btn {
   padding: 9px 20px;

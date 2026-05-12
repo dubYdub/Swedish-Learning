@@ -21,7 +21,7 @@ export default function App() {
 
   const [syncStatus, setSyncStatus] = useState(null)
   const [syncError, setSyncError]   = useState('')
-  const [generatingMnemonics, setGeneratingMnemonics] = useState(false)
+  const [enrichProgress, setEnrichProgress] = useState(null) // null | { done, total }
 
   const [customArticles, setCustomArticles] = useState([])
   const [hiddenIds, setHiddenIds] = useState(() => loadHiddenIds())
@@ -195,21 +195,38 @@ export default function App() {
     })
   }, [])
 
-  const generateMissingMnemonics = useCallback(async () => {
+  const enrichAllVocab = useCallback(async () => {
     if (!ds.getKey()) return
-    setGeneratingMnemonics(true)
-    const missing = vocab.filter(v => !v.mnemonic)
-    for (const entry of missing) {
-      const m = await ds.fetchMnemonic(entry.word, entry.context).catch(() => null)
-      if (m) {
-        setVocab(prev => {
-          const updated = prev.map(v => v.id === entry.id ? { ...v, mnemonic: m } : v)
-          saveVocab(updated)
-          return updated
-        })
+    const needsWork = vocab.filter(v => !v.context || !v.mnemonic)
+    if (!needsWork.length) return
+    setEnrichProgress({ done: 0, total: needsWork.length })
+    for (let i = 0; i < needsWork.length; i++) {
+      const entry = needsWork[i]
+      let ctx = entry.context
+      if (!ctx) {
+        const def = await ds.fetchDefinition(entry.word).catch(() => null)
+        if (def) {
+          ctx = def
+          setVocab(prev => {
+            const updated = prev.map(v => v.id === entry.id ? { ...v, context: def } : v)
+            saveVocab(updated)
+            return updated
+          })
+        }
       }
+      if (!entry.mnemonic && ctx) {
+        const m = await ds.fetchMnemonic(entry.word, ctx).catch(() => null)
+        if (m) {
+          setVocab(prev => {
+            const updated = prev.map(v => v.id === entry.id ? { ...v, mnemonic: m } : v)
+            saveVocab(updated)
+            return updated
+          })
+        }
+      }
+      setEnrichProgress({ done: i + 1, total: needsWork.length })
     }
-    setGeneratingMnemonics(false)
+    setEnrichProgress(null)
   }, [vocab])
 
   const handleAddCustomArticle = useCallback(async (articleData, audioBlob) => {
@@ -328,8 +345,8 @@ export default function App() {
           onPublishVocab={publishVocab}
           syncStatus={syncStatus}
           syncError={syncError}
-          onGenerateMnemonics={generateMissingMnemonics}
-          generatingMnemonics={generatingMnemonics}
+          onEnrichVocab={enrichAllVocab}
+          enrichProgress={enrichProgress}
           onAddCustomArticle={handleAddCustomArticle}
           onRemoveArticle={handleRemoveArticle}
           onReprocessArticle={handleReprocessArticle}
