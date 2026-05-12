@@ -303,7 +303,7 @@ export default function Library({
   onOpenArticle, onAddVocab, onRemoveVocab, onUpdateVocab, onUpdateMnemonic,
   onAnswerVocab, onPublishVocab, syncStatus, syncError,
   onGenerateMnemonics, generatingMnemonics,
-  onAddCustomArticle, onRemoveArticle,
+  onAddCustomArticle, onRemoveArticle, onReprocessArticle,
 }) {
   const today = localToday()
   const stats = computeStats(progress)
@@ -316,6 +316,7 @@ export default function Library({
   const [showTokenInput, setShowTokenInput] = useState(false)
   const [tokenDraft, setTokenDraft]         = useState('')
   const [showUploader, setShowUploader]     = useState(false)
+  const [reprocessing, setReprocessing]     = useState(null) // articleId being reprocessed
 
   function handleSyncClick() {
     if (!loadToken()) { setShowTokenInput(true); setTokenDraft(''); return }
@@ -354,6 +355,12 @@ export default function Library({
   async function handleAddCustom(articleData, audioBlob) {
     await onAddCustomArticle(articleData, audioBlob)
     setShowUploader(false)
+  }
+
+  async function handleReprocess(articleId) {
+    setReprocessing(articleId)
+    await onReprocessArticle(articleId)
+    setReprocessing(null)
   }
 
   return (
@@ -622,6 +629,17 @@ export default function Library({
                             </div>
                           </div>
                         </button>
+                        {article.isCustom && ds.getKey() && (
+                          <button
+                            className={`lib-article-reprocess ${reprocessing === article.id ? 'loading' : ''}`}
+                            onClick={e => { e.stopPropagation(); handleReprocess(article.id) }}
+                            title="Analysera om med AI"
+                            aria-label="Analysera om med AI"
+                            disabled={reprocessing === article.id}
+                          >
+                            {reprocessing === article.id ? '…' : '✦'}
+                          </button>
+                        )}
                         <button
                           className="lib-article-delete"
                           onClick={e => { e.stopPropagation(); onRemoveArticle(article.id) }}

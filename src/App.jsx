@@ -243,6 +243,47 @@ export default function App() {
     }
   }, [])
 
+  const handleReprocessArticle = useCallback(async (articleId) => {
+    const article = customArticles.find(a => a.id === articleId)
+    if (!article || !ds.getKey()) return
+
+    const rawText = article.content.map(p => p.text).join('\n\n')
+
+    // Re-parse for proper title, category, difficulty, translations
+    const parsed = await ds.fetchArticleParse(rawText).catch(() => null)
+    if (parsed) {
+      const updates = {
+        title:      parsed.title,
+        summary:    parsed.summary,
+        difficulty: parsed.difficulty,
+        topic:      parsed.topic,
+        topicLabel: parsed.topicLabel,
+        topicEmoji: parsed.topicEmoji,
+        content:    parsed.content,
+      }
+      updateCustomArticle(articleId, updates)
+      setCustomArticles(prev => prev.map(a => a.id === articleId ? { ...a, ...updates } : a))
+    }
+
+    // Re-extract vocab
+    const words = await ds.fetchKeyVocab(rawText).catch(() => [])
+    if (words.length) {
+      setVocab(prev => {
+        const set = new Set(prev.map(v => v.word.toLowerCase()))
+        const toAdd = words
+          .filter(w => w.word && !set.has(w.word.toLowerCase()))
+          .map(w => ({ id: Date.now() + Math.random(), word: w.word, context: w.definition, addedAt: new Date().toISOString() }))
+        if (!toAdd.length) return prev
+        const updated = [...toAdd, ...prev]
+        saveVocab(updated)
+        return updated
+      })
+      const keyVocab = words.map(w => ({ word: w.word, def: w.definition }))
+      updateCustomArticle(articleId, { keyVocab })
+      setCustomArticles(prev => prev.map(a => a.id === articleId ? { ...a, keyVocab } : a))
+    }
+  }, [customArticles])
+
   const handleRemoveArticle = useCallback(async (id) => {
     const isCustom = customArticles.some(a => a.id === id)
     if (isCustom) {
@@ -280,6 +321,7 @@ export default function App() {
           generatingMnemonics={generatingMnemonics}
           onAddCustomArticle={handleAddCustomArticle}
           onRemoveArticle={handleRemoveArticle}
+          onReprocessArticle={handleReprocessArticle}
         />
       )}
       {view === 'study' && currentArticle && (

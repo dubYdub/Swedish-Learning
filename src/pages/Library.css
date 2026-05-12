@@ -1085,6 +1085,42 @@
 
 .lib-phase-name { letter-spacing: 0.1em; }
 
+/* Article reprocess button — bottom-left corner, left of delete */
+.lib-article-reprocess {
+  position: absolute;
+  bottom: 10px;
+  left: 38px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: var(--text-dim);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, color 0.15s, background 0.15s, border-color 0.15s;
+  z-index: 1;
+}
+
+.lib-toc-row:hover .lib-article-reprocess {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lib-article-reprocess:hover {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+.lib-article-reprocess:disabled { opacity: 0.5; cursor: default; }
+.lib-article-reprocess.loading { animation: pulse 1s ease infinite; }
+
 /* Article delete button — bottom-left corner, appears on row hover */
 .lib-article-delete {
   position: absolute;
