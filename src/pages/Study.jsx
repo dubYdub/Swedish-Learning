@@ -110,6 +110,7 @@ export default function Study({ article, progress, updateProgress, vocab, addToV
             <PhaseRead
               article={article}
               addToVocab={addToVocab}
+              onUpdateVocab={updateVocabContext}
               addedWords={new Set(vocab.map(v => v.word.toLowerCase()))}
               isDone={articleProgress.phases.read}
               onMarkDone={() => togglePhaseDone('read')}

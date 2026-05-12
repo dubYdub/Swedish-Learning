@@ -35,10 +35,10 @@ export default function App() {
     })
   }, [])
 
-  const addToVocab = useCallback((word, context) => {
+  const addToVocab = useCallback((word, context, id = Date.now()) => {
     setVocab(prev => {
       if (prev.find(v => v.word.toLowerCase() === word.toLowerCase())) return prev
-      const updated = [{ id: Date.now(), word, context, addedAt: new Date().toISOString() }, ...prev]
+      const updated = [{ id, word, context, addedAt: new Date().toISOString() }, ...prev]
       saveVocab(updated)
       return updated
     })

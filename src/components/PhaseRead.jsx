@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import * as tts from '../utils/tts'
+import * as ds from '../utils/deepseek'
 import './PhaseRead.css'
 
-export default function PhaseRead({ article, addToVocab, addedWords, isDone, onMarkDone }) {
+export default function PhaseRead({ article, addToVocab, onUpdateVocab, addedWords, isDone, onMarkDone }) {
   const [playingId, setPlayingId]         = useState(null)
   const [tooltip, setTooltip]             = useState(null)
   const [adding, setAdding]               = useState(false)
@@ -39,16 +40,19 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
   async function handleAddToVocab() {
     if (!tooltip || adding) return
     setAdding(true)
+    const word = tooltip.text
+    const id = Date.now()
+
+    // Add immediately with a quick Wiktionary/MyMemory result
     let translation = ''
     const INFLECTION_PATTERN = /\b(form of|degree of|inflection of|definite|plural|superlative|comparative|genitive|past tense|present tense)\b/i
     try {
       const wikiRes = await fetch(
-        `https://en.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(tooltip.text.toLowerCase())}`
+        `https://en.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(word.toLowerCase())}`
       )
       if (wikiRes.ok) {
         const wikiData = await wikiRes.json()
-        const svEntries = wikiData['sv'] || []
-        const firstDef = svEntries[0]?.definitions?.[0]?.definition
+        const firstDef = (wikiData['sv'] || [])[0]?.definitions?.[0]?.definition
         if (firstDef) {
           const clean = firstDef.replace(/<[^>]+>/g, '').trim()
           if (!INFLECTION_PATTERN.test(clean)) translation = clean
@@ -57,17 +61,24 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
     } catch {}
     if (!translation) {
       try {
-        const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(tooltip.text)}&langpair=sv|en`)
-        const data = await r.json()
-        translation = data?.responseData?.translatedText || ''
+        const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(word)}&langpair=sv|en`)
+        translation = (await r.json())?.responseData?.translatedText || ''
       } catch {}
     }
-    addToVocab(tooltip.text, translation)
-    setJustAdded(tooltip.text)
+
+    addToVocab(word, translation, id)
+    setJustAdded(word)
     setTimeout(() => setJustAdded(null), 1800)
     setTooltip(null)
     setAdding(false)
     window.getSelection()?.removeAllRanges()
+
+    // Silently upgrade with DeepSeek in the background if key is set
+    if (ds.getKey()) {
+      ds.fetchDefinition(word)
+        .then(def => { if (def) onUpdateVocab?.(id, def) })
+        .catch(() => {})
+    }
   }
 
   const alreadyInVocab = tooltip && addedWords.has(tooltip.text.toLowerCase())

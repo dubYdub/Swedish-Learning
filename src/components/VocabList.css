@@ -68,32 +68,31 @@
 
 .vl-entry:hover { background: var(--bg-elevated); }
 
+.vl-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vl-key-toggle {
+  background: none;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0.35;
+  padding: 0;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+
+.vl-key-toggle:hover  { opacity: 0.7; }
+.vl-key-toggle.active { opacity: 1; }
+
 .vl-entry-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
-
-.vl-entry-actions {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-}
-
-.vl-translate {
-  background: none;
-  border: none;
-  font-size: 13px;
-  cursor: pointer;
-  padding: 0 2px;
-  opacity: 0.4;
-  transition: opacity 0.2s;
-  line-height: 1;
-}
-
-.vl-translate:hover { opacity: 1; }
-.vl-translate:disabled { cursor: default; opacity: 0.3; }
 
 .vl-word {
   font-family: var(--font-display);
