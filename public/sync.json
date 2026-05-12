@@ -1,6 +1,12 @@
 {
   "vocab": [
     {
+      "id": 1778625663656,
+      "word": "Råd",
+      "context": "a piece of advice, counsel",
+      "addedAt": "2026-05-12T22:41:04.174Z"
+    },
+    {
       "id": 1778624859953.6987,
       "word": "djurskötare",
       "context": "animal keeper",
@@ -134,52 +140,52 @@
       "addedAt": "2026-05-12T21:42:40.173Z"
     },
     {
-      "id": 1778621579887.0393,
+      "id": 1778621579888.9082,
       "word": "räddat",
       "context": "saved, rescued",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.0889,
+      "id": 1778621579889,
       "word": "dammar",
       "context": "ponds",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.0046,
+      "id": 1778621579888.087,
       "word": "släpper ut",
       "context": "release, let out",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.4902,
+      "id": 1778621579888.3506,
       "word": "dumpar",
       "context": "dumps, abandons",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.9092,
+      "id": 1778621579888.1467,
       "word": "ekosystemet",
       "context": "the ecosystem",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.072,
+      "id": 1778621579888.8203,
       "word": "förändras",
       "context": "changes, is altered",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.4487,
+      "id": 1778621579888.6106,
       "word": "fisklösa",
       "context": "fishless",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
-      "id": 1778621579887.163,
+      "id": 1778621579888.6768,
       "word": "omplacerat",
       "context": "relocated, rehomed",
-      "addedAt": "2026-05-12T21:32:59.887Z"
+      "addedAt": "2026-05-12T21:32:59.888Z"
     },
     {
       "id": 1778619679340,
@@ -382,14 +388,23 @@
       "lastReviewed": "2026-05-12T20:23:13.384Z"
     },
     {
-      "id": 1778582900525,
+      "id": 1778579853449,
       "word": "arbetslöshet",
       "context": "unemployment",
-      "addedAt": "2026-05-12T10:48:20.525Z",
-      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down.",
+      "addedAt": "2026-05-12T09:57:33.449Z",
       "level": 1,
       "nextReview": "2026-05-13",
-      "lastReviewed": "2026-05-12T20:23:05.730Z"
+      "lastReviewed": "2026-05-12T20:23:05.730Z",
+      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down."
+    },
+    {
+      "id": 1778576627259,
+      "word": "utbildning",
+      "context": "Education or training.",
+      "addedAt": "2026-05-12T09:03:48.173Z",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T09:51:58.748Z"
     }
   ],
   "progress": {
@@ -493,9 +508,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T22:30:40.273Z",
+      "lastStudied": "2026-05-12T22:32:45.091Z",
       "firstStarted": "2026-05-12T22:08:32.718Z",
-      "studyTimeSec": 352
+      "studyTimeSec": 369
     },
     "custom-1778623798016": {
       "status": "not-started",
@@ -506,9 +521,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T22:40:04.519Z",
+      "lastStudied": "2026-05-12T22:31:44.893Z",
       "firstStarted": "2026-05-12T22:10:08.181Z",
-      "studyTimeSec": 639
+      "studyTimeSec": 282
     }
   },
   "timestamps": {
@@ -581,38 +596,6 @@
         "end": 130.78
       }
     ],
-    "custom-1778623798016": [
-      {
-        "id": "custom-1778624861811-1",
-        "start": 0,
-        "end": 16.74
-      },
-      {
-        "id": "custom-1778624861811-2",
-        "start": 16.74,
-        "end": 25.53
-      },
-      {
-        "id": "custom-1778624861811-3",
-        "start": 25.53,
-        "end": 45.6
-      },
-      {
-        "id": "custom-1778624861811-4",
-        "start": 45.6,
-        "end": 56.47
-      },
-      {
-        "id": "custom-1778624861811-5",
-        "start": 56.47,
-        "end": 75.09
-      },
-      {
-        "id": "custom-1778624861811-6",
-        "start": 75.09,
-        "end": 90.74
-      }
-    ],
     "custom-1778623690101": [
       {
         "id": "custom-1778624854092-1",
@@ -644,86 +627,41 @@
         "start": 79.18,
         "end": 120.22
       }
+    ],
+    "custom-1778623798016": [
+      {
+        "id": "custom-1778624861811-1",
+        "start": 0,
+        "end": 16.74
+      },
+      {
+        "id": "custom-1778624861811-2",
+        "start": 16.74,
+        "end": 25.53
+      },
+      {
+        "id": "custom-1778624861811-3",
+        "start": 25.53,
+        "end": 45.6
+      },
+      {
+        "id": "custom-1778624861811-4",
+        "start": 45.6,
+        "end": 56.47
+      },
+      {
+        "id": "custom-1778624861811-5",
+        "start": 56.47,
+        "end": 75.09
+      },
+      {
+        "id": "custom-1778624861811-6",
+        "start": 75.09,
+        "end": 90.74
+      }
     ]
   },
   "customArticles": [
-    {
-      "id": "custom-1778623798016",
-      "topic": "natur",
-      "topicLabel": "Natur",
-      "topicEmoji": "🐟",
-      "difficulty": "A2",
-      "title": "Cheyenne räddar över 400 guldfiskar från dammar",
-      "summary": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg, highlighting the problem of people dumping pet fish in natural waters.",
-      "keyVocab": [
-        {
-          "word": "räddat",
-          "def": "saved, rescued"
-        },
-        {
-          "word": "dammar",
-          "def": "ponds"
-        },
-        {
-          "word": "släpper ut",
-          "def": "releases, lets out"
-        },
-        {
-          "word": "dumpar",
-          "def": "dumps, abandons"
-        },
-        {
-          "word": "ekosystemet",
-          "def": "the ecosystem"
-        },
-        {
-          "word": "förändras",
-          "def": "changes, is altered"
-        },
-        {
-          "word": "fisklösa",
-          "def": "fishless"
-        },
-        {
-          "word": "omplacerat",
-          "def": "relocated, rehomed"
-        }
-      ],
-      "isCustom": true,
-      "content": [
-        {
-          "id": "custom-1778624861811-1",
-          "text": "Cheyenne van Keeken har räddat över 400 guldfiskar från dammar i Göteborg. Hon säger till P4 Göteborg att det är synd att folk släpper ut guldfiskar i dammar.",
-          "translation": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg. She tells P4 Gothenburg that it's a shame people release goldfish into ponds."
-        },
-        {
-          "id": "custom-1778624861811-2",
-          "text": "– Bara den här sommaren har jag varit på sex olika ställen. Det är så tragiskt att folk dumpar dem och dumpar djur på det sättet.",
-          "translation": "– Just this summer I've been to six different places. It's so tragic that people dump them and dump animals in that way."
-        },
-        {
-          "id": "custom-1778624861811-3",
-          "text": "Vem som har släppt ut guldfiskarna i dammarna vet man inte. Fredrik Larsson som jobbar på Länsstyrelsen i Västra Götaland säger att ekosystemet i dammarna, alltså vilka växter och djur som lever där, kan förändras av fiskarna.",
-          "translation": "Who released the goldfish into the ponds is unknown. Fredrik Larsson, who works at the County Administrative Board of Västra Götaland, says the ecosystem of the ponds, meaning which plants and animals live there, can be changed by the fish."
-        },
-        {
-          "id": "custom-1778624861811-4",
-          "text": "– Många dammar är naturligt fisklösa vilket innebär att släpper man då helt plötsligt i fisk i de dammarna så kommer man att ändra ekosystemet i den dammen.",
-          "translation": "– Many ponds are naturally fishless, which means if you suddenly release fish into those ponds, you will change the ecosystem of that pond."
-        },
-        {
-          "id": "custom-1778624861811-5",
-          "text": "Cheyenne van Keeken säger att det är svårt att få plats med alla guldfiskar hemma. Hon låter några av dem bo i badkaret. Hon säger att hon behåller några fiskar själv och lämnar några vidare till andra personer.",
-          "translation": "Cheyenne van Keeken says it's difficult to find room for all the goldfish at home. She lets some of them live in the bathtub. She says she keeps some fish herself and passes some on to other people."
-        },
-        {
-          "id": "custom-1778624861811-6",
-          "text": "– Guldfiskarna som har varit väldigt fina har jag ju valt att behålla själv. Men de allra största så har jag ju på direkten omplacerat dem för det går inte att ha dem här hemma. Jag har inte plats för dem.",
-          "translation": "– The goldfish that have been very nice I have chosen to keep myself. But the very largest ones I have immediately rehomed because it's not possible to have them here at home. I don't have room for them."
-        }
-      ],
-      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2024/07/program_hon_har_raddat_400_guldfiskar_20240724_1507172154_a96.m4a?_h_publicationId=8717940"
-    },
     {
       "id": "custom-1778623690101",
       "topic": "världen",
@@ -800,8 +738,85 @@
         }
       ],
       "audioUrl": "https://lyssna-cdn.sr.se/isidor/2022/10/program_djurskotare_har_hittat_den_gif_20221028_1528286119_a96.m4a?_h_publicationId=8174692"
+    },
+    {
+      "id": "custom-1778623798016",
+      "topic": "natur",
+      "topicLabel": "Natur",
+      "topicEmoji": "🐟",
+      "difficulty": "A2",
+      "title": "Cheyenne räddar över 400 guldfiskar från dammar",
+      "summary": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg, highlighting the problem of people dumping pet fish in natural waters.",
+      "keyVocab": [
+        {
+          "word": "räddat",
+          "def": "saved, rescued"
+        },
+        {
+          "word": "dammar",
+          "def": "ponds"
+        },
+        {
+          "word": "släpper ut",
+          "def": "releases, lets out"
+        },
+        {
+          "word": "dumpar",
+          "def": "dumps, abandons"
+        },
+        {
+          "word": "ekosystemet",
+          "def": "the ecosystem"
+        },
+        {
+          "word": "förändras",
+          "def": "changes, is altered"
+        },
+        {
+          "word": "fisklösa",
+          "def": "fishless"
+        },
+        {
+          "word": "omplacerat",
+          "def": "relocated, rehomed"
+        }
+      ],
+      "isCustom": true,
+      "content": [
+        {
+          "id": "custom-1778624861811-1",
+          "text": "Cheyenne van Keeken har räddat över 400 guldfiskar från dammar i Göteborg. Hon säger till P4 Göteborg att det är synd att folk släpper ut guldfiskar i dammar.",
+          "translation": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg. She tells P4 Gothenburg that it's a shame people release goldfish into ponds."
+        },
+        {
+          "id": "custom-1778624861811-2",
+          "text": "– Bara den här sommaren har jag varit på sex olika ställen. Det är så tragiskt att folk dumpar dem och dumpar djur på det sättet.",
+          "translation": "– Just this summer I've been to six different places. It's so tragic that people dump them and dump animals in that way."
+        },
+        {
+          "id": "custom-1778624861811-3",
+          "text": "Vem som har släppt ut guldfiskarna i dammarna vet man inte. Fredrik Larsson som jobbar på Länsstyrelsen i Västra Götaland säger att ekosystemet i dammarna, alltså vilka växter och djur som lever där, kan förändras av fiskarna.",
+          "translation": "Who released the goldfish into the ponds is unknown. Fredrik Larsson, who works at the County Administrative Board of Västra Götaland, says the ecosystem of the ponds, meaning which plants and animals live there, can be changed by the fish."
+        },
+        {
+          "id": "custom-1778624861811-4",
+          "text": "– Många dammar är naturligt fisklösa vilket innebär att släpper man då helt plötsligt i fisk i de dammarna så kommer man att ändra ekosystemet i den dammen.",
+          "translation": "– Many ponds are naturally fishless, which means if you suddenly release fish into those ponds, you will change the ecosystem of that pond."
+        },
+        {
+          "id": "custom-1778624861811-5",
+          "text": "Cheyenne van Keeken säger att det är svårt att få plats med alla guldfiskar hemma. Hon låter några av dem bo i badkaret. Hon säger att hon behåller några fiskar själv och lämnar några vidare till andra personer.",
+          "translation": "Cheyenne van Keeken says it's difficult to find room for all the goldfish at home. She lets some of them live in the bathtub. She says she keeps some fish herself and passes some on to other people."
+        },
+        {
+          "id": "custom-1778624861811-6",
+          "text": "– Guldfiskarna som har varit väldigt fina har jag ju valt att behålla själv. Men de allra största så har jag ju på direkten omplacerat dem för det går inte att ha dem här hemma. Jag har inte plats för dem.",
+          "translation": "– The goldfish that have been very nice I have chosen to keep myself. But the very largest ones I have immediately rehomed because it's not possible to have them here at home. I don't have room for them."
+        }
+      ],
+      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2024/07/program_hon_har_raddat_400_guldfiskar_20240724_1507172154_a96.m4a?_h_publicationId=8717940"
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-12T22:40:07.506Z"
+  "syncedAt": "2026-05-12T22:41:09.431Z"
 }
