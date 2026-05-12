@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Recorder from './Recorder'
 import WaveformPlayer from './WaveformPlayer'
 import * as tts from '../utils/tts'
+import * as ap from '../utils/audioPlayer'
 import * as db from '../utils/db'
 import { setRecordingCount } from '../utils/progress'
 import { formatDuration } from '../utils/recorder'
@@ -27,8 +28,8 @@ export default function PhaseRecord({ article, updateProgress, isDone, onMarkDon
 
   useEffect(() => { refresh() }, [refresh])
 
-  // Stop TTS on unmount
-  useEffect(() => () => tts.stop(), [])
+  // Stop audio on unmount
+  useEffect(() => () => { tts.stop(); ap.stop() }, [])
 
   async function handleSave({ blob, durationMs }) {
     await db.addRecording({ articleId: article.id, blob, durationMs })
@@ -53,10 +54,20 @@ export default function PhaseRecord({ article, updateProgress, isDone, onMarkDon
   }
 
   function playOriginal() {
-    if (playingOriginal) { tts.stop(); setPlayingOriginal(false); return }
-    const fullText = article.content.map(p => p.text).join('  ')
+    if (playingOriginal) {
+      ap.stop(); tts.stop()
+      setPlayingOriginal(false)
+      return
+    }
     setPlayingOriginal(true)
-    tts.speak(fullText, { onEnd: () => setPlayingOriginal(false) })
+    if (article.audioFile) {
+      ap.play(ap.audioFileUrl(article.audioFile), {
+        onEnd: () => setPlayingOriginal(false),
+      })
+    } else {
+      const fullText = article.content.map(p => p.text).join('  ')
+      tts.speak(fullText, { onEnd: () => setPlayingOriginal(false) })
+    }
   }
 
   function toggleCompare(id) {

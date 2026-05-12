@@ -27,6 +27,7 @@ export const articles = [
   // ─────────────────────────────────────────────────────────
   {
     id: 'arbetsloshet',
+    audioFile: 'arbetsloshet.m4a',
     topic: 'samhälle',
     topicLabel: 'Samhälle',
     topicEmoji: '📊',
@@ -59,6 +60,7 @@ export const articles = [
   // ─────────────────────────────────────────────────────────
   {
     id: 'horseltest',
+    audioFile: 'horseltest.m4a',
     topic: 'hälsa',
     topicLabel: 'Hälsa',
     topicEmoji: '🦻',

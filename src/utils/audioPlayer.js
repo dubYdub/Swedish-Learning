@@ -13,26 +13,9 @@ function clearListeners() {
   a.onerror = null
 }
 
-// --- File detection ---
-
-const _detectCache = {}
-
-export async function detectAudioFile(articleId) {
-  if (_detectCache[articleId] !== undefined) return _detectCache[articleId]
-
-  const base = import.meta.env.BASE_URL
-  for (const ext of ['mp3', 'wav', 'm4a', 'ogg']) {
-    const url = `${base}audio/${articleId}.${ext}`
-    try {
-      const res = await fetch(url, { method: 'HEAD' })
-      if (res.ok) {
-        _detectCache[articleId] = url
-        return url
-      }
-    } catch { /* network error or CORS */ }
-  }
-  _detectCache[articleId] = null
-  return null
+// Build a URL for an audio file in public/audio/
+export function audioFileUrl(audioFile) {
+  return `${import.meta.env.BASE_URL}audio/${audioFile}`
 }
 
 // --- Timestamps ---

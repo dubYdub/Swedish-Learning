@@ -3,6 +3,11 @@ import * as tts from '../utils/tts'
 import * as ap from '../utils/audioPlayer'
 import './PhaseListen.css'
 
+// Resolve audio URL from article — null if no audio file set
+function resolveAudioUrl(article) {
+  return article.audioFile ? ap.audioFileUrl(article.audioFile) : null
+}
+
 const TTS_RATES = [
   { value: 0.65, label: 'Sakta' },
   { value: 0.82, label: 'Normal' },
@@ -23,9 +28,10 @@ function fmtTime(s) {
 }
 
 export default function PhaseListen({ article, isDone, onMarkDone }) {
-  const [audioUrl, setAudioUrl]       = useState(undefined)  // undefined = loading, null = none
+  const audioUrl = resolveAudioUrl(article)
+
   const [timestamps, setTimestamps]   = useState(null)
-  const [playing, setPlaying]         = useState(false)       // audio file playing
+  const [playing, setPlaying]         = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration]       = useState(0)
   const [rate, setRate]               = useState(0.82)
@@ -34,27 +40,15 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
   const seekRef = useRef(null)
   const rafRef  = useRef(null)
 
-  // Detect audio file and timestamps on mount
+  // Load timestamps and preload audio when article changes
   useEffect(() => {
+    if (!audioUrl) return
     let cancelled = false
-    ap.detectAudioFile(article.id).then(url => {
-      if (cancelled) return
-      setAudioUrl(url)
-      if (url) {
-        ap.loadSrc(url)
-        // Preload duration via a temporary listener
-        const checkDuration = () => {
-          const d = ap.getDuration()
-          if (d > 0) setDuration(d)
-        }
-        setTimeout(checkDuration, 800)
-        ap.loadTimestamps(article.id).then(ts => {
-          if (!cancelled) setTimestamps(ts)
-        })
-      }
-    })
+    ap.loadSrc(audioUrl)
+    setTimeout(() => { const d = ap.getDuration(); if (d > 0) setDuration(d) }, 800)
+    ap.loadTimestamps(article.id).then(ts => { if (!cancelled) setTimestamps(ts) })
     return () => { cancelled = true }
-  }, [article.id])
+  }, [article.id, audioUrl])
 
   // Stop audio on unmount / article change
   useEffect(() => {
@@ -158,17 +152,6 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
     : -1
 
   // ── Render ───────────────────────────────────────────────────────────────
-
-  if (audioUrl === undefined) {
-    return (
-      <div className="phase-listen">
-        <div className="pl-intro">
-          <h2 className="pl-intro-title">🎧 Diktatläge</h2>
-          <p className="pl-intro-text pl-loading">Söker efter ljudfil…</p>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="phase-listen">

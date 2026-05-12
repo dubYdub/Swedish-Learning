@@ -3,6 +3,10 @@ import * as tts from '../utils/tts'
 import * as ap from '../utils/audioPlayer'
 import './PhaseShadow.css'
 
+function resolveAudioUrl(article) {
+  return article.audioFile ? ap.audioFileUrl(article.audioFile) : null
+}
+
 const TTS_RATES = [
   { value: 0.55, label: 'Mycket sakta' },
   { value: 0.70, label: 'Sakta' },
@@ -24,7 +28,8 @@ function fmtTime(s) {
 }
 
 export default function PhaseShadow({ article, isDone, onMarkDone }) {
-  const [audioUrl, setAudioUrl]       = useState(undefined)
+  const audioUrl = resolveAudioUrl(article)
+
   const [timestamps, setTimestamps]   = useState(null)
   const [playing, setPlaying]         = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -36,22 +41,14 @@ export default function PhaseShadow({ article, isDone, onMarkDone }) {
   const stoppedManuallyRef = useRef(false)
   const rafRef = useRef(null)
 
-  // Detect audio file on mount
   useEffect(() => {
+    if (!audioUrl) return
     let cancelled = false
-    ap.detectAudioFile(article.id).then(url => {
-      if (cancelled) return
-      setAudioUrl(url)
-      if (url) {
-        ap.loadSrc(url)
-        setTimeout(() => { const d = ap.getDuration(); if (d > 0) setDuration(d) }, 800)
-        ap.loadTimestamps(article.id).then(ts => {
-          if (!cancelled) setTimestamps(ts)
-        })
-      }
-    })
+    ap.loadSrc(audioUrl)
+    setTimeout(() => { const d = ap.getDuration(); if (d > 0) setDuration(d) }, 800)
+    ap.loadTimestamps(article.id).then(ts => { if (!cancelled) setTimestamps(ts) })
     return () => { cancelled = true }
-  }, [article.id])
+  }, [article.id, audioUrl])
 
   useEffect(() => {
     return () => {
@@ -184,17 +181,6 @@ export default function PhaseShadow({ article, isDone, onMarkDone }) {
     : -1
 
   // ── Render ───────────────────────────────────────────────────────────────
-
-  if (audioUrl === undefined) {
-    return (
-      <div className="phase-shadow">
-        <div className="ps-intro">
-          <h2 className="ps-intro-title">🗣️ Skuggläsning</h2>
-          <p className="ps-intro-text ps-loading">Söker efter ljudfil…</p>
-        </div>
-      </div>
-    )
-  }
 
   const usingFile = !!audioUrl
   const displayIdx = usingFile ? fileCurrentIdx : currentIdx
