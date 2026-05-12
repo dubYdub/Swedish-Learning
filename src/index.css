@@ -1,59 +1,85 @@
-/* ─── Wong Kar-wai / In the Mood for Love ─── */
-/* Color grade #19: saturate(1.4) contrast(1.15) brightness(0.9) hue-rotate(-10deg) sepia(0.12) */
+/* ─── Wes Anderson / The French Dispatch ─── */
+/* Editorial magazine palette: cream paper, ink-black rules, pastel accents */
 
 :root {
-  --bg:            #140B07;
-  --bg-card:       #1E1009;
-  --bg-elevated:   #2A180D;
-  --border:        rgba(196, 135, 58, 0.16);
-  --border-glow:   rgba(196, 135, 58, 0.38);
-  --accent:        #C4873A;
-  --accent-bg:     rgba(196, 135, 58, 0.10);
-  --accent-border: rgba(196, 135, 58, 0.38);
-  --text:          #9E7E62;
-  --text-h:        #F0DEC8;
-  --text-dim:      #6B5240;
-  --success:       #7BAE86;
-  --danger:        #A85252;
-  --warn:          #C4943A;
-  --shadow:        0 4px 24px rgba(0,0,0,0.55), 0 0 48px rgba(196,135,58,0.05);
-  --shadow-hover:  0 8px 36px rgba(0,0,0,0.65), 0 0 60px rgba(196,135,58,0.10);
+  /* Paper & ink */
+  --bg:           #EDE4D0;   /* cream parchment */
+  --bg-card:      #FAF5E8;   /* lighter cream */
+  --bg-elevated:  #FFFFFF;   /* paper-white inset */
+  --bg-section:   #E5DCC3;   /* slightly darker cream for section bands */
 
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body:    'Inter', system-ui, sans-serif;
+  --text:         #4A3D2E;   /* warm dark brown body */
+  --text-h:       #1A1612;   /* near-black headings */
+  --text-dim:     #8B7960;   /* muted brown metadata */
+
+  /* Newspaper rules */
+  --border:       #1A1612;
+  --border-soft:  rgba(26, 22, 18, 0.18);
+
+  /* Dispatch accents */
+  --accent:       #C25B5B;   /* dispatch red — primary CTA */
+  --accent-bg:    rgba(194, 91, 91, 0.10);
+  --accent-border:rgba(194, 91, 91, 0.45);
+
+  --blue:         #5A7AA8;   /* French blue — links, in-progress */
+  --blue-bg:      rgba(90, 122, 168, 0.10);
+  --butter:       #E8C76A;   /* yellow — highlights, current */
+  --butter-bg:    rgba(232, 199, 106, 0.20);
+  --sage:         #88A083;   /* sage — completed/success */
+  --sage-bg:      rgba(136, 160, 131, 0.14);
+  --pink:         #D8889E;   /* dusty pink — secondary accents */
+  --pink-bg:      rgba(216, 136, 158, 0.12);
+
+  /* Compatibility aliases (old token names used across files) */
+  --border-glow:  var(--border);
+  --success:      var(--sage);
+  --danger:       var(--accent);
+  --warn:         var(--butter);
+  --shadow:       0 2px 0 0 var(--border);
+  --shadow-hover: 0 3px 0 0 var(--border);
+
+  /* Fonts */
+  --font-display: 'Playfair Display', 'Georgia', serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'Special Elite', 'Courier New', monospace;
 
   font-family: var(--font-body);
   font-size: 15px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Grain overlay — silk-like surface */
-body::after {
+/* Paper texture — subtle grain */
+body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
+  z-index: 9998;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
 * { box-sizing: border-box; }
 body { margin: 0; }
 #root { min-height: 100svh; }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text-h);
   margin: 0;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
 }
 
 p { margin: 0; }
 button { font-family: var(--font-body); }
+
+/* Selection — soft butter wash */
+::selection { background: var(--butter); color: var(--text-h); }

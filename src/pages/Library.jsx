@@ -1,0 +1,166 @@
+import { useState, useEffect } from 'react'
+import { DIFFICULTY, estimateReadMinutes } from '../data/articles'
+import { getArticleProgress, computeStats, computeStreak, PHASE_LABELS, PHASES } from '../utils/progress'
+import { countAllRecordings } from '../utils/db'
+import VocabList from '../components/VocabList'
+import './Library.css'
+
+function localToday() {
+  const d = new Date()
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
+const ISSUE_NO = 4 // editorial flair — could increment monthly
+
+export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab }) {
+  const today = localToday()
+  const stats = computeStats(progress)
+  const streak = computeStreak(progress, today)
+  const [recordingCount, setRecordingCount] = useState(0)
+  const [filterStatus, setFilterStatus] = useState('all')
+
+  useEffect(() => {
+    countAllRecordings().then(setRecordingCount).catch(() => setRecordingCount(0))
+  }, [progress])
+
+  const filtered = articles.filter(a => {
+    if (filterStatus === 'all') return true
+    return getArticleProgress(progress, a.id).status === filterStatus
+  })
+
+  return (
+    <div className="library">
+      {/* ── Masthead ── */}
+      <header className="lib-masthead">
+        <div className="lib-mast-top">
+          <span className="metadata">No. {ISSUE_NO}</span>
+          <span className="metadata">
+            {new Date().toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' })}
+          </span>
+          <span className="metadata">Sverige · Skandinavien</span>
+        </div>
+        <h1 className="lib-title">Svenska Dagligen</h1>
+        <p className="lib-tagline">A reader for students of the Swedish language · Issue {ISSUE_NO}</p>
+        <div className="lib-mast-rule" />
+      </header>
+
+      <div className="lib-body">
+        <main className="lib-main">
+          {/* ── Dashboard ── */}
+          <section className="lib-dashboard">
+            <p className="lib-section-eyebrow">— Studierapport —</p>
+            <div className="lib-stats-row">
+              <StatBlock value={streak} label="Streak" hot={streak >= 2} />
+              <StatBlock value={stats.completed} label="Klara" />
+              <StatBlock value={stats.inProgress} label="Pågående" accent="blue" />
+              <StatBlock value={recordingCount} label="Inspelningar" accent="pink" />
+              <StatBlock value={vocab.length} label="Ord" accent="butter" />
+              <StatBlock value={stats.totalStudyMin} label="Minuter" />
+            </div>
+          </section>
+
+          {/* ── Table of contents ── */}
+          <section className="lib-toc">
+            <div className="lib-toc-head">
+              <h2 className="lib-toc-title">Innehåll</h2>
+              <div className="lib-filters">
+                {[
+                  { id: 'all',          label: 'Alla' },
+                  { id: 'in-progress',  label: 'Pågående' },
+                  { id: 'completed',    label: 'Klara' },
+                  { id: 'not-started',  label: 'Ej startade' },
+                ].map(f => (
+                  <button
+                    key={f.id}
+                    className={`lib-filter ${filterStatus === f.id ? 'active' : ''}`}
+                    onClick={() => setFilterStatus(f.id)}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="lib-toc-list">
+              {filtered.length === 0 ? (
+                <p className="lib-empty">Inga artiklar matchar filtret.</p>
+              ) : (
+                filtered.map((article, idx) => {
+                  const prog = getArticleProgress(progress, article.id)
+                  const diff = DIFFICULTY[article.difficulty]
+                  // Use article id hash so number is stable per article
+                  const num = String(articles.findIndex(a => a.id === article.id) + 1).padStart(2, '0')
+                  return (
+                    <button
+                      key={article.id}
+                      className={`lib-toc-row status-${prog.status}`}
+                      onClick={() => onOpenArticle(article.id)}
+                    >
+                      <span className="lib-row-num">No. {num}</span>
+
+                      <div className="lib-row-body">
+                        <div className="lib-row-meta">
+                          <span className="lib-row-topic">{article.topicEmoji} {article.topicLabel}</span>
+                          <span className="lib-row-diff" data-level={article.difficulty}>
+                            {diff.emoji} {article.difficulty} · {diff.label}
+                          </span>
+                          <span className="lib-row-time metadata">{estimateReadMinutes(article)} min</span>
+                          {prog.recordingCount > 0 && (
+                            <span className="lib-row-recs">🎙 ×{prog.recordingCount}</span>
+                          )}
+                        </div>
+
+                        <h3 className="lib-row-title">{article.title}</h3>
+                        <p className="lib-row-summary">{article.summary}</p>
+
+                        <div className="lib-row-foot">
+                          <div className="lib-row-phases">
+                            {PHASES.map(p => (
+                              <span
+                                key={p}
+                                className={`lib-phase-pip ${prog.phases[p] ? 'done' : ''}`}
+                                title={PHASE_LABELS[p].label}
+                              >
+                                <span className="lib-phase-emoji">{PHASE_LABELS[p].emoji}</span>
+                                <span className="lib-phase-name">{PHASE_LABELS[p].label}</span>
+                              </span>
+                            ))}
+                          </div>
+                          <StatusBadge status={prog.status} />
+                        </div>
+                      </div>
+                    </button>
+                  )
+                })
+              )}
+            </div>
+          </section>
+
+          <footer className="lib-footer">
+            <span className="metadata">Continued on the next page →</span>
+            <span className="metadata">{articles.length} artiklar i denna utgåva</span>
+          </footer>
+        </main>
+
+        <aside className="lib-sidebar">
+          <VocabList vocab={vocab} onRemove={onRemoveVocab} />
+        </aside>
+      </div>
+    </div>
+  )
+}
+
+function StatBlock({ value, label, accent = 'accent', hot }) {
+  return (
+    <div className={`lib-stat accent-${accent}`}>
+      <span className="lib-stat-value">{value}</span>
+      <span className="lib-stat-label">{hot && '🔥 '}{label}</span>
+    </div>
+  )
+}
+
+function StatusBadge({ status }) {
+  if (status === 'completed')   return <span className="lib-badge badge-completed">Klar</span>
+  if (status === 'in-progress') return <span className="lib-badge badge-progress">Pågående</span>
+  return <span className="lib-badge badge-new">Ny</span>
+}

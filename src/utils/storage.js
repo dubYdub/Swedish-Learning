@@ -13,34 +13,6 @@ export function save(key, value) {
   localStorage.setItem(PREFIX + key, JSON.stringify(value))
 }
 
-export function loadCardProgress() {
-  return load('cards', {})
-}
-
-export function saveCardProgress(progress) {
-  save('cards', progress)
-}
-
-export function loadGrammarProgress() {
-  return load('grammar', {})
-}
-
-export function saveGrammarProgress(progress) {
-  save('grammar', progress)
-}
-
-export function loadReadingProgress() {
-  return load('reading', {})
-}
-
-export function saveReadingProgress(progress) {
-  save('reading', progress)
-}
-
-// Study history: [{ date: 'YYYY-MM-DD', articleId, title }]
-export function loadHistory() { return load('history', []) }
-export function saveHistory(h) { save('history', h) }
-
 // Vocabulary list: [{ id, word, context, addedAt }]
 export function loadVocab() { return load('vocab', []) }
 export function saveVocab(v) { save('vocab', v) }

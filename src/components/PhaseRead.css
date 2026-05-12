@@ -1,0 +1,239 @@
+.phase-read {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+}
+
+.pr-instructions {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--text);
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  text-align: center;
+}
+
+/* ── Content ── */
+.pr-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pr-para {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 10px 14px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.pr-para.speaking {
+  border-left-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.pr-para-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 7px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  transition: background 0.15s ease, color 0.15s ease;
+  color: var(--text-h);
+  line-height: 1;
+}
+
+.pr-para-btn:hover { background: var(--accent); color: #FFF8EA; }
+.pr-para-btn.active {
+  background: var(--accent);
+  color: #FFF8EA;
+  border-color: var(--accent);
+}
+
+.pr-para-text {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--text-h);
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+  margin: 0;
+  flex: 1;
+  cursor: text;
+}
+
+/* ── Key vocabulary ── */
+.pr-vocab-section {
+  padding-top: 24px;
+  border-top: 2px solid var(--border);
+}
+
+.pr-vocab-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--text-h);
+  margin: 0 0 14px;
+}
+
+.pr-vocab-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+
+.pr-vocab-item {
+  padding: 12px 16px;
+  border-right: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  transition: background 0.15s ease;
+}
+
+.pr-vocab-item:hover { background: var(--bg-elevated); }
+.pr-vocab-item:nth-child(2n) { border-right: none; }
+.pr-vocab-item.added { background: var(--sage-bg); }
+
+.pr-vocab-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.pr-vocab-word {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.pr-vocab-add {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+  font-size: 14px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 700;
+  transition: background 0.15s, color 0.15s;
+}
+
+.pr-vocab-add:hover { background: var(--accent); color: #FFF8EA; }
+
+.pr-vocab-check {
+  font-size: 14px;
+  color: #4F6B4A;
+  font-weight: 700;
+}
+
+.pr-vocab-def {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+/* ── Word tooltip ── */
+.pr-tooltip {
+  position: fixed;
+  z-index: 1000;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 3px 3px 0 0 var(--border);
+  white-space: nowrap;
+  animation: fadeUp 0.18s ease both;
+}
+
+.pr-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--border);
+}
+
+.pr-tooltip-word {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.pr-tooltip-add {
+  background: var(--accent);
+  border: 1px solid var(--border);
+  color: #FFF8EA;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.pr-tooltip-add:hover { background: var(--text-h); }
+
+.pr-tooltip-exists {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #4F6B4A;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pr-added-flash {
+  position: fixed;
+  bottom: 24px;
+  right: 340px;
+  background: var(--sage);
+  border: 1px solid var(--border);
+  padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFF8EA;
+  box-shadow: 3px 3px 0 0 var(--border);
+  animation: flashIn 0.25s, fadeOut 0.35s 1.4s forwards;
+  z-index: 999;
+}
+
+@keyframes flashIn {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateX(-8px); }
+}
+
+@media (max-width: 640px) {
+  .pr-vocab-grid { grid-template-columns: 1fr; }
+  .pr-vocab-item { border-right: none; }
+  .pr-added-flash { right: 16px; bottom: 16px; }
+}

@@ -1,43 +1,27 @@
+// Text-to-speech with smart voice selection
+import { pickBestVoice, loadVoices as loadAllVoices } from './voice'
+
 let activeUtterance = null
+let resolvedVoice   = null  // cached best voice
 
-// Wait for voices to load (needed in Chrome)
-export function loadVoices() {
-  return new Promise(resolve => {
-    const voices = window.speechSynthesis.getVoices()
-    if (voices.length) { resolve(voices); return }
-    window.speechSynthesis.addEventListener('voiceschanged', () => {
-      resolve(window.speechSynthesis.getVoices())
-    }, { once: true })
-  })
+export async function ensureVoiceReady() {
+  if (resolvedVoice) return resolvedVoice
+  resolvedVoice = await pickBestVoice()
+  return resolvedVoice
 }
 
-export async function getSwedishVoice() {
-  const voices = await loadVoices()
-  // Prefer local Swedish voices for better quality
-  return (
-    voices.find(v => v.lang === 'sv-SE' && v.localService) ||
-    voices.find(v => v.lang === 'sv-SE') ||
-    voices.find(v => v.lang.startsWith('sv')) ||
-    null
-  )
+export function resetVoice() {
+  resolvedVoice = null
 }
 
-export function speak(text, { rate = 0.82, onStart, onEnd, onBoundary } = {}) {
+// Speak text. If voice isn't loaded yet, this becomes async; otherwise it speaks immediately.
+export function speak(text, { rate = 0.82, pitch = 1.0, onStart, onEnd, onBoundary } = {}) {
   stop()
 
   const utt = new SpeechSynthesisUtterance(text)
-  utt.lang = 'sv-SE'
-  utt.rate = rate
-  utt.pitch = 1.0
-
-  // Attach voice asynchronously — speak() must be called synchronously
-  // so we set voice if already loaded, otherwise browser will use its default
-  const voices = window.speechSynthesis.getVoices()
-  const svVoice =
-    voices.find(v => v.lang === 'sv-SE' && v.localService) ||
-    voices.find(v => v.lang === 'sv-SE') ||
-    voices.find(v => v.lang.startsWith('sv'))
-  if (svVoice) utt.voice = svVoice
+  utt.lang  = 'sv-SE'
+  utt.rate  = rate
+  utt.pitch = pitch
 
   if (onStart)    utt.onstart    = onStart
   if (onEnd)      utt.onend      = onEnd
@@ -45,12 +29,25 @@ export function speak(text, { rate = 0.82, onStart, onEnd, onBoundary } = {}) {
   utt.onerror = () => onEnd?.()
 
   activeUtterance = utt
-  window.speechSynthesis.speak(utt)
+
+  // If we already have a cached best voice, attach it synchronously
+  if (resolvedVoice) {
+    utt.voice = resolvedVoice
+    window.speechSynthesis.speak(utt)
+  } else {
+    // Resolve voice first, then speak — avoids the cold-start "default OS voice" issue
+    ensureVoiceReady().then(voice => {
+      if (utt !== activeUtterance) return // cancelled
+      if (voice) utt.voice = voice
+      window.speechSynthesis.speak(utt)
+    })
+  }
+
   return utt
 }
 
 export function stop() {
-  window.speechSynthesis.cancel()
+  window.speechSynthesis?.cancel()
   activeUtterance = null
 }
 
@@ -58,7 +55,4 @@ export function isSupported() {
   return 'speechSynthesis' in window
 }
 
-// Split article text into paragraphs for word-boundary tracking
-export function sentencesOf(text) {
-  return text.match(/[^.!?]+[.!?]+/g)?.map(s => s.trim()) ?? [text]
-}
+export const loadVoices = loadAllVoices
