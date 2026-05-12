@@ -1,0 +1,122 @@
+{
+  "vocab": [
+    {
+      "id": 1778579853449,
+      "word": "arbetslöshet",
+      "context": "unemployment",
+      "addedAt": "2026-05-12T09:57:33.449Z",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T10:13:21.433Z"
+    },
+    {
+      "id": 1778576627259,
+      "word": "utbildning",
+      "context": "Education or training.",
+      "addedAt": "2026-05-12T09:03:48.173Z",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T09:51:58.748Z"
+    }
+  ],
+  "progress": {
+    "arbetsloshet": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T09:04:09.265Z",
+      "firstStarted": "2026-05-12T07:04:42.158Z",
+      "studyTimeSec": 1609
+    },
+    "horseltest": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T07:58:54.779Z",
+      "firstStarted": "2026-05-12T07:13:56.215Z",
+      "studyTimeSec": 664
+    }
+  },
+  "timestamps": {
+    "arbetsloshet": [
+      {
+        "id": "arbetsloshet-1",
+        "start": 0,
+        "end": 26.3
+      },
+      {
+        "id": "arbetsloshet-2",
+        "start": 26.3,
+        "end": 54.08
+      },
+      {
+        "id": "arbetsloshet-3",
+        "start": 54.08,
+        "end": 86.19
+      },
+      {
+        "id": "arbetsloshet-4",
+        "start": 86.19,
+        "end": 93.37
+      },
+      {
+        "id": "arbetsloshet-5",
+        "start": 93.37,
+        "end": 109.13
+      },
+      {
+        "id": "arbetsloshet-6",
+        "start": 109.13,
+        "end": 124.42
+      }
+    ],
+    "horseltest": [
+      {
+        "id": "horseltest-1",
+        "start": 0,
+        "end": 21
+      },
+      {
+        "id": "horseltest-2",
+        "start": 21,
+        "end": 35.06
+      },
+      {
+        "id": "horseltest-3",
+        "start": 35.06,
+        "end": 41.8
+      },
+      {
+        "id": "horseltest-4",
+        "start": 41.8,
+        "end": 64.04
+      },
+      {
+        "id": "horseltest-5",
+        "start": 64.04,
+        "end": 78.16
+      },
+      {
+        "id": "horseltest-6",
+        "start": 78.16,
+        "end": 120.26
+      },
+      {
+        "id": "horseltest-7",
+        "start": 120.26,
+        "end": 130.78
+      }
+    ]
+  },
+  "syncedAt": "2026-05-12T10:29:55.457Z"
+}
