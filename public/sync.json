@@ -4,31 +4,46 @@
       "id": 1778625663656,
       "word": "Råd",
       "context": "a piece of advice, counsel",
-      "addedAt": "2026-05-12T22:41:04.174Z"
+      "addedAt": "2026-05-12T22:41:04.174Z",
+      "level": 1,
+      "nextReview": "2026-05-14",
+      "lastReviewed": "2026-05-12T22:43:03.410Z"
     },
     {
       "id": 1778624859953.6987,
       "word": "djurskötare",
       "context": "animal keeper",
-      "addedAt": "2026-05-12T22:27:39.953Z"
+      "addedAt": "2026-05-12T22:27:39.953Z",
+      "nextReview": "2026-05-14",
+      "lastReviewed": "2026-05-12T22:43:20.100Z",
+      "level": 1
     },
     {
       "id": 1778624859953.214,
       "word": "giftig",
       "context": "poisonous",
-      "addedAt": "2026-05-12T22:27:39.953Z"
+      "addedAt": "2026-05-12T22:27:39.953Z",
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T22:43:10.265Z",
+      "level": 0
     },
     {
       "id": 1778624859953.0076,
       "word": "väsa",
       "context": "hiss",
-      "addedAt": "2026-05-12T22:27:39.953Z"
+      "addedAt": "2026-05-12T22:27:39.953Z",
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T22:43:13.607Z",
+      "level": 0
     },
     {
       "id": 1778624859953.2837,
       "word": "kvävas",
       "context": "suffocate",
-      "addedAt": "2026-05-12T22:27:39.953Z"
+      "addedAt": "2026-05-12T22:27:39.953Z",
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T22:43:17.337Z",
+      "level": 0
     },
     {
       "id": 1778624859953.8303,
@@ -818,5 +833,5 @@
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-12T22:41:09.431Z"
+  "syncedAt": "2026-05-12T22:43:47.509Z"
 }
