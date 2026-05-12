@@ -35,7 +35,7 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
 
     const range = selection.getRangeAt(0)
     const rect  = range.getBoundingClientRect()
-    setTooltip({ text, x: rect.left + rect.width / 2, y: rect.top })
+    setTooltip({ text, x: rect.left + rect.width / 2, y: rect.bottom })
   }, [])
 
   async function handleAddToVocab() {
@@ -43,10 +43,25 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
     setAdding(true)
     let translation = ''
     try {
-      const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(tooltip.text)}&langpair=sv|en`)
-      const data = await r.json()
-      translation = data?.responseData?.translatedText || ''
+      // Try Wiktionary first — gives real dictionary definitions
+      const wikiRes = await fetch(
+        `https://en.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(tooltip.text.toLowerCase())}`
+      )
+      if (wikiRes.ok) {
+        const wikiData = await wikiRes.json()
+        const svEntries = wikiData['sv'] || []
+        const firstDef = svEntries[0]?.definitions?.[0]?.definition
+        if (firstDef) translation = firstDef.replace(/<[^>]+>/g, '').trim()
+      }
     } catch {}
+    // Fall back to MyMemory if Wiktionary had nothing
+    if (!translation) {
+      try {
+        const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(tooltip.text)}&langpair=sv|en`)
+        const data = await r.json()
+        translation = data?.responseData?.translatedText || ''
+      } catch {}
+    }
     addToVocab(tooltip.text, translation)
     setJustAdded(tooltip.text)
     setTimeout(() => setJustAdded(null), 1800)
@@ -133,7 +148,7 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
       {tooltip && (
         <div
           className="pr-tooltip"
-          style={{ left: tooltip.x, top: tooltip.y - 10, transform: 'translate(-50%, -100%)' }}
+          style={{ left: tooltip.x, top: tooltip.y + 8, transform: 'translate(-50%, 0)' }}
         >
           <span className="pr-tooltip-word">„{tooltip.text}"</span>
           {alreadyInVocab ? (

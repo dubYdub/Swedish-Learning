@@ -209,11 +209,11 @@
 .pr-tooltip::after {
   content: '';
   position: absolute;
-  top: 100%;
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   border: 6px solid transparent;
-  border-top-color: var(--border);
+  border-bottom-color: var(--border);
 }
 
 .pr-tooltip-word {
