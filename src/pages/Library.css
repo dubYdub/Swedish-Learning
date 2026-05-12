@@ -1085,19 +1085,40 @@
 
 .lib-phase-name { letter-spacing: 0.1em; }
 
-/* Custom article delete button */
-.lib-custom-delete {
-  background: none;
-  border: none;
-  border-left: 1px solid var(--border-soft);
+/* Article delete button — bottom-left corner, appears on row hover */
+.lib-article-delete {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-soft);
   color: var(--text-dim);
-  font-size: 18px;
+  font-size: 14px;
+  line-height: 1;
   cursor: pointer;
-  padding: 0 16px;
-  flex-shrink: 0;
-  transition: color 0.15s, background 0.15s;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, color 0.15s, background 0.15s, border-color 0.15s;
+  z-index: 1;
 }
-.lib-custom-delete:hover { color: var(--danger); background: var(--bg-card); }
+
+.lib-toc-row:hover .lib-article-delete {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lib-article-delete:hover {
+  color: var(--danger);
+  background: #FFF2F2;
+  border-color: var(--danger);
+}
+
+.lib-article-delete:active { transform: scale(0.9); }
 
 /* Status badges */
 .lib-badge {

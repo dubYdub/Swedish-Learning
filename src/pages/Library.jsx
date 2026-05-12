@@ -303,7 +303,7 @@ export default function Library({
   onOpenArticle, onAddVocab, onRemoveVocab, onUpdateVocab, onUpdateMnemonic,
   onAnswerVocab, onPublishVocab, syncStatus, syncError,
   onGenerateMnemonics, generatingMnemonics,
-  onAddCustomArticle, onRemoveCustomArticle,
+  onAddCustomArticle, onRemoveArticle,
 }) {
   const today = localToday()
   const stats = computeStats(progress)
@@ -622,13 +622,12 @@ export default function Library({
                             </div>
                           </div>
                         </button>
-                        {article.isCustom && (
-                          <button
-                            className="lib-custom-delete"
-                            onClick={() => onRemoveCustomArticle(article.id)}
-                            title="Ta bort artikel"
-                          >×</button>
-                        )}
+                        <button
+                          className="lib-article-delete"
+                          onClick={e => { e.stopPropagation(); onRemoveArticle(article.id) }}
+                          title="Ta bort artikel"
+                          aria-label="Ta bort artikel"
+                        >×</button>
                       </div>
                     )
                   })

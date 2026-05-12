@@ -52,6 +52,24 @@ export function fetchMnemonic(word, definition) {
   ], 80, 0.8)
 }
 
+// Extract key vocabulary from a Swedish text.
+// Returns [{ word, definition }]
+export async function fetchKeyVocab(text) {
+  const result = await callDS([
+    {
+      role: 'system',
+      content: `You are a Swedish language teacher. Given Swedish text, extract 5–8 key vocabulary words a B1–B2 learner should know. Focus on content words (nouns, verbs, adjectives) that may be unfamiliar. Return ONLY valid JSON in this exact shape:
+{"vocab":[{"word":"<Swedish word>","definition":"<short English definition, max 8 words>"}]}`,
+    },
+    { role: 'user', content: text.slice(0, 3000) },
+  ], 500, 0.2, true)
+  if (!result) return []
+  try {
+    const parsed = JSON.parse(result)
+    return Array.isArray(parsed.vocab) ? parsed.vocab : []
+  } catch { return [] }
+}
+
 // Parse a block of raw Swedish text into a fully structured article entry.
 // Returns { title, summary, difficulty, topic, topicLabel, topicEmoji, content: [{ id, text, translation }] }
 export async function fetchArticleParse(rawText) {

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react'
 import Library from './pages/Library'
 import Study from './pages/Study'
-import { loadVocab, saveVocab } from './utils/storage'
+import { loadVocab, saveVocab, loadHiddenIds, saveHiddenIds } from './utils/storage'
 import { loadProgress, saveProgress } from './utils/progress'
 import * as tsUtils from './utils/timestamps'
 import * as srs from './utils/srs'
@@ -24,6 +24,7 @@ export default function App() {
   const [generatingMnemonics, setGeneratingMnemonics] = useState(false)
 
   const [customArticles, setCustomArticles] = useState([])
+  const [hiddenIds, setHiddenIds] = useState(() => loadHiddenIds())
 
   // On mount: load custom articles + resolve their audio blob URLs
   useEffect(() => {
@@ -43,8 +44,8 @@ export default function App() {
   }, [])
 
   const allArticles = useMemo(
-    () => [...staticArticles, ...customArticles],
-    [customArticles]
+    () => [...staticArticles, ...customArticles].filter(a => !hiddenIds.includes(a.id)),
+    [customArticles, hiddenIds]
   )
 
   // On mount: silently merge remote vocab + progress into local
@@ -179,13 +180,40 @@ export default function App() {
     const withUrl = audioBlobUrl ? { ...articleData, audioBlobUrl } : articleData
     addCustomArticle(articleData)
     setCustomArticles(prev => [...prev, withUrl])
+
+    // Background vocab extraction
+    if (ds.getKey() && articleData.content?.length) {
+      const fullText = articleData.content.map(p => p.text).join('\n\n')
+      ds.fetchKeyVocab(fullText).then(words => {
+        if (!words.length) return
+        setVocab(prev => {
+          const set = new Set(prev.map(v => v.word.toLowerCase()))
+          const toAdd = words
+            .filter(w => w.word && !set.has(w.word.toLowerCase()))
+            .map(w => ({ id: Date.now() + Math.random(), word: w.word, context: w.definition, addedAt: new Date().toISOString() }))
+          if (!toAdd.length) return prev
+          const updated = [...toAdd, ...prev]
+          saveVocab(updated)
+          return updated
+        })
+      }).catch(() => {})
+    }
   }, [])
 
-  const handleRemoveCustomArticle = useCallback(async (id) => {
-    try { await deleteCustomAudio(id) } catch {}
-    removeCustomArticle(id)
-    setCustomArticles(prev => prev.filter(a => a.id !== id))
-  }, [])
+  const handleRemoveArticle = useCallback(async (id) => {
+    const isCustom = customArticles.some(a => a.id === id)
+    if (isCustom) {
+      try { await deleteCustomAudio(id) } catch {}
+      removeCustomArticle(id)
+      setCustomArticles(prev => prev.filter(a => a.id !== id))
+    } else {
+      setHiddenIds(prev => {
+        const next = [...prev, id]
+        saveHiddenIds(next)
+        return next
+      })
+    }
+  }, [customArticles])
 
   const currentArticle = studyId ? allArticles.find(a => a.id === studyId) : null
 
@@ -208,7 +236,7 @@ export default function App() {
           onGenerateMnemonics={generateMissingMnemonics}
           generatingMnemonics={generatingMnemonics}
           onAddCustomArticle={handleAddCustomArticle}
-          onRemoveCustomArticle={handleRemoveCustomArticle}
+          onRemoveArticle={handleRemoveArticle}
         />
       )}
       {view === 'study' && currentArticle && (
