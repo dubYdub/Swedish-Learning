@@ -1,12 +1,116 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { DIFFICULTY, estimateReadMinutes } from '../data/articles'
 import { getArticleProgress, computeStats, computeStreak, PHASE_LABELS, PHASES } from '../utils/progress'
 import { countAllRecordings } from '../utils/db'
 import { loadToken, saveToken } from '../utils/timestamps'
-import { getKey as dsKeySet } from '../utils/deepseek'
+import * as ds from '../utils/deepseek'
 import VocabList from '../components/VocabList'
 import Flashcards from '../components/Flashcards'
 import './Library.css'
+
+const INFLECTION_RE = /\b(form of|degree of|inflection of|definite|plural|superlative|comparative|genitive|past tense|present tense)\b/i
+
+function QuickAdd({ vocab, onAdd, onUpdateContext, onUpdateMnemonic }) {
+  const [word, setWord]       = useState('')
+  const [context, setContext] = useState('')
+  const [status, setStatus]   = useState('idle') // idle | loading | added | exists
+  const wordRef = useRef(null)
+  const hasDS   = !!ds.getKey()
+
+  async function handleSubmit(e) {
+    e?.preventDefault()
+    const w = word.trim()
+    if (!w || status === 'loading') return
+
+    if (vocab.find(v => v.word.toLowerCase() === w.toLowerCase())) {
+      setStatus('exists')
+      setTimeout(() => setStatus('idle'), 2200)
+      return
+    }
+
+    setStatus('loading')
+    const id = Date.now()
+    let definition = context.trim()
+
+    if (!definition) {
+      try {
+        const r = await fetch(`https://en.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(w.toLowerCase())}`)
+        if (r.ok) {
+          const d = await r.json()
+          const raw = (d['sv'] || [])[0]?.definitions?.[0]?.definition
+          if (raw) {
+            const clean = raw.replace(/<[^>]+>/g, '').trim()
+            if (!INFLECTION_RE.test(clean)) definition = clean
+          }
+        }
+      } catch {}
+      if (!definition) {
+        try {
+          const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(w)}&langpair=sv|en`)
+          definition = (await r.json())?.responseData?.translatedText || ''
+        } catch {}
+      }
+    }
+
+    onAdd(w, definition, id)
+    setWord('')
+    setContext('')
+    setStatus('added')
+    setTimeout(() => { setStatus('idle'); wordRef.current?.focus() }, 1800)
+
+    // Background: DeepSeek upgrade + mnemonic
+    if (hasDS) {
+      ds.fetchDefinition(w).then(def => {
+        const best = def || definition
+        if (def) onUpdateContext(id, def)
+        if (best) ds.fetchMnemonic(w, best).then(m => { if (m) onUpdateMnemonic(id, m) }).catch(() => {})
+      }).catch(() => {})
+    }
+  }
+
+  return (
+    <form className="qa-form" onSubmit={handleSubmit} noValidate>
+      <div className="qa-header">
+        <p className="qa-title">Lägg till ord</p>
+        {hasDS && <span className="qa-ai-badge">✦ AI-definition</span>}
+      </div>
+      <div className="qa-row">
+        <div className="qa-word-wrap">
+          <input
+            ref={wordRef}
+            className="qa-word"
+            type="text"
+            value={word}
+            onChange={e => setWord(e.target.value)}
+            placeholder="ett ord…"
+            autoComplete="off"
+            spellCheck={false}
+            disabled={status === 'loading'}
+          />
+        </div>
+        <input
+          className="qa-context"
+          type="text"
+          value={context}
+          onChange={e => setContext(e.target.value)}
+          placeholder="kontext eller källa (valfritt)"
+          disabled={status === 'loading'}
+          onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+        />
+        <button
+          className={`qa-submit${status === 'added' ? ' success' : ''}${status === 'loading' ? ' loading' : ''}`}
+          type="submit"
+          disabled={!word.trim() || status === 'loading'}
+        >
+          {status === 'loading' ? '…' : status === 'added' ? '✓ Tillagd' : '+ Lägg till'}
+        </button>
+      </div>
+      {status === 'exists' && (
+        <p className="qa-feedback qa-exists">Ordet finns redan i ordlistan.</p>
+      )}
+    </form>
+  )
+}
 
 function localToday() {
   const d = new Date()
@@ -15,7 +119,7 @@ function localToday() {
 
 const ISSUE_NO = 4 // editorial flair — could increment monthly
 
-export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab, onUpdateVocab, onAnswerVocab, onPublishVocab, syncStatus, syncError, onGenerateMnemonics, generatingMnemonics }) {
+export default function Library({ articles, progress, vocab, onOpenArticle, onAddVocab, onRemoveVocab, onUpdateVocab, onUpdateMnemonic, onAnswerVocab, onPublishVocab, syncStatus, syncError, onGenerateMnemonics, generatingMnemonics }) {
   const today = localToday()
   const stats = computeStats(progress)
   const streak = computeStreak(progress, today)
@@ -140,10 +244,16 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
               <Flashcards vocab={vocab} onAnswer={onAnswerVocab} onExit={() => setFlashMode(false)} />
             ) : (
               <section className="lib-dict">
+                <QuickAdd
+                  vocab={vocab}
+                  onAdd={onAddVocab}
+                  onUpdateContext={onUpdateVocab}
+                  onUpdateMnemonic={onUpdateMnemonic}
+                />
                 <div className="lib-dict-head">
                   <h2 className="lib-toc-title">Ordlista</h2>
                   <div className="lib-dict-actions">
-                    {vocab.length > 0 && dsKeySet() && (() => {
+                    {vocab.length > 0 && ds.getKey() && (() => {
                       const missing = vocab.filter(v => !v.mnemonic).length
                       return missing > 0 ? (
                         <button

@@ -156,8 +156,10 @@ export default function App() {
           progress={progress}
           vocab={vocab}
           onOpenArticle={openStudy}
+          onAddVocab={addToVocab}
           onRemoveVocab={removeFromVocab}
           onUpdateVocab={updateVocabContext}
+          onUpdateMnemonic={updateVocabMnemonic}
           onAnswerVocab={updateVocabSRS}
           onPublishVocab={publishVocab}
           syncStatus={syncStatus}
