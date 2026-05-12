@@ -31,7 +31,7 @@ export default function App() {
     if (stored.length === 0) { setCustomArticles([]); return }
     Promise.all(
       stored.map(async a => {
-        if (!a.audioBlobUrl) {
+        if (!a.audioBlobUrl && !a.audioUrl) {
           try {
             const blob = await loadCustomAudio(a.id)
             if (blob) return { ...a, audioBlobUrl: URL.createObjectURL(blob) }

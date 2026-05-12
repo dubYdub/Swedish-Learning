@@ -6,6 +6,7 @@ import './PhaseListen.css'
 
 function resolveAudioUrl(article) {
   if (article.audioBlobUrl) return article.audioBlobUrl
+  if (article.audioUrl) return article.audioUrl
   return article.audioFile ? ap.audioFileUrl(article.audioFile) : null
 }
 
