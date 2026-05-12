@@ -237,6 +237,19 @@
       "lastStudied": "2026-05-12T21:01:30.898Z",
       "firstStarted": "2026-05-12T07:13:56.215Z",
       "studyTimeSec": 862
+    },
+    "custom-1778620851155": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T21:21:38.113Z",
+      "firstStarted": "2026-05-12T21:21:38.113Z",
+      "studyTimeSec": 33
     }
   },
   "timestamps": {
@@ -310,5 +323,5 @@
       }
     ]
   },
-  "syncedAt": "2026-05-12T21:04:07.073Z"
+  "syncedAt": "2026-05-12T21:32:06.945Z"
 }
