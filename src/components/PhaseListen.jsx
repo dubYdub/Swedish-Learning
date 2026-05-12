@@ -3,9 +3,19 @@ import * as tts from '../utils/tts'
 import * as ap from '../utils/audioPlayer'
 import './PhaseListen.css'
 
-// Resolve audio URL from article — null if no audio file set
 function resolveAudioUrl(article) {
   return article.audioFile ? ap.audioFileUrl(article.audioFile) : null
+}
+
+// Distribute duration across paragraphs proportionally by character count
+function estimateTimestamps(content, duration) {
+  const totalChars = content.reduce((s, p) => s + p.text.length, 0)
+  let cursor = 0
+  return content.map(p => {
+    const start = cursor
+    cursor += (p.text.length / totalChars) * duration
+    return { id: p.id, start, end: cursor }
+  })
 }
 
 const TTS_RATES = [
@@ -45,8 +55,15 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
     if (!audioUrl) return
     let cancelled = false
     ap.loadSrc(audioUrl)
-    setTimeout(() => { const d = ap.getDuration(); if (d > 0) setDuration(d) }, 800)
-    ap.loadTimestamps(article.id).then(ts => { if (!cancelled) setTimestamps(ts) })
+    ap.onDurationReady(d => {
+      if (cancelled) return
+      setDuration(d)
+      // If no JSON timestamp file, estimate from paragraph lengths
+      ap.loadTimestamps(article.id).then(ts => {
+        if (cancelled) return
+        setTimestamps(ts ?? estimateTimestamps(article.content, d))
+      })
+    })
     return () => { cancelled = true }
   }, [article.id, audioUrl])
 
@@ -235,9 +252,6 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
         >
           {showText ? '👁 Dölj text' : '👁 Visa text'}
         </button>
-        {audioUrl && !timestamps && (
-          <span className="pl-hint">Lägg till tidsstämplar för att hoppa till enskilda stycken</span>
-        )}
       </div>
 
       {/* Paragraph list */}
@@ -248,7 +262,6 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
             const isCurrent = audioUrl
               ? currentParaIdx === idx
               : playingId === para.id
-            const hasTimestamp = timestamps?.[idx] != null
 
             return (
               <div
@@ -257,16 +270,16 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
               >
                 <div className="pl-sentence-row">
                   <button
-                    className={`pl-sentence-btn ${isCurrent ? 'active' : ''} ${!audioUrl || hasTimestamp ? '' : 'disabled'}`}
+                    className={`pl-sentence-btn ${isCurrent ? 'active' : ''}`}
                     onClick={() => {
-                      if (audioUrl && hasTimestamp) {
+                      if (audioUrl) {
                         seekToParagraph(idx)
-                      } else if (!audioUrl) {
+                      } else {
                         playParagraph(para)
                       }
                     }}
-                    title={audioUrl ? (hasTimestamp ? 'Hoppa till stycket' : 'Inga tidsstämplar') : (isCurrent ? 'Stoppa' : 'Spela stycket')}
-                    disabled={audioUrl && !hasTimestamp}
+                    title={audioUrl ? 'Hoppa till stycket' : (isCurrent ? 'Stoppa' : 'Spela stycket')}
+                    disabled={audioUrl && !timestamps}
                   >
                     {isCurrent ? '⏸' : '▶'}
                   </button>

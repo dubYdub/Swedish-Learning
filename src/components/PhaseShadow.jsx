@@ -7,6 +7,16 @@ function resolveAudioUrl(article) {
   return article.audioFile ? ap.audioFileUrl(article.audioFile) : null
 }
 
+function estimateTimestamps(content, duration) {
+  const totalChars = content.reduce((s, p) => s + p.text.length, 0)
+  let cursor = 0
+  return content.map(p => {
+    const start = cursor
+    cursor += (p.text.length / totalChars) * duration
+    return { id: p.id, start, end: cursor }
+  })
+}
+
 const TTS_RATES = [
   { value: 0.55, label: 'Mycket sakta' },
   { value: 0.70, label: 'Sakta' },
@@ -45,8 +55,14 @@ export default function PhaseShadow({ article, isDone, onMarkDone }) {
     if (!audioUrl) return
     let cancelled = false
     ap.loadSrc(audioUrl)
-    setTimeout(() => { const d = ap.getDuration(); if (d > 0) setDuration(d) }, 800)
-    ap.loadTimestamps(article.id).then(ts => { if (!cancelled) setTimestamps(ts) })
+    ap.onDurationReady(d => {
+      if (cancelled) return
+      setDuration(d)
+      ap.loadTimestamps(article.id).then(ts => {
+        if (cancelled) return
+        setTimestamps(ts ?? estimateTimestamps(article.content, d))
+      })
+    })
     return () => { cancelled = true }
   }, [article.id, audioUrl])
 

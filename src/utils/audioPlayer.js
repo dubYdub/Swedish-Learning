@@ -18,6 +18,24 @@ export function audioFileUrl(audioFile) {
   return `${import.meta.env.BASE_URL}audio/${audioFile}`
 }
 
+// Call cb(duration) as soon as the audio element has metadata
+export function onDurationReady(cb) {
+  const a = el()
+  if (a.readyState >= 1 && isFinite(a.duration) && a.duration > 0) {
+    cb(a.duration)
+  } else {
+    const handler = () => {
+      if (isFinite(a.duration) && a.duration > 0) {
+        cb(a.duration)
+        a.removeEventListener('loadedmetadata', handler)
+        a.removeEventListener('durationchange', handler)
+      }
+    }
+    a.addEventListener('loadedmetadata', handler)
+    a.addEventListener('durationchange', handler)
+  }
+}
+
 // --- Timestamps ---
 
 const _tsCache = {}
