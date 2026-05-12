@@ -113,6 +113,183 @@
   color: var(--text-dim);
 }
 
+/* Edit toggle button */
+.pl-edit-toggle {
+  margin-left: auto;
+  padding: 6px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.pl-edit-toggle:hover {
+  background: var(--bg-card);
+  color: var(--text-h);
+  border-color: var(--border);
+}
+
+/* Editor bar */
+.pl-edit-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  background: var(--butter-bg);
+  border: 1px solid var(--butter);
+  box-shadow: 3px 3px 0 0 var(--butter);
+}
+
+.pl-edit-hint {
+  flex: 1;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-h);
+  line-height: 1.5;
+  min-width: 200px;
+}
+
+.pl-edit-hint strong {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.pl-edit-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pl-edit-btn {
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 0 var(--border);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+  white-space: nowrap;
+}
+
+.pl-edit-btn:hover  { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 0 var(--border); }
+.pl-edit-btn:active { transform: translate(1px, 1px);   box-shadow: 0 0 0 0 var(--border); }
+
+.pl-edit-btn.ghost  { background: var(--bg-elevated); color: var(--text); }
+.pl-edit-btn.export { background: var(--bg-card);     color: var(--text-h); }
+.pl-edit-btn.export.copied { background: var(--sage); color: #fff; border-color: var(--sage); }
+.pl-edit-btn.save   { background: var(--accent);      color: #FFF8EA; border-color: var(--accent); }
+
+/* Editing paragraph row */
+.pl-sentence.editing {
+  padding: 10px 14px;
+  border-left: 3px solid var(--butter);
+  background: transparent;
+}
+
+.pl-sentence.editing.speaking {
+  background: var(--butter-bg);
+}
+
+.pl-edit-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Time badge (clickable) */
+.pl-ts-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  padding: 4px 8px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  color: var(--text-dim);
+  cursor: pointer;
+  min-width: 54px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.pl-ts-badge:hover { background: var(--bg-card); color: var(--text-h); border-color: var(--border); }
+
+.pl-ts-badge.set {
+  background: var(--sage-bg);
+  border-color: var(--sage);
+  color: #2A5A3A;
+}
+
+/* Inline time input */
+.pl-ts-input {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  padding: 4px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  color: var(--text-h);
+  width: 70px;
+  flex-shrink: 0;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-bg);
+}
+
+.pl-edit-num {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--accent);
+  flex-shrink: 0;
+  min-width: 18px;
+}
+
+.pl-edit-preview {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text);
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Mark button */
+.pl-mark-btn {
+  padding: 6px 14px;
+  background: var(--accent);
+  border: 1px solid var(--border);
+  color: #FFF8EA;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0 0 var(--border);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+}
+
+.pl-mark-btn:hover  { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 0 var(--border); }
+.pl-mark-btn:active { transform: translate(1px, 1px);   box-shadow: 0 0 0 0 var(--border); }
+.pl-mark-btn.current { background: var(--butter); color: var(--text-h); border-color: var(--butter); }
+
 /* Master controls */
 .pl-controls {
   display: flex;
