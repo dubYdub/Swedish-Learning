@@ -29,27 +29,28 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
   const handleMouseUp = useCallback(() => {
     const selection = window.getSelection()
     const text = selection?.toString().trim()
-    if (!text || text.length < 1 || text.length > 80) { setTooltip(null); return }
+    if (!text || text.length < 2 || text.length > 80) { setTooltip(null); return }
     if (!contentRef.current?.contains(selection.anchorNode)) { setTooltip(null); return }
 
     const range = selection.getRangeAt(0)
     const rect  = range.getBoundingClientRect()
-    const allText = article.content.map(p => p.text).join(' ')
-    const escaped = text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const sentenceMatch = allText.match(new RegExp('[^.!?]*' + escaped + '[^.!?]*[.!?]?'))
-    const context = sentenceMatch?.[0]?.trim() ?? ''
 
-    setTooltip({
-      text,
-      context,
-      x: rect.left + rect.width / 2,
-      y: rect.top,
-    })
-  }, [article])
+    setTooltip({ text, translation: null, translating: true, x: rect.left + rect.width / 2, y: rect.top })
+
+    fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=sv|en`)
+      .then(r => r.json())
+      .then(data => {
+        const t = data?.responseData?.translatedText
+        setTooltip(prev => prev?.text === text ? { ...prev, translation: t || null, translating: false } : prev)
+      })
+      .catch(() => {
+        setTooltip(prev => prev?.text === text ? { ...prev, translating: false } : prev)
+      })
+  }, [])
 
   function handleAddToVocab() {
     if (!tooltip) return
-    addToVocab(tooltip.text, tooltip.context)
+    addToVocab(tooltip.text, tooltip.translation || '')
     setJustAdded(tooltip.text)
     setTimeout(() => setJustAdded(null), 1800)
     setTooltip(null)
@@ -137,11 +138,20 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
           style={{ left: tooltip.x, top: tooltip.y - 10, transform: 'translate(-50%, -100%)' }}
         >
           <span className="pr-tooltip-word">„{tooltip.text}"</span>
-          {alreadyInVocab ? (
-            <span className="pr-tooltip-exists">Redan tillagd</span>
-          ) : (
-            <button className="pr-tooltip-add" onClick={handleAddToVocab}>+ Ordlista</button>
-          )}
+          {tooltip.translating ? (
+            <span className="pr-tooltip-transl loading">…</span>
+          ) : tooltip.translation ? (
+            <span className="pr-tooltip-transl">{tooltip.translation}</span>
+          ) : null}
+          <div className="pr-tooltip-actions">
+            {alreadyInVocab ? (
+              <span className="pr-tooltip-exists">Redan tillagd</span>
+            ) : (
+              <button className="pr-tooltip-add" onClick={handleAddToVocab} disabled={tooltip.translating}>
+                + Ordlista
+              </button>
+            )}
+          </div>
         </div>
       )}
 
