@@ -1,6 +1,54 @@
 {
   "vocab": [
     {
+      "id": 1778621579887.0393,
+      "word": "räddat",
+      "context": "saved, rescued",
+      "addedAt": "2026-05-12T21:32:59.887Z"
+    },
+    {
+      "id": 1778621579887.0889,
+      "word": "dammar",
+      "context": "ponds",
+      "addedAt": "2026-05-12T21:32:59.887Z"
+    },
+    {
+      "id": 1778621579887.0046,
+      "word": "släpper ut",
+      "context": "release, let out",
+      "addedAt": "2026-05-12T21:32:59.887Z"
+    },
+    {
+      "id": 1778621579887.4902,
+      "word": "dumpar",
+      "context": "dumps, abandons",
+      "addedAt": "2026-05-12T21:32:59.887Z"
+    },
+    {
+      "id": 1778621579887.9092,
+      "word": "ekosystemet",
+      "context": "the ecosystem",
+      "addedAt": "2026-05-12T21:32:59.887Z"
+    },
+    {
+      "id": 1778621579887.072,
+      "word": "förändras",
+      "context": "changes, is altered",
+      "addedAt": "2026-05-12T21:32:59.887Z"
+    },
+    {
+      "id": 1778621579887.4487,
+      "word": "fisklösa",
+      "context": "fishless",
+      "addedAt": "2026-05-12T21:32:59.887Z"
+    },
+    {
+      "id": 1778621579887.163,
+      "word": "omplacerat",
+      "context": "relocated, rehomed",
+      "addedAt": "2026-05-12T21:32:59.887Z"
+    },
+    {
       "id": 1778619679340,
       "word": "störst behov",
       "context": "greatest need",
@@ -250,6 +298,19 @@
       "lastStudied": "2026-05-12T21:21:38.113Z",
       "firstStarted": "2026-05-12T21:21:38.113Z",
       "studyTimeSec": 33
+    },
+    "custom-1778621577342": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T21:35:01.842Z",
+      "firstStarted": "2026-05-12T21:35:01.842Z",
+      "studyTimeSec": 122
     }
   },
   "timestamps": {
@@ -321,7 +382,39 @@
         "start": 120.26,
         "end": 130.78
       }
+    ],
+    "custom-1778621577342": [
+      {
+        "id": "custom-1778621565519-1",
+        "start": 0,
+        "end": 16.96
+      },
+      {
+        "id": "custom-1778621565519-2",
+        "start": 16.96,
+        "end": 25.55
+      },
+      {
+        "id": "custom-1778621565519-3",
+        "start": 25.55,
+        "end": 45.6
+      },
+      {
+        "id": "custom-1778621565519-4",
+        "start": 45.6,
+        "end": 56.56
+      },
+      {
+        "id": "custom-1778621565519-5",
+        "start": 56.56,
+        "end": 74.84
+      },
+      {
+        "id": "custom-1778621565519-6",
+        "start": 74.84,
+        "end": 90.74
+      }
     ]
   },
-  "syncedAt": "2026-05-12T21:32:06.945Z"
+  "syncedAt": "2026-05-12T21:35:05.080Z"
 }
