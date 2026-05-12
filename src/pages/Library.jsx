@@ -13,7 +13,7 @@ function localToday() {
 
 const ISSUE_NO = 4 // editorial flair — could increment monthly
 
-export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab, onUpdateVocab }) {
+export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab, onUpdateVocab, onAnswerVocab }) {
   const today = localToday()
   const stats = computeStats(progress)
   const streak = computeStreak(progress, today)
@@ -81,7 +81,7 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
           {/* ── Dictionary tab ── */}
           {activeTab === 'dictionary' && (
             flashMode ? (
-              <Flashcards vocab={vocab} onExit={() => setFlashMode(false)} />
+              <Flashcards vocab={vocab} onAnswer={onAnswerVocab} onExit={() => setFlashMode(false)} />
             ) : (
               <section className="lib-dict">
                 <div className="lib-dict-head">

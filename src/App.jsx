@@ -3,6 +3,7 @@ import Library from './pages/Library'
 import Study from './pages/Study'
 import { loadVocab, saveVocab } from './utils/storage'
 import { loadProgress, saveProgress } from './utils/progress'
+import * as srs from './utils/srs'
 import { articles } from './data/articles'
 import './App.css'
 
@@ -52,6 +53,14 @@ export default function App() {
     })
   }, [])
 
+  const updateVocabSRS = useCallback((id, correct) => {
+    setVocab(prev => {
+      const updated = prev.map(v => v.id === id ? { ...v, ...srs.advance(v, correct) } : v)
+      saveVocab(updated)
+      return updated
+    })
+  }, [])
+
   const updateVocabContext = useCallback((id, context) => {
     setVocab(prev => {
       const updated = prev.map(v => v.id === id ? { ...v, context } : v)
@@ -72,6 +81,7 @@ export default function App() {
           onOpenArticle={openStudy}
           onRemoveVocab={removeFromVocab}
           onUpdateVocab={updateVocabContext}
+          onAnswerVocab={updateVocabSRS}
         />
       )}
       {view === 'study' && currentArticle && (
