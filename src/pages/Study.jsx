@@ -18,7 +18,7 @@ const CHAPTERS = {
   record: 'IV',
 }
 
-export default function Study({ article, progress, updateProgress, vocab, addToVocab, removeFromVocab, onBack }) {
+export default function Study({ article, progress, updateProgress, vocab, addToVocab, removeFromVocab, updateVocabContext, onBack }) {
   const [activePhase, setActivePhase] = useState('read')
   const studyStartRef = useState(() => ({ start: Date.now() }))[0]
 
@@ -133,7 +133,7 @@ export default function Study({ article, progress, updateProgress, vocab, addToV
         </main>
 
         <aside className="st-sidebar">
-          <VocabList vocab={vocab} onRemove={removeFromVocab} />
+          <VocabList vocab={vocab} onRemove={removeFromVocab} onUpdateVocab={updateVocabContext} />
         </aside>
       </div>
     </div>

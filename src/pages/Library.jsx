@@ -13,7 +13,7 @@ function localToday() {
 
 const ISSUE_NO = 4 // editorial flair — could increment monthly
 
-export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab }) {
+export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab, onUpdateVocab }) {
   const today = localToday()
   const stats = computeStats(progress)
   const streak = computeStreak(progress, today)
@@ -201,7 +201,7 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
         </main>
 
         <aside className="lib-sidebar">
-          <VocabList vocab={vocab} onRemove={onRemoveVocab} />
+          <VocabList vocab={vocab} onRemove={onRemoveVocab} onUpdateVocab={onUpdateVocab} />
         </aside>
       </div>
     </div>

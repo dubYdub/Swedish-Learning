@@ -52,6 +52,14 @@ export default function App() {
     })
   }, [])
 
+  const updateVocabContext = useCallback((id, context) => {
+    setVocab(prev => {
+      const updated = prev.map(v => v.id === id ? { ...v, context } : v)
+      saveVocab(updated)
+      return updated
+    })
+  }, [])
+
   const currentArticle = studyId ? articles.find(a => a.id === studyId) : null
 
   return (
@@ -63,6 +71,7 @@ export default function App() {
           vocab={vocab}
           onOpenArticle={openStudy}
           onRemoveVocab={removeFromVocab}
+          onUpdateVocab={updateVocabContext}
         />
       )}
       {view === 'study' && currentArticle && (
@@ -73,6 +82,7 @@ export default function App() {
           vocab={vocab}
           addToVocab={addToVocab}
           removeFromVocab={removeFromVocab}
+          updateVocabContext={updateVocabContext}
           onBack={goLibrary}
         />
       )}

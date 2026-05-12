@@ -74,6 +74,27 @@
   align-items: flex-start;
 }
 
+.vl-entry-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.vl-translate {
+  background: none;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0 2px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  line-height: 1;
+}
+
+.vl-translate:hover { opacity: 1; }
+.vl-translate:disabled { cursor: default; opacity: 0.3; }
+
 .vl-word {
   font-family: var(--font-display);
   font-size: 18px;
@@ -167,3 +188,55 @@
 }
 
 .vl-export:hover { background: var(--text-h); color: var(--bg-card); }
+
+/* DeepSeek key input */
+.vl-key-form {
+  padding: 12px 18px;
+  background: var(--blue-bg, #EAF0F8);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vl-key-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 0;
+}
+
+.vl-key-input {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 6px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--blue);
+  color: var(--text-h);
+  outline: none;
+  width: 100%;
+}
+
+.vl-key-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.vl-key-btn {
+  flex: 1;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.vl-key-btn.ghost   { background: var(--bg-elevated); color: var(--text); }
+.vl-key-btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+.vl-key-btn.primary:disabled { opacity: 0.5; cursor: default; }
