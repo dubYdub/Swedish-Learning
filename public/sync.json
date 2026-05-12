@@ -466,6 +466,19 @@
       "lastStudied": "2026-05-12T22:08:32.718Z",
       "firstStarted": "2026-05-12T22:08:32.718Z",
       "studyTimeSec": 15
+    },
+    "custom-1778623798016": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T22:10:08.181Z",
+      "firstStarted": "2026-05-12T22:10:08.181Z",
+      "studyTimeSec": 7
     }
   },
   "timestamps": {
@@ -583,8 +596,52 @@
         }
       ],
       "audioUrl": "https://lyssna-cdn.sr.se/isidor/2022/10/program_djurskotare_har_hittat_den_gif_20221028_1528286119_a96.m4a?_h_publicationId=8174692"
+    },
+    {
+      "id": "custom-1778623798016",
+      "topic": "other",
+      "topicLabel": "Övrigt",
+      "topicEmoji": "📄",
+      "difficulty": "B1",
+      "title": "Cheyenne van Keeken har räddat över 400 guldfiskar från damm",
+      "summary": "",
+      "keyVocab": [],
+      "isCustom": true,
+      "content": [
+        {
+          "id": "custom-1778623798016-1",
+          "text": "Cheyenne van Keeken har räddat över 400 guldfiskar från dammar i Göteborg. Hon säger till P4 Göteborg att det är synd att folk släpper ut guldfiskar i dammar.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623798016-2",
+          "text": "– Bara den här sommaren har jag varit på sex olika ställen. Det är så tragiskt att folk dumpar dem och dumpar djur på det sättet.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623798016-3",
+          "text": "Vem som har släppt ut guldfiskarna i dammarna vet man inte. Fredrik Larsson som jobbar på Länsstyrelsen i Västra Götaland säger att ekosystemet i dammarna, alltså vilka växter och djur som lever där, kan förändras av fiskarna.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623798016-4",
+          "text": "– Många dammar är naturligt fisklösa vilket innebär att släpper man då helt plötsligt i fisk i de dammarna så kommer man att ändra ekosystemet i den dammen.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623798016-5",
+          "text": "Cheyenne van Keeken säger att det är svårt att få plats med alla guldfiskar hemma. Hon låter några av dem bo i badkaret. Hon säger att hon behåller några fiskar själv och lämnar några vidare till andra personer.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623798016-6",
+          "text": "– Guldfiskarna som har varit väldigt fina har jag ju valt att behålla själv. Men de allra största så har jag ju på direkten omplacerat dem för det går inte att ha dem här hemma. Jag har inte plats för dem.",
+          "translation": ""
+        }
+      ],
+      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2024/07/program_hon_har_raddat_400_guldfiskar_20240724_1507172154_a96.m4a?_h_publicationId=8717940"
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-12T22:08:34.124Z"
+  "syncedAt": "2026-05-12T22:10:11.852Z"
 }
