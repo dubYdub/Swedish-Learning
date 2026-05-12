@@ -7,10 +7,12 @@ import * as ds from '../utils/deepseek'
 import * as srs from '../utils/srs'
 import VocabList from '../components/VocabList'
 import Flashcards from '../components/Flashcards'
+import ArticleUploader from '../components/ArticleUploader'
 import './Library.css'
 
 const INFLECTION_RE = /\b(form of|degree of|inflection of|definite|plural|superlative|comparative|genitive|past tense|present tense)\b/i
 const RING_COLORS = ['var(--text-dim)', 'var(--butter)', 'var(--blue)', 'var(--accent)', 'var(--pink)', 'var(--sage)']
+const LEVEL_BG    = ['var(--bg-elevated)', 'var(--butter-bg)', 'var(--blue-bg)', 'var(--accent-bg)', 'var(--pink-bg)', 'var(--sage-bg)']
 
 function RingChart({ counts, total }) {
   const R = 60, CX = 84, CY = 84
@@ -30,7 +32,7 @@ function RingChart({ counts, total }) {
     <svg viewBox="0 0 168 168" className="lib-ring-svg">
       <circle cx={CX} cy={CY} r={R} fill="none" stroke="var(--border-soft)" strokeWidth="14" />
       {total === 0
-        ? <circle cx={CX} cy={CY} r={R} fill="none" stroke="var(--border)" strokeWidth="14" />
+        ? <circle cx={CX} cy={CY} r={R} fill="none" stroke="var(--border-soft)" strokeWidth="14" />
         : arcs.map(arc => (
           <circle
             key={arc.level}
@@ -55,7 +57,7 @@ function RingChart({ counts, total }) {
   )
 }
 
-function DictSidebar({ vocab, onStart }) {
+function DictSidebar({ vocab, vocabFilter, onFilterChange, onStart }) {
   const counts = useMemo(() => {
     const c = Array(6).fill(0)
     vocab.forEach(v => c[Math.min(5, v.level ?? 0)]++)
@@ -76,12 +78,23 @@ function DictSidebar({ vocab, onStart }) {
       {total > 0 && (
         <div className="lib-ring-legend">
           {[0,1,2,3,4,5].map(l => counts[l] > 0 && (
-            <div key={l} className="lib-ring-leg-row">
+            <button
+              key={l}
+              className={`lib-ring-leg-row ${vocabFilter === l ? 'active' : ''}`}
+              onClick={() => onFilterChange(vocabFilter === l ? 'all' : l)}
+              title={`Filtrera: ${srs.LABELS[l]}`}
+            >
               <span className="lib-ring-dot" style={{ background: RING_COLORS[l] }} />
               <span className="lib-ring-count">{counts[l]}</span>
               <span className="lib-ring-label">{srs.LABELS[l]}</span>
-            </div>
+              {vocabFilter === l && <span className="lib-ring-check">✓</span>}
+            </button>
           ))}
+          {vocabFilter !== 'all' && (
+            <button className="lib-ring-clear" onClick={() => onFilterChange('all')}>
+              × Visa alla
+            </button>
+          )}
         </div>
       )}
       <button
@@ -97,10 +110,90 @@ function DictSidebar({ vocab, onStart }) {
   )
 }
 
+function MiniQuickAdd({ vocab, onAdd, onUpdateContext, onUpdateMnemonic }) {
+  const [word, setWord] = useState('')
+  const [status, setStatus] = useState('idle')
+  const hasDS = !!ds.getKey()
+
+  async function handleAdd(e) {
+    e?.preventDefault()
+    const w = word.trim()
+    if (!w || status === 'loading') return
+
+    if (vocab.find(v => v.word.toLowerCase() === w.toLowerCase())) {
+      setStatus('exists')
+      setTimeout(() => setStatus('idle'), 2000)
+      return
+    }
+
+    setStatus('loading')
+    const id = Date.now()
+    let definition = ''
+
+    try {
+      const r = await fetch(`https://en.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(w.toLowerCase())}`)
+      if (r.ok) {
+        const d = await r.json()
+        const raw = (d['sv'] || [])[0]?.definitions?.[0]?.definition
+        if (raw) {
+          const clean = raw.replace(/<[^>]+>/g, '').trim()
+          if (!INFLECTION_RE.test(clean)) definition = clean
+        }
+      }
+    } catch {}
+
+    if (!definition) {
+      try {
+        const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(w)}&langpair=sv|en`)
+        definition = (await r.json())?.responseData?.translatedText || ''
+      } catch {}
+    }
+
+    onAdd(w, definition, id)
+    setWord('')
+    setStatus('added')
+    setTimeout(() => setStatus('idle'), 1800)
+
+    if (hasDS) {
+      ds.fetchDefinition(w).then(def => {
+        const best = def || definition
+        if (def) onUpdateContext(id, def)
+        if (best) ds.fetchMnemonic(w, best).then(m => { if (m) onUpdateMnemonic(id, m) }).catch(() => {})
+      }).catch(() => {})
+    }
+  }
+
+  return (
+    <form className="mqa-form" onSubmit={handleAdd} noValidate>
+      <p className="mqa-label">Lägg till ord</p>
+      <div className="mqa-row">
+        <input
+          className="mqa-input"
+          type="text"
+          value={word}
+          onChange={e => setWord(e.target.value)}
+          placeholder="ett ord…"
+          autoComplete="off"
+          spellCheck={false}
+          disabled={status === 'loading'}
+        />
+        <button
+          className={`mqa-btn ${status === 'added' ? 'success' : ''} ${status === 'loading' ? 'loading' : ''}`}
+          type="submit"
+          disabled={!word.trim() || status === 'loading'}
+        >
+          {status === 'loading' ? '…' : status === 'added' ? '✓' : '+'}
+        </button>
+      </div>
+      {status === 'exists' && <p className="mqa-exists">Finns redan</p>}
+    </form>
+  )
+}
+
 function QuickAdd({ vocab, onAdd, onUpdateContext, onUpdateMnemonic }) {
   const [word, setWord]       = useState('')
   const [context, setContext] = useState('')
-  const [status, setStatus]   = useState('idle') // idle | loading | added | exists
+  const [status, setStatus]   = useState('idle')
   const wordRef = useRef(null)
   const hasDS   = !!ds.getKey()
 
@@ -145,7 +238,6 @@ function QuickAdd({ vocab, onAdd, onUpdateContext, onUpdateMnemonic }) {
     setStatus('added')
     setTimeout(() => { setStatus('idle'); wordRef.current?.focus() }, 1800)
 
-    // Background: DeepSeek upgrade + mnemonic
     if (hasDS) {
       ds.fetchDefinition(w).then(def => {
         const best = def || definition
@@ -204,18 +296,26 @@ function localToday() {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
-const ISSUE_NO = 4 // editorial flair — could increment monthly
+const ISSUE_NO = 4
 
-export default function Library({ articles, progress, vocab, onOpenArticle, onAddVocab, onRemoveVocab, onUpdateVocab, onUpdateMnemonic, onAnswerVocab, onPublishVocab, syncStatus, syncError, onGenerateMnemonics, generatingMnemonics }) {
+export default function Library({
+  articles, progress, vocab,
+  onOpenArticle, onAddVocab, onRemoveVocab, onUpdateVocab, onUpdateMnemonic,
+  onAnswerVocab, onPublishVocab, syncStatus, syncError,
+  onGenerateMnemonics, generatingMnemonics,
+  onAddCustomArticle, onRemoveCustomArticle,
+}) {
   const today = localToday()
   const stats = computeStats(progress)
   const streak = computeStreak(progress, today)
   const [recordingCount, setRecordingCount] = useState(0)
-  const [filterStatus, setFilterStatus] = useState('all')
-  const [activeTab, setActiveTab] = useState('articles')   // 'articles' | 'dictionary'
-  const [flashMode, setFlashMode] = useState(false)
+  const [filterStatus, setFilterStatus]     = useState('all')
+  const [vocabFilter, setVocabFilter]       = useState('all')
+  const [activeTab, setActiveTab]           = useState('articles')
+  const [flashMode, setFlashMode]           = useState(false)
   const [showTokenInput, setShowTokenInput] = useState(false)
-  const [tokenDraft, setTokenDraft] = useState('')
+  const [tokenDraft, setTokenDraft]         = useState('')
+  const [showUploader, setShowUploader]     = useState(false)
 
   function handleSyncClick() {
     if (!loadToken()) { setShowTokenInput(true); setTokenDraft(''); return }
@@ -239,6 +339,22 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
     if (filterStatus === 'all') return true
     return getArticleProgress(progress, a.id).status === filterStatus
   })
+
+  const filteredVocab = useMemo(() => {
+    if (vocabFilter === 'all') return vocab
+    return vocab.filter(v => (v.level ?? 0) === vocabFilter)
+  }, [vocab, vocabFilter])
+
+  const vocabLevelCounts = useMemo(() => {
+    const c = Array(6).fill(0)
+    vocab.forEach(v => c[Math.min(5, v.level ?? 0)]++)
+    return c
+  }, [vocab])
+
+  async function handleAddCustom(articleData, audioBlob) {
+    await onAddCustomArticle(articleData, audioBlob)
+    setShowUploader(false)
+  }
 
   return (
     <div className="library">
@@ -264,9 +380,7 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
                     if (e.key === 'Escape') setShowTokenInput(false)
                   }}
                 />
-                <button className="lib-sync-btn ok" onClick={confirmToken} disabled={!tokenDraft.trim()}>
-                  ✓ Spara
-                </button>
+                <button className="lib-sync-btn ok" onClick={confirmToken} disabled={!tokenDraft.trim()}>✓ Spara</button>
                 <button className="lib-sync-btn" onClick={() => setShowTokenInput(false)}>✕</button>
               </>
             ) : (
@@ -278,7 +392,6 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
                   className={`lib-sync-btn ${syncStatus === 'ok' ? 'ok' : ''}`}
                   onClick={handleSyncClick}
                   disabled={syncStatus === 'pending'}
-                  title="Publicera ordlistan till GitHub så alla enheter synkas"
                 >
                   {syncStatus === 'pending' ? '⏳ Synkar…'
                     : syncStatus === 'ok'   ? '✓ Synkad'
@@ -312,19 +425,19 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
 
       <div className={`lib-body ${activeTab === 'dictionary' ? (flashMode ? 'dict-flash' : 'dict-active') : ''}`}>
         <main className="lib-main">
-          {/* ── Dashboard (articles tab only) ── */}
+          {/* ── Dashboard ── */}
           {activeTab === 'articles' && (
-          <section className="lib-dashboard">
-            <p className="lib-section-eyebrow">— Studierapport —</p>
-            <div className="lib-stats-row">
-              <StatBlock value={streak} label="Streak" hot={streak >= 2} />
-              <StatBlock value={stats.completed} label="Klara" />
-              <StatBlock value={stats.inProgress} label="Pågående" accent="blue" />
-              <StatBlock value={recordingCount} label="Inspelningar" accent="pink" />
-              <StatBlock value={vocab.length} label="Ord" accent="butter" />
-              <StatBlock value={stats.totalStudyMin} label="Minuter" />
-            </div>
-          </section>
+            <section className="lib-dashboard">
+              <p className="lib-section-eyebrow">— Studierapport —</p>
+              <div className="lib-stats-row">
+                <StatBlock value={streak} label="Streak" hot={streak >= 2} idx={0} />
+                <StatBlock value={stats.completed} label="Klara" idx={1} />
+                <StatBlock value={stats.inProgress} label="Pågående" accent="blue" idx={2} />
+                <StatBlock value={recordingCount} label="Inspelningar" accent="pink" idx={3} />
+                <StatBlock value={vocab.length} label="Ord" accent="butter" idx={4} />
+                <StatBlock value={stats.totalStudyMin} label="Minuter" idx={5} />
+              </div>
+            </section>
           )}
 
           {/* ── Dictionary tab ── */}
@@ -356,20 +469,60 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
                     })()}
                     {vocab.length > 0 && (
                       <button className="lib-flash-btn" onClick={() => setFlashMode(true)}>
-                        ▶ Starta Flashcards ({vocab.length} ord)
+                        ▶ Flashcards ({vocab.filter(v => srs.isDue(v)).length} klara)
                       </button>
                     )}
                   </div>
                 </div>
+
+                {/* Level filter chips */}
+                {vocab.length > 0 && (
+                  <div className="dict-vocab-filters">
+                    <button
+                      className={`dict-vocab-chip ${vocabFilter === 'all' ? 'active' : ''}`}
+                      onClick={() => setVocabFilter('all')}
+                    >
+                      Alla <span className="dict-chip-count">{vocab.length}</span>
+                    </button>
+                    {[0,1,2,3,4,5].map(l => vocabLevelCounts[l] > 0 && (
+                      <button
+                        key={l}
+                        className={`dict-vocab-chip ${vocabFilter === l ? 'active' : ''}`}
+                        style={{ '--chip-color': RING_COLORS[l], '--chip-bg': LEVEL_BG[l] }}
+                        onClick={() => setVocabFilter(vocabFilter === l ? 'all' : l)}
+                      >
+                        <span className="dict-chip-dot" style={{ background: RING_COLORS[l] }} />
+                        {srs.LABELS[l]}
+                        <span className="dict-chip-count">{vocabLevelCounts[l]}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+
                 {vocab.length === 0 ? (
                   <p className="lib-empty">
                     Inga ord sparade än. Markera ett ord i läsfasen för att lägga till det här.
                   </p>
+                ) : filteredVocab.length === 0 ? (
+                  <p className="lib-empty">Inga ord på denna nivå.</p>
                 ) : (
-                  <div className="lib-dict-list">
-                    {vocab.map(item => (
-                      <div key={item.id} className="lib-dict-row">
-                        <span className="lib-dict-word">{item.word}</span>
+                  <div className="lib-dict-list" key={vocabFilter}>
+                    {filteredVocab.map((item, idx) => (
+                      <div
+                        key={item.id}
+                        className="lib-dict-row"
+                        style={{ '--i': idx }}
+                      >
+                        <div className="lib-dict-word-wrap">
+                          <span className="lib-dict-word">{item.word}</span>
+                          <span
+                            className="dict-level-badge"
+                            data-level={item.level ?? 0}
+                            style={{ '--badge-color': RING_COLORS[item.level ?? 0], '--badge-bg': LEVEL_BG[item.level ?? 0] }}
+                          >
+                            {srs.LABELS[item.level ?? 0]}
+                          </span>
+                        </div>
                         <span className="lib-dict-def">{item.context}</span>
                         <button
                           className="lib-dict-remove"
@@ -385,84 +538,104 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
           )}
 
           {/* ── Table of contents ── */}
-          {activeTab === 'articles' && <section className="lib-toc">
-            <div className="lib-toc-head">
-              <h2 className="lib-toc-title">Innehåll</h2>
-              <div className="lib-filters">
-                {[
-                  { id: 'all',          label: 'Alla' },
-                  { id: 'in-progress',  label: 'Pågående' },
-                  { id: 'completed',    label: 'Klara' },
-                  { id: 'not-started',  label: 'Ej startade' },
-                ].map(f => (
+          {activeTab === 'articles' && (
+            <section className="lib-toc">
+              <div className="lib-toc-head">
+                <h2 className="lib-toc-title">Innehåll</h2>
+                <div className="lib-toc-actions">
+                  <div className="lib-filters">
+                    {[
+                      { id: 'all',         label: 'Alla' },
+                      { id: 'in-progress', label: 'Pågående' },
+                      { id: 'completed',   label: 'Klara' },
+                      { id: 'not-started', label: 'Ej startade' },
+                    ].map(f => (
+                      <button
+                        key={f.id}
+                        className={`lib-filter ${filterStatus === f.id ? 'active' : ''}`}
+                        onClick={() => setFilterStatus(f.id)}
+                      >
+                        {f.label}
+                      </button>
+                    ))}
+                  </div>
                   <button
-                    key={f.id}
-                    className={`lib-filter ${filterStatus === f.id ? 'active' : ''}`}
-                    onClick={() => setFilterStatus(f.id)}
+                    className={`lib-new-article-btn ${showUploader ? 'active' : ''}`}
+                    onClick={() => setShowUploader(v => !v)}
                   >
-                    {f.label}
+                    {showUploader ? '✕ Stäng' : '+ Ny Artikel'}
                   </button>
-                ))}
+                </div>
               </div>
-            </div>
 
-            <div className="lib-toc-list" key={filterStatus}>
-              {filtered.length === 0 ? (
-                <p className="lib-empty">Inga artiklar matchar filtret.</p>
-              ) : (
-                filtered.map((article, idx) => {
-                  const prog = getArticleProgress(progress, article.id)
-                  const diff = DIFFICULTY[article.difficulty]
-                  // Use article id hash so number is stable per article
-                  const num = String(articles.findIndex(a => a.id === article.id) + 1).padStart(2, '0')
-                  return (
-                    <button
-                      key={article.id}
-                      className={`lib-toc-row status-${prog.status}`}
-                      onClick={() => onOpenArticle(article.id)}
-                      style={{ '--i': idx }}
-                    >
-                      <span className="lib-row-num">No. {num}</span>
-
-                      <div className="lib-row-body">
-                        <div className="lib-row-meta">
-                          <span className="lib-row-topic">{article.topicEmoji} {article.topicLabel}</span>
-                          <span className="lib-row-diff" data-level={article.difficulty}>
-                            {diff.emoji} {article.difficulty} · {diff.label}
-                          </span>
-                          <span className="lib-row-time metadata">{estimateReadMinutes(article)} min</span>
-                          {prog.recordingCount > 0 && (
-                            <span className="lib-row-recs">🎙 ×{prog.recordingCount}</span>
-                          )}
-                        </div>
-
-                        <h3 className="lib-row-title">{article.title}</h3>
-                        <p className="lib-row-summary">{article.summary}</p>
-
-                        <div className="lib-row-foot">
-                          <div className="lib-row-phases">
-                            {PHASES.map(p => (
-                              <span
-                                key={p}
-                                className={`lib-phase-pip ${prog.phases[p] ? 'done' : ''}`}
-                                title={PHASE_LABELS[p].label}
-                              >
-                                <span className="lib-phase-emoji">{PHASE_LABELS[p].emoji}</span>
-                                <span className="lib-phase-name">{PHASE_LABELS[p].label}</span>
-                              </span>
-                            ))}
-                          </div>
-                          <StatusBadge status={prog.status} />
-                        </div>
-                      </div>
-                    </button>
-                  )
-                })
+              {showUploader && (
+                <div className="lib-uploader-wrap">
+                  <ArticleUploader onAdd={handleAddCustom} />
+                </div>
               )}
-            </div>
-          </section>
 
-          } {/* end activeTab === 'articles' */}
+              <div className="lib-toc-list" key={filterStatus}>
+                {filtered.length === 0 ? (
+                  <p className="lib-empty">Inga artiklar matchar filtret.</p>
+                ) : (
+                  filtered.map((article, idx) => {
+                    const prog = getArticleProgress(progress, article.id)
+                    const diff = DIFFICULTY[article.difficulty]
+                    const num = String(articles.findIndex(a => a.id === article.id) + 1).padStart(2, '0')
+                    return (
+                      <div key={article.id} className={`lib-toc-row status-${prog.status}`} style={{ '--i': idx }}>
+                        <button
+                          className="lib-toc-row-inner"
+                          onClick={() => onOpenArticle(article.id)}
+                        >
+                          <span className="lib-row-num">No. {num}</span>
+                          <div className="lib-row-body">
+                            <div className="lib-row-meta">
+                              <span className="lib-row-topic">{article.topicEmoji} {article.topicLabel}</span>
+                              <span className="lib-row-diff" data-level={article.difficulty}>
+                                {diff.emoji} {article.difficulty} · {diff.label}
+                              </span>
+                              <span className="lib-row-time metadata">{estimateReadMinutes(article)} min</span>
+                              {prog.recordingCount > 0 && (
+                                <span className="lib-row-recs">🎙 ×{prog.recordingCount}</span>
+                              )}
+                              {article.isCustom && (
+                                <span className="lib-custom-badge">Anpassad</span>
+                              )}
+                            </div>
+                            <h3 className="lib-row-title">{article.title}</h3>
+                            <p className="lib-row-summary">{article.summary}</p>
+                            <div className="lib-row-foot">
+                              <div className="lib-row-phases">
+                                {PHASES.map(p => (
+                                  <span
+                                    key={p}
+                                    className={`lib-phase-pip ${prog.phases[p] ? 'done' : ''}`}
+                                    title={PHASE_LABELS[p].label}
+                                  >
+                                    <span className="lib-phase-emoji">{PHASE_LABELS[p].emoji}</span>
+                                    <span className="lib-phase-name">{PHASE_LABELS[p].label}</span>
+                                  </span>
+                                ))}
+                              </div>
+                              <StatusBadge status={prog.status} />
+                            </div>
+                          </div>
+                        </button>
+                        {article.isCustom && (
+                          <button
+                            className="lib-custom-delete"
+                            onClick={() => onRemoveCustomArticle(article.id)}
+                            title="Ta bort artikel"
+                          >×</button>
+                        )}
+                      </div>
+                    )
+                  })
+                )}
+              </div>
+            </section>
+          )}
 
           <footer className="lib-footer">
             <span className="metadata">Continued on the next page →</span>
@@ -472,8 +645,23 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
 
         <aside className="lib-sidebar">
           {activeTab === 'dictionary' && !flashMode
-            ? <DictSidebar vocab={vocab} onStart={() => setFlashMode(true)} />
-            : <VocabList vocab={vocab} onRemove={onRemoveVocab} onUpdateVocab={onUpdateVocab} />
+            ? <DictSidebar
+                vocab={vocab}
+                vocabFilter={vocabFilter}
+                onFilterChange={setVocabFilter}
+                onStart={() => setFlashMode(true)}
+              />
+            : (
+              <div className="lib-sidebar-articles">
+                <MiniQuickAdd
+                  vocab={vocab}
+                  onAdd={onAddVocab}
+                  onUpdateContext={onUpdateVocab}
+                  onUpdateMnemonic={onUpdateMnemonic}
+                />
+                <VocabList vocab={vocab} onRemove={onRemoveVocab} onUpdateVocab={onUpdateVocab} />
+              </div>
+            )
           }
         </aside>
       </div>
@@ -481,9 +669,9 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
   )
 }
 
-function StatBlock({ value, label, accent = 'accent', hot }) {
+function StatBlock({ value, label, accent = 'accent', hot, idx = 0 }) {
   return (
-    <div className={`lib-stat accent-${accent}`}>
+    <div className={`lib-stat accent-${accent}`} style={{ '--i': idx }}>
       <span className="lib-stat-value">{value}</span>
       <span className="lib-stat-label">{hot && '🔥 '}{label}</span>
     </div>

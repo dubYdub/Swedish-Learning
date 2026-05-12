@@ -5,6 +5,7 @@ import * as ts from '../utils/timestamps'
 import './PhaseListen.css'
 
 function resolveAudioUrl(article) {
+  if (article.audioBlobUrl) return article.audioBlobUrl
   return article.audioFile ? ap.audioFileUrl(article.audioFile) : null
 }
 

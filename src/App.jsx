@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import Library from './pages/Library'
 import Study from './pages/Study'
 import { loadVocab, saveVocab } from './utils/storage'
@@ -7,22 +7,45 @@ import * as tsUtils from './utils/timestamps'
 import * as srs from './utils/srs'
 import * as sync from './utils/sync'
 import * as ds from './utils/deepseek'
-import { articles } from './data/articles'
+import { articles as staticArticles } from './data/articles'
+import { loadCustomArticles, addCustomArticle, removeCustomArticle } from './utils/customArticles'
+import { saveCustomAudio, loadCustomAudio, deleteCustomAudio } from './utils/db'
 import './App.css'
 
 export default function App() {
-  // Router state: 'library' | 'study'
   const [view, setView]             = useState('library')
   const [studyId, setStudyId]       = useState(null)
 
-  // Persisted global state
   const [progress, setProgress]     = useState(() => loadProgress())
   const [vocab, setVocab]           = useState(() => loadVocab())
 
-  // Sync status for publish button
-  const [syncStatus, setSyncStatus] = useState(null)  // null | 'pending' | 'ok' | 'error'
+  const [syncStatus, setSyncStatus] = useState(null)
   const [syncError, setSyncError]   = useState('')
   const [generatingMnemonics, setGeneratingMnemonics] = useState(false)
+
+  const [customArticles, setCustomArticles] = useState([])
+
+  // On mount: load custom articles + resolve their audio blob URLs
+  useEffect(() => {
+    const stored = loadCustomArticles()
+    if (stored.length === 0) { setCustomArticles([]); return }
+    Promise.all(
+      stored.map(async a => {
+        if (!a.audioBlobUrl) {
+          try {
+            const blob = await loadCustomAudio(a.id)
+            if (blob) return { ...a, audioBlobUrl: URL.createObjectURL(blob) }
+          } catch {}
+        }
+        return a
+      })
+    ).then(resolved => setCustomArticles(resolved))
+  }, [])
+
+  const allArticles = useMemo(
+    () => [...staticArticles, ...customArticles],
+    [customArticles]
+  )
 
   // On mount: silently merge remote vocab + progress into local
   useEffect(() => {
@@ -43,7 +66,7 @@ export default function App() {
         })
       }
       if (remote.timestamps && typeof remote.timestamps === 'object') {
-        const articleIds = articles.map(a => a.id)
+        const articleIds = allArticles.map(a => a.id)
         const localMap = tsUtils.loadAll(articleIds)
         const merged = sync.mergeTimestamps(localMap, remote.timestamps)
         for (const [id, ts] of Object.entries(merged)) {
@@ -94,7 +117,7 @@ export default function App() {
     setSyncStatus('pending')
     setSyncError('')
     try {
-      const timestamps = tsUtils.loadAll(articles.map(a => a.id))
+      const timestamps = tsUtils.loadAll(allArticles.map(a => a.id))
       await sync.publishAll(vocab, progress, timestamps)
       setSyncStatus('ok')
       setTimeout(() => setSyncStatus(null), 3000)
@@ -102,7 +125,7 @@ export default function App() {
       setSyncStatus('error')
       setSyncError(err.message)
     }
-  }, [vocab, progress])
+  }, [vocab, progress, allArticles])
 
   const updateVocabSRS = useCallback((id, correct) => {
     setVocab(prev => {
@@ -131,7 +154,6 @@ export default function App() {
   const generateMissingMnemonics = useCallback(async () => {
     if (!ds.getKey()) return
     setGeneratingMnemonics(true)
-    // Snapshot missing at start to avoid re-reading stale closure
     const missing = vocab.filter(v => !v.mnemonic)
     for (const entry of missing) {
       const m = await ds.fetchMnemonic(entry.word, entry.context).catch(() => null)
@@ -146,13 +168,32 @@ export default function App() {
     setGeneratingMnemonics(false)
   }, [vocab])
 
-  const currentArticle = studyId ? articles.find(a => a.id === studyId) : null
+  const handleAddCustomArticle = useCallback(async (articleData, audioBlob) => {
+    let audioBlobUrl = null
+    if (audioBlob) {
+      try {
+        await saveCustomAudio(articleData.id, audioBlob)
+        audioBlobUrl = URL.createObjectURL(audioBlob)
+      } catch {}
+    }
+    const withUrl = audioBlobUrl ? { ...articleData, audioBlobUrl } : articleData
+    addCustomArticle(articleData)
+    setCustomArticles(prev => [...prev, withUrl])
+  }, [])
+
+  const handleRemoveCustomArticle = useCallback(async (id) => {
+    try { await deleteCustomAudio(id) } catch {}
+    removeCustomArticle(id)
+    setCustomArticles(prev => prev.filter(a => a.id !== id))
+  }, [])
+
+  const currentArticle = studyId ? allArticles.find(a => a.id === studyId) : null
 
   return (
     <div className="app">
       {view === 'library' && (
         <Library
-          articles={articles}
+          articles={allArticles}
           progress={progress}
           vocab={vocab}
           onOpenArticle={openStudy}
@@ -166,6 +207,8 @@ export default function App() {
           syncError={syncError}
           onGenerateMnemonics={generateMissingMnemonics}
           generatingMnemonics={generatingMnemonics}
+          onAddCustomArticle={handleAddCustomArticle}
+          onRemoveCustomArticle={handleRemoveCustomArticle}
         />
       )}
       {view === 'study' && currentArticle && (

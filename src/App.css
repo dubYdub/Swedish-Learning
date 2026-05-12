@@ -6,22 +6,22 @@
   position: relative;
 }
 
-/* ─── Shared card (framed magazine box) ─── */
+/* ─── Shared card ─── */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 0;
   padding: 28px;
-  box-shadow: 0 2px 0 0 var(--border);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s var(--ease-spring), box-shadow 0.18s ease;
 }
 
 .card:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 0 3px 0 0 var(--border);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
 }
 
-/* ─── Buttons — bold editorial style ─── */
+/* ─── Buttons ─── */
 .btn {
   padding: 8px 18px;
   border-radius: 0;
@@ -34,44 +34,17 @@
   cursor: pointer;
   background: var(--bg-card);
   color: var(--text-h);
-  box-shadow: 2px 2px 0 0 var(--border);
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.12s var(--ease-spring), box-shadow 0.12s ease;
 }
 
-.btn:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 0 var(--border);
-}
-
-.btn:active {
-  transform: translate(1px, 1px);
-  box-shadow: 0 0 0 0 var(--border);
-}
+.btn:hover  { transform: translate(-1px, -1px); box-shadow: var(--shadow-sm); }
+.btn:active { transform: translate(1px, 1px) scale(0.97); box-shadow: 0 0 0 0; }
 
 .btn-primary   { background: var(--accent); color: #FFF8EA; }
 .btn-secondary { background: var(--bg-card); color: var(--accent); }
 .btn-ghost     { background: transparent; color: var(--text); box-shadow: none; }
 .btn-ghost:hover { transform: none; box-shadow: none; background: var(--bg-card); }
-
-/* Custom scrollbars */
-*::-webkit-scrollbar { width: 8px; height: 8px; }
-*::-webkit-scrollbar-track { background: var(--bg-section); }
-*::-webkit-scrollbar-thumb {
-  background: var(--text-dim);
-  border: 2px solid var(--bg-section);
-}
-*::-webkit-scrollbar-thumb:hover { background: var(--text-h); }
-
-/* Shared animation — snap entrance */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(-12px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
 
 /* Editorial metadata utility */
 .metadata {
@@ -80,4 +53,56 @@
   letter-spacing: 0.04em;
   color: var(--text-dim);
   text-transform: uppercase;
+}
+
+/* ─── Keyframes ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.75); opacity: 0; }
+  60%  { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-border); }
+  50%      { box-shadow: 0 0 0 6px transparent; }
+}
+
+@keyframes borderGrow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes mastSlide {
+  from { opacity: 0; letter-spacing: 0.02em; transform: translateY(-6px); }
+  to   { opacity: 1; letter-spacing: -0.04em; transform: translateY(0); }
 }
