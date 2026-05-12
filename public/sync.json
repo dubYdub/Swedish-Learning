@@ -1,14 +1,44 @@
 {
   "vocab": [
     {
+      "id": 1778617019027,
+      "word": "ÖVA",
+      "context": "Practice, train, rehearse",
+      "addedAt": "2026-05-12T20:16:59.733Z",
+      "mnemonic": "Imagine you're at a rehearsal, and the director shouts \"ÖVA!\" so you quickly \"owe\" the band a perfect practice session.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:19:31.518Z"
+    },
+    {
+      "id": 1778616970500,
+      "word": "Innehåll",
+      "context": "Content",
+      "addedAt": "2026-05-12T20:16:11.909Z",
+      "mnemonic": "Imagine the \"in\" side of a jar is \"håll\" (holding) the \"content\" — like a label inside a jar listing what's in there.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:19:17.842Z"
+    },
+    {
+      "id": 1778616816992,
+      "word": "väntetiden",
+      "context": "the waiting time",
+      "addedAt": "2026-05-12T20:13:36.992Z",
+      "mnemonic": "Imagine a \"vent\" in a submarine where you must wait for air pressure to equalize—\"väntetiden\" sounds like \"vent-a-tide-in,\" the tide of waiting time before you can open the hatch.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:19:24.290Z"
+    },
+    {
       "id": 1778582905816,
       "word": "stärka upp",
       "context": "to strengthen, to build up (skills/qualifications)",
       "addedAt": "2026-05-12T10:48:25.816Z",
       "mnemonic": "Imagine a **stark** (strong) Viking lifting heavy weights to **up** his muscle power—\"stärka upp\" means to strengthen!",
-      "level": 0,
-      "nextReview": "2026-05-12",
-      "lastReviewed": "2026-05-12T10:50:27.155Z"
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:20:16.808Z"
     },
     {
       "id": 1778582905156,
@@ -16,9 +46,9 @@
       "context": "caretaker / building janitor (lit. yard guardian)",
       "addedAt": "2026-05-12T10:48:25.157Z",
       "mnemonic": "\"Gårdsvärd\" sounds like \"guards-ward,\" so picture a stern guard in a ward full of tiny yards, sweeping each one with a janitor's broom.",
-      "level": 0,
-      "nextReview": "2026-05-12",
-      "lastReviewed": "2026-05-12T10:50:31.114Z"
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:21:25.484Z"
     },
     {
       "id": 1778582904814,
@@ -26,65 +56,89 @@
       "context": "the Swedish Public Employment Service",
       "addedAt": "2026-05-12T10:48:24.814Z",
       "mnemonic": "Picture a \"bear\" (arbet) working at a \"fairy\" (förmedlingen) desk, handing out job applications with sparkly wings.",
-      "level": 0,
-      "nextReview": "2026-05-12",
-      "lastReviewed": "2026-05-12T10:50:36.258Z"
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:20:54.519Z"
     },
     {
       "id": 1778582904199,
       "word": "bidrag",
       "context": "welfare benefit, allowance",
       "addedAt": "2026-05-12T10:48:24.200Z",
-      "mnemonic": "Imagine a \"bee\" bringing a tiny \"drag\" of honey to its hive as a welfare benefit for the colony."
+      "mnemonic": "Imagine a \"bee\" bringing a tiny \"drag\" of honey to its hive as a welfare benefit for the colony.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:20:33.841Z"
     },
     {
       "id": 1778582903830,
       "word": "hyran",
       "context": "the rent",
       "addedAt": "2026-05-12T10:48:23.830Z",
-      "mnemonic": "Imagine a \"here and\" now landlord handing you a bill for the rent, shouting \"HYR AN!\" (sounds like \"here and\") as he points to the spot where you must pay."
+      "mnemonic": "Imagine a \"here and\" now landlord handing you a bill for the rent, shouting \"HYR AN!\" (sounds like \"here and\") as he points to the spot where you must pay.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:21:36.436Z"
     },
     {
       "id": 1778582903537,
       "word": "likvärdig",
       "context": "equivalent, of equal value",
       "addedAt": "2026-05-12T10:48:23.537Z",
-      "mnemonic": "Think of \"lik\" as \"like\" and \"värdig\" as \"worthy,\" so something \"like-worthy\" is its \"equivalent\" in value."
+      "mnemonic": "Think of \"lik\" as \"like\" and \"värdig\" as \"worthy,\" so something \"like-worthy\" is its \"equivalent\" in value.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:21:39.224Z"
     },
     {
       "id": 1778582902788,
       "word": "hemland",
       "context": "home country",
       "addedAt": "2026-05-12T10:48:22.788Z",
-      "mnemonic": "Imagine a \"hem\" (home) stitched into the land like a giant quilt, where every thread says \"this is my home country.\""
+      "mnemonic": "Imagine a \"hem\" (home) stitched into the land like a giant quilt, where every thread says \"this is my home country.\"",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:21:29.155Z"
     },
     {
       "id": 1778582902399,
       "word": "satsningen",
       "context": "the initiative, the investment (in a project)",
       "addedAt": "2026-05-12T10:48:22.400Z",
-      "mnemonic": "Imagine you're launching a rocket ship (a SATellite) and your boss yells \"SATSningen!\" as you push the big red button—it's your big initiative, so you mustn't SIT on it."
+      "mnemonic": "Imagine you're launching a rocket ship (a SATellite) and your boss yells \"SATSningen!\" as you push the big red button—it's your big initiative, so you mustn't SIT on it.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:22:47.921Z"
     },
     {
       "id": 1778582901929,
       "word": "trapphus",
       "context": "stairwell",
       "addedAt": "2026-05-12T10:48:21.930Z",
-      "mnemonic": "Imagine a **trap** door in the **house** that opens into a hidden stairwell."
+      "mnemonic": "Imagine a **trap** door in the **house** that opens into a hidden stairwell.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:22:50.912Z"
     },
     {
       "id": 1778582901299,
       "word": "fastighetsbolaget",
       "context": "the property company",
       "addedAt": "2026-05-12T10:48:21.300Z",
-      "mnemonic": "\"FASTen your seatbelt, the property company’s BOLAgement is rolling out a new high-rise!\""
+      "mnemonic": "\"FASTen your seatbelt, the property company’s BOLAgement is rolling out a new high-rise!\"",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:23:13.384Z"
     },
     {
       "id": 1778582900525,
       "word": "arbetslöshet",
       "context": "unemployment",
       "addedAt": "2026-05-12T10:48:20.525Z",
-      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down."
+      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down.",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T20:23:05.730Z"
     }
   ],
   "progress": {
@@ -110,9 +164,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T07:58:54.779Z",
+      "lastStudied": "2026-05-12T20:13:40.340Z",
       "firstStarted": "2026-05-12T07:13:56.215Z",
-      "studyTimeSec": 664
+      "studyTimeSec": 841
     }
   },
   "timestamps": {
@@ -186,5 +240,5 @@
       }
     ]
   },
-  "syncedAt": "2026-05-12T20:10:26.270Z"
+  "syncedAt": "2026-05-12T20:23:56.647Z"
 }
