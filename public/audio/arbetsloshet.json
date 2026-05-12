@@ -1,0 +1,32 @@
+[
+  {
+    "id": "arbetsloshet-1",
+    "start": 0,
+    "end": 26.3
+  },
+  {
+    "id": "arbetsloshet-2",
+    "start": 26.3,
+    "end": 54.08
+  },
+  {
+    "id": "arbetsloshet-3",
+    "start": 54.08,
+    "end": 86.19
+  },
+  {
+    "id": "arbetsloshet-4",
+    "start": 86.19,
+    "end": 93.37
+  },
+  {
+    "id": "arbetsloshet-5",
+    "start": 93.37,
+    "end": 109.13
+  },
+  {
+    "id": "arbetsloshet-6",
+    "start": 109.13,
+    "end": 124.42
+  }
+]
