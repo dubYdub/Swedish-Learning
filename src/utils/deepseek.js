@@ -52,23 +52,26 @@ export function fetchMnemonic(word, definition) {
   ], 80, 0.8)
 }
 
-// Parse a block of raw Swedish text into a structured article entry.
-// Returns { title, summary, content: [{ id, text, translation }] }
+// Parse a block of raw Swedish text into a fully structured article entry.
+// Returns { title, summary, difficulty, topic, topicLabel, topicEmoji, content: [{ id, text, translation }] }
 export async function fetchArticleParse(rawText) {
   const slug = 'custom-' + Date.now()
   const result = await callDS([
     {
       role: 'system',
-      content: `You are a Swedish language teacher preparing reading material. Given raw Swedish text, output a JSON object with exactly these fields:
+      content: `You are a Swedish language teacher preparing reading material. Given raw Swedish text, output a JSON object with EXACTLY these fields:
 {
   "title": "<Swedish title for this text, ≤80 chars>",
   "summary": "<1-2 sentence English description of what the text is about>",
+  "difficulty": "<one of: A1, A2, B1, B2 — based on vocabulary and grammar complexity>",
+  "topic": "<one English lowercase word: samhälle | kultur | sport | vetenskap | världen | ekonomi | hälsa | natur | other>",
+  "topicLabel": "<same topic in Swedish, capitalized, e.g. Samhälle>",
+  "topicEmoji": "<one emoji that best represents the topic>",
   "content": [
-    { "id": "<slug>-1", "text": "<first paragraph in Swedish>", "translation": "<English translation>" },
-    ...one object per paragraph...
+    { "id": "<slug>-1", "text": "<first paragraph in Swedish>", "translation": "<English translation>" }
   ]
 }
-Split at natural paragraph breaks. Keep each paragraph as one chunk. Return ONLY valid JSON, no other text.`,
+Split at natural paragraph breaks. Return ONLY valid JSON, no other text.`,
     },
     {
       role: 'user',
@@ -85,6 +88,11 @@ Split at natural paragraph breaks. Keep each paragraph as one chunk. Return ONLY
       text: p.text || '',
       translation: p.translation || '',
     }))
+    // Fallback defaults so the article is always valid
+    parsed.difficulty   = ['A1','A2','B1','B2'].includes(parsed.difficulty) ? parsed.difficulty : 'B1'
+    parsed.topic        = parsed.topic || 'other'
+    parsed.topicLabel   = parsed.topicLabel || 'Övrigt'
+    parsed.topicEmoji   = parsed.topicEmoji || '📄'
     return parsed
   } catch {
     return null

@@ -30,6 +30,19 @@ export default function Study({ article, progress, updateProgress, vocab, addToV
     return () => tts.stop()
   }, [article.id])
 
+  // Auto-add all key vocabulary when opening an article
+  useEffect(() => {
+    if (!article.keyVocab?.length) return
+    const vocabSet = new Set(vocab.map(v => v.word.toLowerCase()))
+    article.keyVocab.forEach(({ word, def }) => {
+      if (!vocabSet.has(word.toLowerCase())) {
+        addToVocab(word, def)
+      }
+    })
+  // Only run on article open — vocab intentionally excluded to avoid re-triggering
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [article.id])
+
   // Record study time when leaving
   useEffect(() => {
     return () => {
