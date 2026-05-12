@@ -27,15 +27,13 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
     tts.speak(para.text, { onEnd: () => setPlayingId(null) })
   }
 
-  const handleMouseUp = useCallback(() => {
+  const handleMouseUp = useCallback((e) => {
     const selection = window.getSelection()
     const text = selection?.toString().trim()
     if (!text || text.length < 2 || text.length > 80) { setTooltip(null); return }
     if (!contentRef.current?.contains(selection.anchorNode)) { setTooltip(null); return }
 
-    const range = selection.getRangeAt(0)
-    const rect  = range.getBoundingClientRect()
-    setTooltip({ text, x: rect.left + rect.width / 2, y: rect.bottom })
+    setTooltip({ text, x: e.clientX, y: e.clientY + 12 })
   }, [])
 
   async function handleAddToVocab() {
@@ -152,7 +150,7 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
           className="pr-tooltip"
           style={{ left: tooltip.x, top: tooltip.y + 8, transform: 'translate(-50%, 0)' }}
         >
-          <span className="pr-tooltip-word">„{tooltip.text}"</span>
+          <span className="pr-tooltip-word">{tooltip.text}</span>
           {alreadyInVocab ? (
             <span className="pr-tooltip-exists">Redan tillagd</span>
           ) : (
@@ -164,7 +162,7 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
       )}
 
       {justAdded && (
-        <div className="pr-added-flash">„{justAdded}" tillagd</div>
+        <div className="pr-added-flash">{justAdded} tillagd</div>
       )}
     </div>
   )
