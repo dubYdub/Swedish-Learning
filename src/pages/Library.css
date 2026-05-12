@@ -6,42 +6,52 @@
 
 /* ─── TABS ─── */
 .lib-tabs {
-  display: flex;
-  gap: 0;
-  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg-elevated);
   border-bottom: 2px solid var(--border);
-  background: var(--bg);
 }
 
 .lib-tab {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 12px 24px;
-  background: none;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 24px;
+  background: transparent;
   border: none;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px;
+  border-top: 3px solid transparent;
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-dim);
   cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
 
-.lib-tab:hover { color: var(--text-h); }
-.lib-tab.active { color: var(--text-h); border-bottom-color: var(--accent); }
+.lib-tab + .lib-tab { border-left: 1px solid var(--border); }
+
+.lib-tab:hover {
+  color: var(--text-h);
+  background: var(--bg-card);
+}
+
+.lib-tab.active {
+  background: var(--bg);
+  color: var(--text-h);
+  border-top-color: var(--accent);
+}
 
 .lib-tab-count {
   background: var(--accent);
   color: #FFF8EA;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
-  padding: 1px 6px;
+  padding: 2px 7px;
   border-radius: 0;
+  line-height: 1.4;
 }
 
 /* ─── DICTIONARY ─── */
