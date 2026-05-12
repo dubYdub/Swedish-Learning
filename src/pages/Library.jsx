@@ -629,11 +629,11 @@ export default function Library({
                             </div>
                           </div>
                         </button>
-                        {article.isCustom && ds.getKey() && (
+                        {article.isCustom && (
                           <button
                             className={`lib-article-reprocess ${reprocessing === article.id ? 'loading' : ''}`}
                             onClick={e => { e.stopPropagation(); handleReprocess(article.id) }}
-                            title="Analysera om med AI"
+                            title={ds.getKey() ? 'Analysera om med AI' : 'Ange DeepSeek-nyckel (🔑) för att analysera'}
                             aria-label="Analysera om med AI"
                             disabled={reprocessing === article.id}
                           >
