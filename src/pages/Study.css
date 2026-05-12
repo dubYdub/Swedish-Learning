@@ -7,7 +7,7 @@
 /* ─── HEADER ─── */
 .st-header {
   border-bottom: 2px solid var(--border);
-  padding: 18px 40px 0;
+  padding: 26px 40px 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -159,10 +159,10 @@
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 300px;
-  gap: 40px;
+  gap: 56px;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 36px 40px;
+  padding: 52px 40px;
   width: 100%;
 }
 
@@ -192,7 +192,7 @@
   padding: 16px 22px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  margin-top: 28px;
+  margin-top: 44px;
   box-shadow: 3px 3px 0 0 var(--border);
 }
 
@@ -240,12 +240,12 @@
 }
 
 @media (max-width: 640px) {
-  .st-header { padding: 12px 16px 0; }
+  .st-header { padding: 18px 16px 0; }
   .st-header-top { flex-wrap: wrap; gap: 8px; }
   .st-issue-meta { display: none; }
   .st-title { font-size: 28px; padding-bottom: 12px; }
   .st-phases { grid-template-columns: repeat(2, 1fr); }
   .st-phase-btn:nth-child(2) { border-right: none; }
   .st-phase-btn:nth-child(-n+2) { border-bottom: 1px solid var(--border-soft); }
-  .st-body { padding: 24px 16px; }
+  .st-body { padding: 32px 16px; }
 }

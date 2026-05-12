@@ -17,8 +17,8 @@
 .fc-dashboard {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  padding: 4px 0 32px;
+  gap: 40px;
+  padding: 4px 0 48px;
 }
 
 .fc-dash-top {
@@ -40,7 +40,7 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  padding: 28px 0 20px;
+  padding: 44px 0 36px;
   border-top: 2px solid var(--border);
   border-bottom: 2px solid var(--border);
 }
@@ -81,7 +81,7 @@
   grid-template-columns: auto 80px 1fr 24px;
   align-items: center;
   gap: 10px;
-  padding: 7px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--border-soft);
 }
 
@@ -174,8 +174,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  padding: 4px 0 40px;
+  gap: 40px;
+  padding: 4px 0 56px;
 }
 
 .fc-sess-header {
@@ -432,7 +432,7 @@
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  padding: 48px 24px;
+  padding: 64px 24px;
   text-align: center;
 }
 
