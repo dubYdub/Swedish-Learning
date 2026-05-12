@@ -42,34 +42,25 @@ function Dashboard({ vocab, dueCount, onStart, onExit }) {
       {/* Level distribution */}
       <div className="fc-dist">
         <p className="fc-dist-title">Nivåfördelning</p>
-        {[0,1,2,3,4,5].map(l => counts[l] > 0 && (
-          <div key={l} className="fc-dist-row">
-            <Pips level={l} size="sm" />
-            <span className="fc-dist-name">{srs.LABELS[l]}</span>
-            <div className="fc-dist-bar-wrap">
+        <div className="fc-dist-stack">
+          {vocab.length === 0
+            ? <div className="fc-dist-seg level-0" style={{ flex: 1 }} />
+            : [0,1,2,3,4,5].map(l => counts[l] > 0 && (
               <div
-                className={`fc-dist-bar level-${l}`}
-                style={{ width: `${(counts[l] / vocab.length) * 100}%` }}
+                key={l}
+                className={`fc-dist-seg level-${l}`}
+                style={{ flex: counts[l] }}
+                title={`${srs.LABELS[l]}: ${counts[l]} ord`}
               />
-            </div>
-            <span className="fc-dist-count">{counts[l]}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Ebbinghaus interval guide */}
-      <div className="fc-ebbinghaus">
-        <p className="fc-ebb-title">Ebbinghaus upprepningsintervall</p>
-        <div className="fc-ebb-rows">
-          {[1,2,3,4,5].map(l => (
-            <div key={l} className="fc-ebb-row">
-              <Pips level={l} size="sm" />
-              <span className="fc-ebb-days">
-                {l < 5 ? `+${srs.INTERVALS[l]} dag${srs.INTERVALS[l] > 1 ? 'ar' : ''}` : 'Memorerad ✓'}
-              </span>
-              <div className="fc-ebb-track">
-                <div className="fc-ebb-fill" style={{ width: `${(l / 5) * 100}%` }} />
-              </div>
+            ))
+          }
+        </div>
+        <div className="fc-dist-legend">
+          {[0,1,2,3,4,5].map(l => (
+            <div key={l} className={`fc-dist-litem ${counts[l] === 0 ? 'empty' : ''}`}>
+              <span className={`fc-dist-dot level-${l}`} />
+              <span className="fc-dist-lcount">{counts[l]}</span>
+              <span className="fc-dist-lname">{srs.LABELS[l]}</span>
             </div>
           ))}
         </div>
