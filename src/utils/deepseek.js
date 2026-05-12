@@ -72,45 +72,45 @@ export async function fetchKeyVocab(text) {
 
 // Parse a block of raw Swedish text into a fully structured article entry.
 // Returns { title, summary, difficulty, topic, topicLabel, topicEmoji, content: [{ id, text, translation }] }
+// Paragraphs are split locally so AI cannot merge or drop them.
 export async function fetchArticleParse(rawText) {
   const slug = 'custom-' + Date.now()
+  const paragraphs = rawText.split(/\n\n+/).map(p => p.trim()).filter(Boolean)
+
   const result = await callDS([
     {
       role: 'system',
-      content: `You are a Swedish language teacher preparing reading material. Given raw Swedish text, output a JSON object with EXACTLY these fields:
+      content: `You are a Swedish language teacher. Given numbered Swedish paragraphs, return a JSON object with EXACTLY these fields:
 {
-  "title": "<Swedish title for this text, ≤80 chars>",
-  "summary": "<1-2 sentence English description of what the text is about>",
-  "difficulty": "<one of: A1, A2, B1, B2 — based on vocabulary and grammar complexity>",
-  "topic": "<one English lowercase word: samhälle | kultur | sport | vetenskap | världen | ekonomi | hälsa | natur | other>",
-  "topicLabel": "<same topic in Swedish, capitalized, e.g. Samhälle>",
-  "topicEmoji": "<one emoji that best represents the topic>",
-  "content": [
-    { "id": "<slug>-1", "text": "<first paragraph in Swedish>", "translation": "<English translation>" }
-  ]
+  "title": "<Swedish title, ≤80 chars>",
+  "summary": "<1-2 sentence English description>",
+  "difficulty": "<A1 | A2 | B1 | B2 — based on vocabulary and grammar>",
+  "topic": "<one of: samhälle | kultur | sport | vetenskap | världen | ekonomi | hälsa | natur | other>",
+  "topicLabel": "<topic in Swedish, capitalized, e.g. Samhälle>",
+  "topicEmoji": "<one emoji for the topic>",
+  "translations": ["<English translation of paragraph 1>", "<English translation of paragraph 2>", ...]
 }
-Split at natural paragraph breaks. Return ONLY valid JSON, no other text.`,
+The "translations" array MUST contain exactly ${paragraphs.length} string(s), one per numbered paragraph in order. Return ONLY valid JSON, no other text.`,
     },
     {
       role: 'user',
-      content: `Article slug: "${slug}"\n\nText:\n${rawText}`,
+      content: paragraphs.map((p, i) => `[${i + 1}] ${p}`).join('\n\n'),
     },
   ], 2000, 0.25, true)
 
   if (!result) return null
   try {
     const parsed = JSON.parse(result)
-    if (!Array.isArray(parsed.content)) return null
-    parsed.content = parsed.content.map((p, i) => ({
-      id: p.id || `${slug}-${i + 1}`,
-      text: p.text || '',
-      translation: p.translation || '',
+    const translations = Array.isArray(parsed.translations) ? parsed.translations : []
+    parsed.content = paragraphs.map((text, i) => ({
+      id: `${slug}-${i + 1}`,
+      text,
+      translation: translations[i] || '',
     }))
-    // Fallback defaults so the article is always valid
-    parsed.difficulty   = ['A1','A2','B1','B2'].includes(parsed.difficulty) ? parsed.difficulty : 'B1'
-    parsed.topic        = parsed.topic || 'other'
-    parsed.topicLabel   = parsed.topicLabel || 'Övrigt'
-    parsed.topicEmoji   = parsed.topicEmoji || '📄'
+    parsed.difficulty = ['A1','A2','B1','B2'].includes(parsed.difficulty) ? parsed.difficulty : 'B1'
+    parsed.topic      = parsed.topic || 'other'
+    parsed.topicLabel = parsed.topicLabel || 'Övrigt'
+    parsed.topicEmoji = parsed.topicEmoji || '📄'
     return parsed
   } catch {
     return null
