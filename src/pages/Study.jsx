@@ -75,6 +75,7 @@ export default function Study({ article, progress, updateProgress, vocab, addToV
 
         {/* ── Phase tabs as chapters ── */}
         <nav className="st-phases">
+          <span className="st-phase-indicator" style={{ '--phase-i': PHASES.indexOf(activePhase) }} />
           {PHASES.map(p => {
             const isActive = activePhase === p
             const isDone = articleProgress.phases[p]
@@ -98,7 +99,7 @@ export default function Study({ article, progress, updateProgress, vocab, addToV
 
       {/* ── Body ── */}
       <div className="st-body">
-        <main className="st-main">
+        <main className="st-main" key={activePhase}>
           {activePhase === 'listen' && (
             <PhaseListen
               article={article}

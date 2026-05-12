@@ -165,6 +165,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
       </div>
 
       {/* Card */}
+      <div key={card.id} className="fc-card-wrap">
       <div
         className={`fc-card ${flipped ? 'flipped' : ''} ${feedback ? 'no-click' : ''}`}
         onClick={() => { if (!flipped && !feedback) { tts.speak(card.word, { rate: 0.8 }); setFlipped(true) } }}
@@ -216,6 +217,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
           </div>
         )}
       </div>
+      </div>{/* /fc-card-wrap */}
 
       {/* Answer buttons */}
       {flipped && !feedback && (

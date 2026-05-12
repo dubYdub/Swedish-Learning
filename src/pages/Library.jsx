@@ -104,6 +104,7 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
 
       {/* Tab bar */}
       <div className="lib-tabs">
+        <span className="lib-tab-indicator" style={{ '--tab-i': activeTab === 'dictionary' ? 1 : 0 }} />
         <button
           className={`lib-tab ${activeTab === 'articles' ? 'active' : ''}`}
           onClick={() => { setActiveTab('articles'); setFlashMode(false) }}
@@ -206,7 +207,7 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
               </div>
             </div>
 
-            <div className="lib-toc-list">
+            <div className="lib-toc-list" key={filterStatus}>
               {filtered.length === 0 ? (
                 <p className="lib-empty">Inga artiklar matchar filtret.</p>
               ) : (
@@ -220,6 +221,7 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
                       key={article.id}
                       className={`lib-toc-row status-${prog.status}`}
                       onClick={() => onOpenArticle(article.id)}
+                      style={{ '--i': idx }}
                     >
                       <span className="lib-row-num">No. {num}</span>
 
