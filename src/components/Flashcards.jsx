@@ -1,5 +1,6 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import * as srs from '../utils/srs'
+import * as tts from '../utils/tts'
 import './Flashcards.css'
 
 // ── Shared sub-components ────────────────────────────────────────────────────
@@ -101,6 +102,17 @@ function Session({ initialDeck, onAnswer, onDone }) {
   const card = deck[idx]
   const seen = total - deck.length
 
+  // Speak the word whenever a new card appears
+  useEffect(() => {
+    if (card) tts.speak(card.word, { rate: 0.8 })
+    return () => tts.stop()
+  }, [card?.id])
+
+  function speakWord(e) {
+    e.stopPropagation()
+    tts.speak(card.word, { rate: 0.8 })
+  }
+
   function answer(correct) {
     if (feedback) return
     const changes = srs.advance(card, correct)
@@ -155,7 +167,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
       {/* Card */}
       <div
         className={`fc-card ${flipped ? 'flipped' : ''} ${feedback ? 'no-click' : ''}`}
-        onClick={() => !flipped && !feedback && setFlipped(true)}
+        onClick={() => { if (!flipped && !feedback) { tts.speak(card.word, { rate: 0.8 }); setFlipped(true) } }}
       >
         <div className="fc-card-inner">
           {/* Front */}
@@ -164,6 +176,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
               <Pips level={card.level ?? 0} />
               <span className="fc-level-label">{srs.LABELS[card.level ?? 0]}</span>
             </div>
+            <button className="fc-speak-btn" onClick={speakWord} title="Lyssna igen">🔊</button>
             <p className="fc-word">{card.word}</p>
             <span className="fc-flip-hint">klicka för att avslöja</span>
           </div>

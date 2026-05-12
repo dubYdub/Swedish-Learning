@@ -2,7 +2,7 @@
 // Level 0 = new/failed → due immediately
 // Level 1-5 → intervals double roughly: 1, 3, 7, 14, 30 days
 export const MAX_LEVEL  = 5
-export const INTERVALS  = [0, 1, 3, 7, 14, 30]  // days until next review by level
+export const INTERVALS  = [0, 1, 2, 4, 7, 14]   // days until next review by level
 export const LABELS     = ['Ny', 'Bekant', 'Inlärd', 'Säker', 'Nästan klar', 'Memorerad']
 
 function todayStr() {
