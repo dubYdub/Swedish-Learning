@@ -368,11 +368,9 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
             </div>
           ) : (
             <div className="pl-edit-actions">
-              <button className="pl-edit-btn ghost" onClick={handleClear}>🗑 Rensa</button>
               <button className={`pl-edit-btn export ${copied ? 'copied' : ''}`} onClick={handleExport}>
                 {copied ? '✓ Kopierat!' : '📋 Kopiera'}
               </button>
-              <button className="pl-edit-btn save" onClick={handleSave}>✓ Spara</button>
               <button
                 className={`pl-edit-btn publish ${publishStatus === 'ok' ? 'ok' : ''}`}
                 onClick={handlePublish}
@@ -385,6 +383,7 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
                 title="Ändra GitHub-token"
                 onClick={() => { ts.saveToken(''); setTokenInput(''); setShowTokenInput(true) }}
               >🔑</button>
+              <button className="pl-edit-btn save" onClick={handleSave}>✓ Spara</button>
             </div>
           )}
           {publishStatus === 'error' && (
