@@ -61,6 +61,21 @@ export function clearLocal(articleId) {
   localStorage.removeItem(key(articleId))
 }
 
+export function loadAll(articleIds) {
+  const map = {}
+  for (const id of articleIds) {
+    const ts = loadLocal(id)
+    if (ts) map[id] = ts
+  }
+  return map
+}
+
+export function saveAll(map) {
+  for (const [id, ts] of Object.entries(map)) {
+    saveLocal(id, ts)
+  }
+}
+
 // Parse "m:ss", "m:ss.d", or plain seconds string → number | null
 export function parseTimeStr(str) {
   const s = str.trim()

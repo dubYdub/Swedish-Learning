@@ -3,6 +3,7 @@ import Library from './pages/Library'
 import Study from './pages/Study'
 import { loadVocab, saveVocab } from './utils/storage'
 import { loadProgress, saveProgress } from './utils/progress'
+import * as tsUtils from './utils/timestamps'
 import * as srs from './utils/srs'
 import * as sync from './utils/sync'
 import { articles } from './data/articles'
@@ -38,6 +39,14 @@ export default function App() {
           saveProgress(merged)
           return merged
         })
+      }
+      if (remote.timestamps && typeof remote.timestamps === 'object') {
+        const articleIds = articles.map(a => a.id)
+        const localMap = tsUtils.loadAll(articleIds)
+        const merged = sync.mergeTimestamps(localMap, remote.timestamps)
+        for (const [id, ts] of Object.entries(merged)) {
+          if (!localMap[id]) tsUtils.saveLocal(id, ts)
+        }
       }
     }).catch(() => {})
   }, [])
@@ -83,7 +92,8 @@ export default function App() {
     setSyncStatus('pending')
     setSyncError('')
     try {
-      await sync.publishAll(vocab, progress)
+      const timestamps = tsUtils.loadAll(articles.map(a => a.id))
+      await sync.publishAll(vocab, progress, timestamps)
       setSyncStatus('ok')
       setTimeout(() => setSyncStatus(null), 3000)
     } catch (err) {

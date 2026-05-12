@@ -53,13 +53,25 @@ export function mergeProgress(local, remote) {
 function later(a, b)   { if (!a) return b; if (!b) return a; return a > b ? a : b }
 function earlier(a, b) { if (!a) return b; if (!b) return a; return a < b ? a : b }
 
+// ── Merge timestamps ─────────────────────────────────────────────────────────
+
+// Remote timestamps fill in articles where local has nothing.
+// Local always wins — so edited timestamps on this device are never clobbered.
+export function mergeTimestamps(localMap, remoteMap) {
+  const result = { ...localMap }
+  for (const [id, ts] of Object.entries(remoteMap)) {
+    if (!result[id]) result[id] = ts
+  }
+  return result
+}
+
 // ── Publish ──────────────────────────────────────────────────────────────────
 
-export async function publishAll(vocab, progress) {
+export async function publishAll(vocab, progress, timestamps = {}) {
   const token = loadToken()
   if (!token) throw new Error('no-token')
 
-  const payload = { vocab, progress, syncedAt: new Date().toISOString() }
+  const payload = { vocab, progress, timestamps, syncedAt: new Date().toISOString() }
   const content = JSON.stringify(payload, null, 2)
   const b64     = btoa(unescape(encodeURIComponent(content)))
   const apiUrl  = `https://api.github.com/repos/${REPO}/contents/${SYNC_PATH}`
