@@ -18,68 +18,6 @@ function Pips({ level, size = 'md' }) {
   )
 }
 
-// ── Dashboard ────────────────────────────────────────────────────────────────
-
-function Dashboard({ vocab, dueCount, onStart, onExit }) {
-  const counts = useMemo(() => {
-    const c = Array(6).fill(0)
-    vocab.forEach(v => c[Math.min(5, v.level ?? 0)]++)
-    return c
-  }, [vocab])
-
-  return (
-    <div className="fc-dashboard">
-      <div className="fc-dash-top">
-        <button className="fc-back" onClick={onExit}>← Ordlistan</button>
-        <span className="fc-dash-label">FLASHCARDS</span>
-      </div>
-
-      <div className="fc-due-hero">
-        <span className="fc-due-num">{dueCount}</span>
-        <span className="fc-due-sub">ord att öva idag</span>
-      </div>
-
-      {/* Level distribution */}
-      <div className="fc-dist">
-        <p className="fc-dist-title">Nivåfördelning</p>
-        <div className="fc-dist-stack">
-          {vocab.length === 0
-            ? <div className="fc-dist-seg level-0" style={{ flex: 1 }} />
-            : [0,1,2,3,4,5].map(l => counts[l] > 0 && (
-              <div
-                key={l}
-                className={`fc-dist-seg level-${l}`}
-                style={{ flex: counts[l] }}
-                title={`${srs.LABELS[l]}: ${counts[l]} ord`}
-              />
-            ))
-          }
-        </div>
-        <div className="fc-dist-legend">
-          {[0,1,2,3,4,5].map(l => (
-            <div key={l} className={`fc-dist-litem ${counts[l] === 0 ? 'empty' : ''}`}>
-              <span className={`fc-dist-dot level-${l}`} />
-              <span className="fc-dist-lcount">{counts[l]}</span>
-              <span className="fc-dist-lname">{srs.LABELS[l]}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="fc-dash-actions">
-        <button className="fc-action-btn ghost" onClick={onExit}>← Tillbaka</button>
-        <button
-          className="fc-action-btn primary"
-          onClick={onStart}
-          disabled={dueCount === 0}
-        >
-          {dueCount === 0 ? 'Allt klart för idag ✓' : `Öva ${dueCount} ord →`}
-        </button>
-      </div>
-    </div>
-  )
-}
-
 // ── Session ──────────────────────────────────────────────────────────────────
 
 function Session({ initialDeck, onAnswer, onDone }) {
@@ -253,11 +191,9 @@ function Done({ stats, total, onRestart, onExit }) {
 
 // ── Root ─────────────────────────────────────────────────────────────────────
 
-export default function Flashcards({ vocab, onAnswer, onExit, autoStart }) {
+export default function Flashcards({ vocab, onAnswer, onExit }) {
   const dueCards = useMemo(() => vocab.filter(srs.isDue), [vocab])
-  const [screen, setScreen] = useState(() =>
-    autoStart && vocab.some(srs.isDue) ? 'session' : 'dashboard'
-  )
+  const [screen, setScreen] = useState('session')
   const [doneStats, setDoneStats] = useState(null)
 
   if (screen === 'session' && dueCards.length > 0) {
@@ -275,18 +211,17 @@ export default function Flashcards({ vocab, onAnswer, onExit, autoStart }) {
       <Done
         stats={doneStats.stats}
         total={doneStats.total}
-        onRestart={() => setScreen('dashboard')}
+        onRestart={() => setScreen('session')}
         onExit={onExit}
       />
     )
   }
 
+  // No due cards (shouldn't normally be reachable since Library disables the button)
   return (
-    <Dashboard
-      vocab={vocab}
-      dueCount={dueCards.length}
-      onStart={() => setScreen('session')}
-      onExit={onExit}
-    />
+    <div className="fc-noduetoday">
+      <p className="fc-noduetoday-msg">Allt klart för idag ✓</p>
+      <button className="fc-action-btn ghost" onClick={onExit}>← Ordlistan</button>
+    </div>
   )
 }

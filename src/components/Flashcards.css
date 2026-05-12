@@ -13,142 +13,22 @@
 .fc-pip.on        { background: var(--accent);  border-color: var(--accent); }
 .fc-pip.memorized { background: var(--sage);    border-color: var(--sage);  }
 
-/* ── Dashboard ──────────────────────────────────────────────────────────── */
-.fc-dashboard {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 4px 0 48px;
-}
-
-.fc-dash-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.fc-dash-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--text-dim);
-}
-
-.fc-due-hero {
+/* ── No-due fallback ────────────────────────────────────────────────────── */
+.fc-noduetoday {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 44px 0 36px;
-  border-top: 2px solid var(--border);
-  border-bottom: 2px solid var(--border);
-}
-
-.fc-due-num {
-  font-family: var(--font-display);
-  font-size: 80px;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.fc-due-sub {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-/* Level distribution */
-.fc-dist { display: flex; flex-direction: column; gap: 16px; }
-
-.fc-dist-title {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin: 0;
-}
-
-/* Stacked proportion bar */
-.fc-dist-stack {
-  display: flex;
-  height: 10px;
-  gap: 3px;
-}
-
-.fc-dist-seg {
-  height: 100%;
-  min-width: 4px;
-  transition: flex 0.5s ease;
-}
-
-.fc-dist-seg.level-0 { background: var(--text-dim); }
-.fc-dist-seg.level-1 { background: var(--butter); }
-.fc-dist-seg.level-2 { background: var(--blue); }
-.fc-dist-seg.level-3 { background: var(--accent); }
-.fc-dist-seg.level-4 { background: var(--pink); }
-.fc-dist-seg.level-5 { background: var(--sage); }
-
-/* 6-column legend */
-.fc-dist-legend {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  border: 1px solid var(--border);
-}
-
-.fc-dist-litem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 14px 6px;
-  border-right: 1px solid var(--border-soft);
-  transition: background 0.15s;
-}
-
-.fc-dist-litem:last-child { border-right: none; }
-.fc-dist-litem.empty { opacity: 0.3; }
-
-.fc-dist-dot {
-  width: 8px;
-  height: 8px;
-  flex-shrink: 0;
-}
-
-.fc-dist-dot.level-0 { background: var(--text-dim); }
-.fc-dist-dot.level-1 { background: var(--butter); }
-.fc-dist-dot.level-2 { background: var(--blue); }
-.fc-dist-dot.level-3 { background: var(--accent); }
-.fc-dist-dot.level-4 { background: var(--pink); }
-.fc-dist-dot.level-5 { background: var(--sage); }
-
-.fc-dist-lcount {
-  font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-h);
-  line-height: 1;
-}
-
-.fc-dist-lname {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
+  gap: 24px;
+  padding: 80px 24px;
   text-align: center;
 }
 
-.fc-dash-actions {
-  display: flex;
-  gap: 10px;
+.fc-noduetoday-msg {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--text-dim);
+  margin: 0;
 }
 
 /* ── Session ────────────────────────────────────────────────────────────── */

@@ -330,7 +330,7 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
           {/* ── Dictionary tab ── */}
           {activeTab === 'dictionary' && (
             flashMode ? (
-              <Flashcards vocab={vocab} onAnswer={onAnswerVocab} onExit={() => setFlashMode(false)} autoStart />
+              <Flashcards vocab={vocab} onAnswer={onAnswerVocab} onExit={() => setFlashMode(false)} />
             ) : (
               <section className="lib-dict">
                 <QuickAdd
