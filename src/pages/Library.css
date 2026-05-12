@@ -106,6 +106,31 @@
   white-space: nowrap;
 }
 
+.lib-dict-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lib-mnemonic-btn {
+  padding: 9px 20px;
+  background: var(--blue-bg, #EAF0F8);
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 0 var(--blue);
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+}
+.lib-mnemonic-btn:hover    { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 0 var(--blue); background: var(--blue); color: #fff; }
+.lib-mnemonic-btn:active   { transform: translate(1px, 1px);  box-shadow: 0 0 0 0 var(--blue); }
+.lib-mnemonic-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+
 .lib-flash-btn {
   padding: 9px 20px;
   background: var(--accent);

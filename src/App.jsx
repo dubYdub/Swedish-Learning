@@ -6,6 +6,7 @@ import { loadProgress, saveProgress } from './utils/progress'
 import * as tsUtils from './utils/timestamps'
 import * as srs from './utils/srs'
 import * as sync from './utils/sync'
+import * as ds from './utils/deepseek'
 import { articles } from './data/articles'
 import './App.css'
 
@@ -21,6 +22,7 @@ export default function App() {
   // Sync status for publish button
   const [syncStatus, setSyncStatus] = useState(null)  // null | 'pending' | 'ok' | 'error'
   const [syncError, setSyncError]   = useState('')
+  const [generatingMnemonics, setGeneratingMnemonics] = useState(false)
 
   // On mount: silently merge remote vocab + progress into local
   useEffect(() => {
@@ -126,6 +128,24 @@ export default function App() {
     })
   }, [])
 
+  const generateMissingMnemonics = useCallback(async () => {
+    if (!ds.getKey()) return
+    setGeneratingMnemonics(true)
+    // Snapshot missing at start to avoid re-reading stale closure
+    const missing = vocab.filter(v => !v.mnemonic)
+    for (const entry of missing) {
+      const m = await ds.fetchMnemonic(entry.word, entry.context).catch(() => null)
+      if (m) {
+        setVocab(prev => {
+          const updated = prev.map(v => v.id === entry.id ? { ...v, mnemonic: m } : v)
+          saveVocab(updated)
+          return updated
+        })
+      }
+    }
+    setGeneratingMnemonics(false)
+  }, [vocab])
+
   const currentArticle = studyId ? articles.find(a => a.id === studyId) : null
 
   return (
@@ -142,6 +162,8 @@ export default function App() {
           onPublishVocab={publishVocab}
           syncStatus={syncStatus}
           syncError={syncError}
+          onGenerateMnemonics={generateMissingMnemonics}
+          generatingMnemonics={generatingMnemonics}
         />
       )}
       {view === 'study' && currentArticle && (

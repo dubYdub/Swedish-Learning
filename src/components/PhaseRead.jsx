@@ -88,6 +88,16 @@ export default function PhaseRead({ article, addToVocab, onUpdateVocab, onUpdate
     }
   }
 
+  function handleAddKeyVocab(word, def) {
+    const id = Date.now()
+    addToVocab(word, def, id)
+    if (ds.getKey() && onUpdateMnemonic) {
+      ds.fetchMnemonic(word, def)
+        .then(m => { if (m) onUpdateMnemonic(id, m) })
+        .catch(() => {})
+    }
+  }
+
   async function handleGrammar() {
     if (!tooltip || tooltip.grammarLoading) return
     const phrase = tooltip.text
@@ -153,7 +163,7 @@ export default function PhaseRead({ article, addToVocab, onUpdateVocab, onUpdate
                   {!added ? (
                     <button
                       className="pr-vocab-add"
-                      onClick={() => addToVocab(item.word, item.def)}
+                      onClick={() => handleAddKeyVocab(item.word, item.def)}
                       title="Lägg till"
                     >+</button>
                   ) : (

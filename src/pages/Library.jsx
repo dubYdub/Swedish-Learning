@@ -3,6 +3,7 @@ import { DIFFICULTY, estimateReadMinutes } from '../data/articles'
 import { getArticleProgress, computeStats, computeStreak, PHASE_LABELS, PHASES } from '../utils/progress'
 import { countAllRecordings } from '../utils/db'
 import { loadToken, saveToken } from '../utils/timestamps'
+import { getKey as dsKeySet } from '../utils/deepseek'
 import VocabList from '../components/VocabList'
 import Flashcards from '../components/Flashcards'
 import './Library.css'
@@ -14,7 +15,7 @@ function localToday() {
 
 const ISSUE_NO = 4 // editorial flair — could increment monthly
 
-export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab, onUpdateVocab, onAnswerVocab, onPublishVocab, syncStatus, syncError }) {
+export default function Library({ articles, progress, vocab, onOpenArticle, onRemoveVocab, onUpdateVocab, onAnswerVocab, onPublishVocab, syncStatus, syncError, onGenerateMnemonics, generatingMnemonics }) {
   const today = localToday()
   const stats = computeStats(progress)
   const streak = computeStreak(progress, today)
@@ -140,11 +141,25 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
               <section className="lib-dict">
                 <div className="lib-dict-head">
                   <h2 className="lib-toc-title">Ordlista</h2>
-                  {vocab.length > 0 && (
-                    <button className="lib-flash-btn" onClick={() => setFlashMode(true)}>
-                      ▶ Starta Flashcards ({vocab.length} ord)
-                    </button>
-                  )}
+                  <div className="lib-dict-actions">
+                    {vocab.length > 0 && dsKeySet() && (() => {
+                      const missing = vocab.filter(v => !v.mnemonic).length
+                      return missing > 0 ? (
+                        <button
+                          className="lib-mnemonic-btn"
+                          onClick={onGenerateMnemonics}
+                          disabled={generatingMnemonics}
+                        >
+                          {generatingMnemonics ? '⏳ Genererar…' : `🧠 Minnestips (${missing})`}
+                        </button>
+                      ) : null
+                    })()}
+                    {vocab.length > 0 && (
+                      <button className="lib-flash-btn" onClick={() => setFlashMode(true)}>
+                        ▶ Starta Flashcards ({vocab.length} ord)
+                      </button>
+                    )}
+                  </div>
                 </div>
                 {vocab.length === 0 ? (
                   <p className="lib-empty">
