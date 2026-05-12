@@ -5,6 +5,7 @@ import './PhaseRead.css'
 export default function PhaseRead({ article, addToVocab, addedWords, isDone, onMarkDone }) {
   const [playingId, setPlayingId]         = useState(null)
   const [tooltip, setTooltip]             = useState(null)
+  const [adding, setAdding]               = useState(false)
   const [justAdded, setJustAdded]         = useState(null)
   const [showTranslations, setShowTranslations] = useState(false)
   const contentRef = useRef(null)
@@ -34,26 +35,23 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
 
     const range = selection.getRangeAt(0)
     const rect  = range.getBoundingClientRect()
-
-    setTooltip({ text, translation: null, translating: true, x: rect.left + rect.width / 2, y: rect.top })
-
-    fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=sv|en`)
-      .then(r => r.json())
-      .then(data => {
-        const t = data?.responseData?.translatedText
-        setTooltip(prev => prev?.text === text ? { ...prev, translation: t || null, translating: false } : prev)
-      })
-      .catch(() => {
-        setTooltip(prev => prev?.text === text ? { ...prev, translating: false } : prev)
-      })
+    setTooltip({ text, x: rect.left + rect.width / 2, y: rect.top })
   }, [])
 
-  function handleAddToVocab() {
-    if (!tooltip) return
-    addToVocab(tooltip.text, tooltip.translation || '')
+  async function handleAddToVocab() {
+    if (!tooltip || adding) return
+    setAdding(true)
+    let translation = ''
+    try {
+      const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(tooltip.text)}&langpair=sv|en`)
+      const data = await r.json()
+      translation = data?.responseData?.translatedText || ''
+    } catch {}
+    addToVocab(tooltip.text, translation)
     setJustAdded(tooltip.text)
     setTimeout(() => setJustAdded(null), 1800)
     setTooltip(null)
+    setAdding(false)
     window.getSelection()?.removeAllRanges()
   }
 
@@ -138,20 +136,13 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
           style={{ left: tooltip.x, top: tooltip.y - 10, transform: 'translate(-50%, -100%)' }}
         >
           <span className="pr-tooltip-word">„{tooltip.text}"</span>
-          {tooltip.translating ? (
-            <span className="pr-tooltip-transl loading">…</span>
-          ) : tooltip.translation ? (
-            <span className="pr-tooltip-transl">{tooltip.translation}</span>
-          ) : null}
-          <div className="pr-tooltip-actions">
-            {alreadyInVocab ? (
-              <span className="pr-tooltip-exists">Redan tillagd</span>
-            ) : (
-              <button className="pr-tooltip-add" onClick={handleAddToVocab} disabled={tooltip.translating}>
-                + Ordlista
-              </button>
-            )}
-          </div>
+          {alreadyInVocab ? (
+            <span className="pr-tooltip-exists">Redan tillagd</span>
+          ) : (
+            <button className="pr-tooltip-add" onClick={handleAddToVocab} disabled={adding}>
+              {adding ? '…' : '+ Ordlista'}
+            </button>
+          )}
         </div>
       )}
 

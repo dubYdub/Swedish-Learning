@@ -197,12 +197,12 @@
   z-index: 1000;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  padding: 10px 14px;
+  padding: 8px 12px;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  gap: 10px;
   box-shadow: 3px 3px 0 0 var(--border);
-  max-width: 300px;
+  white-space: nowrap;
   animation: fadeUp 0.18s ease both;
 }
 
@@ -221,29 +221,6 @@
   font-size: 15px;
   font-weight: 700;
   color: var(--text-h);
-  white-space: nowrap;
-}
-
-.pr-tooltip-transl {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 13px;
-  color: var(--text);
-  line-height: 1.4;
-  word-break: break-word;
-}
-
-.pr-tooltip-transl.loading {
-  color: var(--text-dim);
-  font-style: normal;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-}
-
-.pr-tooltip-actions {
-  display: flex;
-  align-items: center;
 }
 
 .pr-tooltip-add {
@@ -258,10 +235,12 @@
   padding: 4px 10px;
   cursor: pointer;
   transition: background 0.15s;
+  min-width: 80px;
+  text-align: center;
 }
 
 .pr-tooltip-add:hover { background: var(--text-h); }
-.pr-tooltip-add:disabled { opacity: 0.5; cursor: default; }
+.pr-tooltip-add:disabled { opacity: 0.6; cursor: default; }
 
 .pr-tooltip-exists {
   font-family: var(--font-mono);
