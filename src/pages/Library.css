@@ -409,13 +409,138 @@
   width: 100%;
 }
 
-/* Dictionary tab: full-width, no sidebar (would duplicate the vocab list) */
+/* Dictionary tab: ring chart on left, word list on right */
 .lib-body.dict-active {
-  grid-template-columns: 1fr;
+  grid-template-columns: 280px 1fr;
 }
 .lib-body.dict-active .lib-sidebar {
+  display: flex;
+  order: -1;
+  position: sticky;
+  top: 240px;
+  max-height: none;
+  overflow: visible;
+  align-self: start;
+}
+
+/* Flashcard session: full-width */
+.lib-body.dict-flash {
+  grid-template-columns: 1fr;
+}
+.lib-body.dict-flash .lib-sidebar {
   display: none;
 }
+
+/* ─── DICT SIDEBAR (ring chart) ─── */
+.lib-dict-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 20px 32px;
+  width: 100%;
+}
+
+.lib-dict-aside-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin: 0;
+  align-self: flex-start;
+}
+
+.lib-ring-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.lib-ring-svg {
+  width: 168px;
+  height: 168px;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,0.07));
+}
+
+.lib-ring-empty {
+  width: 168px;
+  height: 168px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--border-soft);
+  border-radius: 50%;
+}
+.lib-ring-empty p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.5;
+  padding: 0 20px;
+}
+
+.lib-ring-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 0;
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.lib-ring-leg-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lib-ring-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+}
+
+.lib-ring-count {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-h);
+  line-height: 1;
+  min-width: 28px;
+}
+
+.lib-ring-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.lib-dict-start-btn {
+  width: 100%;
+  padding: 13px 20px;
+  background: var(--accent);
+  border: 1px solid var(--border);
+  color: #FFF8EA;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 0 var(--border);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.lib-dict-start-btn:hover:not(:disabled) { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 0 var(--border); }
+.lib-dict-start-btn:active:not(:disabled) { transform: translate(1px,1px); box-shadow: 0 0 0 0; }
+.lib-dict-start-btn:disabled { opacity: 0.4; cursor: default; }
+.lib-dict-start-btn.done { background: var(--sage); }
 
 .lib-main {
   display: flex;
@@ -728,6 +853,8 @@
 @media (max-width: 960px) {
   .lib-body { grid-template-columns: 1fr; }
   .lib-sidebar { display: none; }
+  .lib-body.dict-active { grid-template-columns: 1fr; }
+  .lib-body.dict-active .lib-sidebar { display: flex; order: -1; position: static; max-height: none; }
   .lib-stats-row { grid-template-columns: repeat(3, 1fr); }
   .lib-stat:nth-child(3) { border-right: none; }
   .lib-stat:nth-child(n+4) { border-top: 1px solid var(--border-soft); }

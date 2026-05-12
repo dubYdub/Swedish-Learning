@@ -1,14 +1,101 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { DIFFICULTY, estimateReadMinutes } from '../data/articles'
 import { getArticleProgress, computeStats, computeStreak, PHASE_LABELS, PHASES } from '../utils/progress'
 import { countAllRecordings } from '../utils/db'
 import { loadToken, saveToken } from '../utils/timestamps'
 import * as ds from '../utils/deepseek'
+import * as srs from '../utils/srs'
 import VocabList from '../components/VocabList'
 import Flashcards from '../components/Flashcards'
 import './Library.css'
 
 const INFLECTION_RE = /\b(form of|degree of|inflection of|definite|plural|superlative|comparative|genitive|past tense|present tense)\b/i
+const RING_COLORS = ['var(--text-dim)', 'var(--butter)', 'var(--blue)', 'var(--accent)', 'var(--pink)', 'var(--sage)']
+
+function RingChart({ counts, total }) {
+  const R = 60, CX = 84, CY = 84
+  const circ = 2 * Math.PI * R
+  const nonEmpty = counts.filter(c => c > 0).length
+  const GAP_DEG = nonEmpty > 1 ? 5 : 0
+  const usableDeg = 360 - GAP_DEG * nonEmpty
+  let startDeg = 0
+  const arcs = []
+  for (let l = 0; l <= 5; l++) {
+    if (counts[l] === 0) continue
+    const deg = (counts[l] / total) * usableDeg
+    arcs.push({ level: l, arcLen: (deg / 360) * circ, startDeg })
+    startDeg += deg + GAP_DEG
+  }
+  return (
+    <svg viewBox="0 0 168 168" className="lib-ring-svg">
+      <circle cx={CX} cy={CY} r={R} fill="none" stroke="var(--border-soft)" strokeWidth="14" />
+      {total === 0
+        ? <circle cx={CX} cy={CY} r={R} fill="none" stroke="var(--border)" strokeWidth="14" />
+        : arcs.map(arc => (
+          <circle
+            key={arc.level}
+            cx={CX} cy={CY} r={R}
+            fill="none" stroke={RING_COLORS[arc.level]}
+            strokeWidth="14"
+            strokeDasharray={`${arc.arcLen} ${circ}`}
+            transform={`rotate(${arc.startDeg - 90}, ${CX}, ${CY})`}
+            strokeLinecap="butt"
+          />
+        ))
+      }
+      <text x={CX} y={CY - 5} textAnchor="middle"
+        style={{ fontFamily: 'var(--font-display)', fontSize: '40px', fontWeight: '700', fill: 'var(--text-h)' }}>
+        {total}
+      </text>
+      <text x={CX} y={CY + 20} textAnchor="middle"
+        style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '2px', fill: 'var(--text-dim)' }}>
+        ORD
+      </text>
+    </svg>
+  )
+}
+
+function DictSidebar({ vocab, onStart }) {
+  const counts = useMemo(() => {
+    const c = Array(6).fill(0)
+    vocab.forEach(v => c[Math.min(5, v.level ?? 0)]++)
+    return c
+  }, [vocab])
+  const dueCount = useMemo(() => vocab.filter(v => srs.isDue(v)).length, [vocab])
+  const total = vocab.length
+
+  return (
+    <div className="lib-dict-aside">
+      <p className="lib-dict-aside-eyebrow">Minnesstatus</p>
+      <div className="lib-ring-wrap">
+        {total === 0
+          ? <div className="lib-ring-empty"><p>Lägg till ord för att se statistik</p></div>
+          : <RingChart counts={counts} total={total} />
+        }
+      </div>
+      {total > 0 && (
+        <div className="lib-ring-legend">
+          {[0,1,2,3,4,5].map(l => counts[l] > 0 && (
+            <div key={l} className="lib-ring-leg-row">
+              <span className="lib-ring-dot" style={{ background: RING_COLORS[l] }} />
+              <span className="lib-ring-count">{counts[l]}</span>
+              <span className="lib-ring-label">{srs.LABELS[l]}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <button
+        className={`lib-dict-start-btn${dueCount === 0 && total > 0 ? ' done' : ''}`}
+        onClick={onStart}
+        disabled={total === 0}
+      >
+        {total === 0 ? 'Inga ord att öva'
+          : dueCount > 0 ? `▶ Öva ${dueCount} ord`
+          : 'Allt klart idag ✓'}
+      </button>
+    </div>
+  )
+}
 
 function QuickAdd({ vocab, onAdd, onUpdateContext, onUpdateMnemonic }) {
   const [word, setWord]       = useState('')
@@ -223,9 +310,10 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
         </button>
       </div>
 
-      <div className={`lib-body ${activeTab === 'dictionary' ? 'dict-active' : ''}`}>
+      <div className={`lib-body ${activeTab === 'dictionary' ? (flashMode ? 'dict-flash' : 'dict-active') : ''}`}>
         <main className="lib-main">
-          {/* ── Dashboard ── */}
+          {/* ── Dashboard (articles tab only) ── */}
+          {activeTab === 'articles' && (
           <section className="lib-dashboard">
             <p className="lib-section-eyebrow">— Studierapport —</p>
             <div className="lib-stats-row">
@@ -237,6 +325,7 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
               <StatBlock value={stats.totalStudyMin} label="Minuter" />
             </div>
           </section>
+          )}
 
           {/* ── Dictionary tab ── */}
           {activeTab === 'dictionary' && (
@@ -382,7 +471,10 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onAd
         </main>
 
         <aside className="lib-sidebar">
-          <VocabList vocab={vocab} onRemove={onRemoveVocab} onUpdateVocab={onUpdateVocab} />
+          {activeTab === 'dictionary' && !flashMode
+            ? <DictSidebar vocab={vocab} onStart={() => setFlashMode(true)} />
+            : <VocabList vocab={vocab} onRemove={onRemoveVocab} onUpdateVocab={onUpdateVocab} />
+          }
         </aside>
       </div>
     </div>

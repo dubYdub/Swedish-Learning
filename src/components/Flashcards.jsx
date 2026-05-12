@@ -89,6 +89,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
   const [flipped, setFlipped] = useState(false)
   const [feedback, setFeedback] = useState(null)  // { correct, newLevel }
   const [stats, setStats]   = useState({ correct: 0, wrong: 0 })
+  const [shaking, setShaking] = useState(false)
 
   const card = deck[idx]
   const seen = total - deck.length
@@ -112,6 +113,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
     const newStats = { correct: stats.correct + (correct ? 1 : 0), wrong: stats.wrong + (correct ? 0 : 1) }
     setStats(newStats)
     setFeedback({ correct, newLevel: changes.level, interval: srs.INTERVALS[changes.level] })
+    if (!correct) { setShaking(true); setTimeout(() => setShaking(false), 600) }
 
     setTimeout(() => {
       setFeedback(null)
@@ -156,7 +158,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
       </div>
 
       {/* Card */}
-      <div key={card.id} className="fc-card-wrap">
+      <div key={card.id} className={`fc-card-wrap${shaking ? ' shaking' : ''}`}>
       <div
         className={`fc-card ${flipped ? 'flipped' : ''} ${feedback ? 'no-click' : ''}`}
         onClick={() => { if (!flipped && !feedback) { tts.speak(card.word, { rate: 0.8 }); setFlipped(true) } }}

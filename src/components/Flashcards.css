@@ -203,10 +203,25 @@
   to   { opacity: 1; transform: translateX(0); }
 }
 
+@keyframes cardShake {
+  0%   { transform: translateX(0)    rotate(0deg); }
+  12%  { transform: translateX(-10px) rotate(-1.8deg); }
+  28%  { transform: translateX(9px)   rotate(1.6deg); }
+  44%  { transform: translateX(-7px)  rotate(-1.2deg); }
+  60%  { transform: translateX(6px)   rotate(0.8deg); }
+  76%  { transform: translateX(-3px); }
+  88%  { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+
 .fc-card-wrap {
   width: 100%;
   max-width: 540px;
   animation: cardEnter 0.28s cubic-bezier(0.2, 0, 0.2, 1) both;
+}
+
+.fc-card-wrap.shaking {
+  animation: cardShake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 .fc-card {
@@ -315,27 +330,28 @@
 }
 
 .fc-def {
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-body);
+  font-style: normal;
   font-size: 18px;
   color: var(--text-h);
   text-align: center;
-  line-height: 1.45;
+  line-height: 1.55;
   margin: 0;
-  max-width: 36ch;
+  max-width: 34ch;
 }
 
 .fc-mnemonic {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 12px;
-  color: var(--text-dim);
+  color: var(--text);
   text-align: center;
-  line-height: 1.45;
+  line-height: 1.5;
   margin: 0;
-  max-width: 36ch;
-  border-top: 1px solid var(--butter);
-  padding-top: 8px;
+  max-width: 34ch;
+  background: rgba(212, 175, 58, 0.12);
+  border: 1px solid var(--butter);
+  padding: 8px 14px;
 }
 
 /* Feedback overlay */
@@ -348,8 +364,8 @@
   animation: fcFadeIn 0.15s ease both;
 }
 
-.fc-feedback-overlay.correct { background: rgba(79, 107, 74, 0.88); }
-.fc-feedback-overlay.wrong   { background: rgba(160, 80, 60, 0.88); }
+.fc-feedback-overlay.correct { background: rgba(79, 107, 74, 0.82); }
+.fc-feedback-overlay.wrong   { background: rgba(160, 80, 60, 0.78); }
 
 .fc-fb-inner {
   display: flex;
@@ -358,16 +374,16 @@
 }
 
 .fc-fb-icon {
-  font-size: 28px;
+  font-size: 32px;
   color: #fff;
   font-weight: 900;
 }
 
 .fc-fb-text {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #fff;
 }
