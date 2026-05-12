@@ -144,7 +144,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
     <div className="fc-session">
       {/* Progress header */}
       <div className="fc-sess-header">
-        <button className="fc-back" onClick={() => onDone(stats, total)}>✕</button>
+        <button className="fc-exit-btn" onClick={() => onDone(stats, total)}>← Avsluta</button>
         <div className="fc-prog-wrap">
           <div className="fc-prog-bar">
             <div className="fc-prog-fill" style={{ width: `${progressPct}%` }} />
@@ -253,9 +253,11 @@ function Done({ stats, total, onRestart, onExit }) {
 
 // ── Root ─────────────────────────────────────────────────────────────────────
 
-export default function Flashcards({ vocab, onAnswer, onExit }) {
+export default function Flashcards({ vocab, onAnswer, onExit, autoStart }) {
   const dueCards = useMemo(() => vocab.filter(srs.isDue), [vocab])
-  const [screen, setScreen]   = useState('dashboard')
+  const [screen, setScreen] = useState(() =>
+    autoStart && vocab.some(srs.isDue) ? 'session' : 'dashboard'
+  )
   const [doneStats, setDoneStats] = useState(null)
 
   if (screen === 'session' && dueCards.length > 0) {

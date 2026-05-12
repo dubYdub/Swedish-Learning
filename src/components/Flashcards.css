@@ -204,14 +204,11 @@
 }
 
 @keyframes cardShake {
-  0%   { transform: translateX(0)    rotate(0deg); }
-  12%  { transform: translateX(-10px) rotate(-1.8deg); }
-  28%  { transform: translateX(9px)   rotate(1.6deg); }
-  44%  { transform: translateX(-7px)  rotate(-1.2deg); }
-  60%  { transform: translateX(6px)   rotate(0.8deg); }
-  76%  { transform: translateX(-3px); }
-  88%  { transform: translateX(2px); }
-  100% { transform: translateX(0); }
+  16%      { transform: translateX(-9px); }
+  34%      { transform: translateX(8px); }
+  52%      { transform: translateX(-5px); }
+  70%      { transform: translateX(4px); }
+  86%      { transform: translateX(-2px); }
 }
 
 .fc-card-wrap {
@@ -221,7 +218,7 @@
 }
 
 .fc-card-wrap.shaking {
-  animation: cardShake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: cardShake 0.4s ease-out both;
 }
 
 .fc-card {
@@ -503,6 +500,25 @@
 }
 
 .fc-back:hover { color: var(--text-h); }
+
+.fc-exit-btn {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 0 var(--border);
+  transition: background 0.15s, transform 0.12s, box-shadow 0.12s;
+}
+.fc-exit-btn:hover  { background: var(--bg-card); transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--border); }
+.fc-exit-btn:active { transform: translate(1px,1px); box-shadow: 0 0 0 0 var(--border); }
 
 .fc-action-btn {
   flex: 1;
