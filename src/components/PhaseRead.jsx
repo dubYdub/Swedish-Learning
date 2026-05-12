@@ -3,10 +3,12 @@ import * as tts from '../utils/tts'
 import './PhaseRead.css'
 
 export default function PhaseRead({ article, addToVocab, addedWords, isDone, onMarkDone }) {
-  const [playingId, setPlayingId] = useState(null)
-  const [tooltip, setTooltip]     = useState(null)
-  const [justAdded, setJustAdded] = useState(null)
+  const [playingId, setPlayingId]         = useState(null)
+  const [tooltip, setTooltip]             = useState(null)
+  const [justAdded, setJustAdded]         = useState(null)
+  const [showTranslations, setShowTranslations] = useState(false)
   const contentRef = useRef(null)
+  const hasTranslations = article.content.some(p => p.translation)
 
   useEffect(() => () => tts.stop(), [])
 
@@ -58,9 +60,19 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
 
   return (
     <div className="phase-read" onMouseUp={handleMouseUp}>
-      <p className="pr-instructions">
-        Läs igenom artikeln. Markera ett ord eller en fras för att lägga till det i din ordlista, eller använd nyckelorden nedan.
-      </p>
+      <div className="pr-top-bar">
+        <p className="pr-instructions">
+          Läs igenom artikeln. Markera ett ord eller en fras för att lägga till det i din ordlista.
+        </p>
+        {hasTranslations && (
+          <button
+            className={`pr-translation-toggle ${showTranslations ? 'active' : ''}`}
+            onClick={() => setShowTranslations(s => !s)}
+          >
+            {showTranslations ? '🇸🇪 Dölj översättning' : '🇬🇧 Visa översättning'}
+          </button>
+        )}
+      </div>
 
       {/* Article content */}
       <div className="pr-content" ref={contentRef}>
@@ -73,7 +85,12 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
             >
               {playingId === para.id ? '⏹' : '🔊'}
             </button>
-            <p className="pr-para-text">{para.text}</p>
+            <div className="pr-para-body">
+              <p className="pr-para-text">{para.text}</p>
+              {showTranslations && para.translation && (
+                <p className="pr-para-translation">{para.translation}</p>
+              )}
+            </div>
           </div>
         ))}
       </div>

@@ -357,9 +357,7 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
                       </button>
                     )}
                     <span className="pl-edit-num">{idx + 1}</span>
-                    <p className="pl-edit-preview">
-                      {para.text.length > 48 ? para.text.slice(0, 48) + '…' : para.text}
-                    </p>
+                    <p className="pl-edit-preview">{para.text}</p>
                     <button
                       className={`pl-mark-btn ${isCurrent ? 'current' : ''}`}
                       onClick={() => handleMark(idx)}

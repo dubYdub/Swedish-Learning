@@ -3,6 +3,7 @@ import { DIFFICULTY, estimateReadMinutes } from '../data/articles'
 import { getArticleProgress, computeStats, computeStreak, PHASE_LABELS, PHASES } from '../utils/progress'
 import { countAllRecordings } from '../utils/db'
 import VocabList from '../components/VocabList'
+import Flashcards from '../components/Flashcards'
 import './Library.css'
 
 function localToday() {
@@ -18,6 +19,8 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
   const streak = computeStreak(progress, today)
   const [recordingCount, setRecordingCount] = useState(0)
   const [filterStatus, setFilterStatus] = useState('all')
+  const [activeTab, setActiveTab] = useState('articles')   // 'articles' | 'dictionary'
+  const [flashMode, setFlashMode] = useState(false)
 
   useEffect(() => {
     countAllRecordings().then(setRecordingCount).catch(() => setRecordingCount(0))
@@ -44,6 +47,22 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
         <div className="lib-mast-rule" />
       </header>
 
+      {/* Tab bar */}
+      <div className="lib-tabs">
+        <button
+          className={`lib-tab ${activeTab === 'articles' ? 'active' : ''}`}
+          onClick={() => { setActiveTab('articles'); setFlashMode(false) }}
+        >
+          📰 Artiklar
+        </button>
+        <button
+          className={`lib-tab ${activeTab === 'dictionary' ? 'active' : ''}`}
+          onClick={() => { setActiveTab('dictionary'); setFlashMode(false) }}
+        >
+          📖 Ordlista {vocab.length > 0 && <span className="lib-tab-count">{vocab.length}</span>}
+        </button>
+      </div>
+
       <div className="lib-body">
         <main className="lib-main">
           {/* ── Dashboard ── */}
@@ -59,8 +78,45 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
             </div>
           </section>
 
+          {/* ── Dictionary tab ── */}
+          {activeTab === 'dictionary' && (
+            flashMode ? (
+              <Flashcards vocab={vocab} onExit={() => setFlashMode(false)} />
+            ) : (
+              <section className="lib-dict">
+                <div className="lib-dict-head">
+                  <h2 className="lib-toc-title">Ordlista</h2>
+                  {vocab.length > 0 && (
+                    <button className="lib-flash-btn" onClick={() => setFlashMode(true)}>
+                      ▶ Starta Flashcards ({vocab.length} ord)
+                    </button>
+                  )}
+                </div>
+                {vocab.length === 0 ? (
+                  <p className="lib-empty">
+                    Inga ord sparade än. Markera ett ord i läsfasen för att lägga till det här.
+                  </p>
+                ) : (
+                  <div className="lib-dict-list">
+                    {vocab.map(item => (
+                      <div key={item.id} className="lib-dict-row">
+                        <span className="lib-dict-word">{item.word}</span>
+                        <span className="lib-dict-def">{item.context}</span>
+                        <button
+                          className="lib-dict-remove"
+                          onClick={() => onRemoveVocab(item.id)}
+                          title="Ta bort"
+                        >×</button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </section>
+            )
+          )}
+
           {/* ── Table of contents ── */}
-          <section className="lib-toc">
+          {activeTab === 'articles' && <section className="lib-toc">
             <div className="lib-toc-head">
               <h2 className="lib-toc-title">Innehåll</h2>
               <div className="lib-filters">
@@ -135,6 +191,8 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
               )}
             </div>
           </section>
+
+          } {/* end activeTab === 'articles' */}
 
           <footer className="lib-footer">
             <span className="metadata">Continued on the next page →</span>
