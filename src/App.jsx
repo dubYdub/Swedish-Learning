@@ -56,8 +56,8 @@ export default function App() {
       if (Array.isArray(remote.vocab) && remote.vocab.length > 0) {
         setVocab(prev => {
           const merged = sync.mergeVocab(prev, remote.vocab)
-          if (merged.length !== prev.length) saveVocab(merged)
-          return merged.length !== prev.length ? merged : prev
+          saveVocab(merged)
+          return merged
         })
       }
 
@@ -80,10 +80,15 @@ export default function App() {
       if (Array.isArray(remote.customArticles) && remote.customArticles.length > 0) {
         setCustomArticles(prev => {
           const merged = sync.mergeCustomArticles(prev, remote.customArticles)
-          if (merged.length !== prev.length) {
-            // Persist newly arrived articles to localStorage (addCustomArticle is idempotent)
-            const prevIds = new Set(prev.map(a => a.id))
-            merged.filter(a => !prevIds.has(a.id)).forEach(a => addCustomArticle(a))
+          if (merged !== prev) {
+            const prevMap = new Map(prev.map(a => [a.id, a]))
+            merged.forEach(a => {
+              if (!prevMap.has(a.id)) {
+                addCustomArticle(a)              // new article → add to localStorage
+              } else if (prevMap.get(a.id) !== a) {
+                updateCustomArticle(a.id, a)    // existing article updated → persist
+              }
+            })
           }
           // Deduplicate state defensively
           const seen = new Set()
@@ -247,7 +252,11 @@ export default function App() {
 
   const handleReprocessArticle = useCallback(async (articleId) => {
     const article = customArticles.find(a => a.id === articleId)
-    if (!article || !ds.getKey()) return
+    if (!article) return
+    if (!ds.getKey()) {
+      alert('Ange din DeepSeek API-nyckel via 🔑-ikonen i sidopanelen för att analysera artiklar.')
+      return
+    }
 
     const rawText = article.content.map(p => p.text).join('\n\n')
 

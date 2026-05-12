@@ -51,14 +51,31 @@ export async function fetchRemote() {
 
 // ── Merge ─────────────────────────────────────────────────────────────────────
 
-// Union vocab by word; prefer the entry with a higher SRS level.
+// Union vocab by word; prefer higher SRS level and merge enriched fields.
 export function mergeVocab(local, remote) {
   const map = new Map()
-  local.forEach(v  => map.set(v.word.toLowerCase(), v))
+  local.forEach(v => map.set(v.word.toLowerCase(), v))
   remote.forEach(r => {
-    const key = r.word.toLowerCase()
-    const ex  = map.get(key)
-    if (!ex || (r.level ?? 0) > (ex.level ?? 0)) map.set(key, r)
+    const key    = r.word.toLowerCase()
+    const ex     = map.get(key)
+    const rLevel = r.level ?? 0
+    const eLevel = ex ? (ex.level ?? 0) : -1
+    if (!ex) {
+      map.set(key, r)
+    } else if (rLevel > eLevel) {
+      // Remote is more advanced — take it but keep any local enrichment
+      map.set(key, { ...r, mnemonic: r.mnemonic || ex.mnemonic, context: r.context || ex.context })
+    } else if (rLevel === eLevel) {
+      // Same level — merge best fields from both
+      map.set(key, {
+        ...ex,
+        mnemonic:     ex.mnemonic     || r.mnemonic,
+        context:      ex.context      || r.context,
+        nextReview:   later(ex.nextReview,   r.nextReview),
+        lastReviewed: later(ex.lastReviewed, r.lastReviewed),
+      })
+    }
+    // else local level is higher → keep local (already in map)
   })
   return Array.from(map.values()).sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt))
 }
@@ -99,12 +116,39 @@ export function mergeTimestamps(localMap, remoteMap) {
   return result
 }
 
-// Merge remote custom articles: add any not already present locally.
+// Merge remote custom articles: add new ones and update existing ones with richer remote fields.
 export function mergeCustomArticles(local, remote) {
   if (!Array.isArray(remote) || !remote.length) return local
-  const localIds = new Set(local.map(a => a.id))
-  const incoming = remote.filter(a => !localIds.has(a.id))
-  return incoming.length ? [...local, ...incoming] : local
+  const localMap = new Map(local.map(a => [a.id, a]))
+  let changed = false
+  remote.forEach(r => {
+    const l = localMap.get(r.id)
+    if (!l) {
+      localMap.set(r.id, r)
+      changed = true
+    } else {
+      // Patch existing article: take any enriched fields remote has that local lacks
+      const updated = {
+        ...l,
+        title:      r.title      || l.title,
+        summary:    r.summary    || l.summary,
+        difficulty: r.difficulty || l.difficulty,
+        topic:      r.topic      || l.topic,
+        topicLabel: r.topicLabel || l.topicLabel,
+        topicEmoji: r.topicEmoji || l.topicEmoji,
+        keyVocab:   r.keyVocab?.length ? r.keyVocab : l.keyVocab,
+        audioUrl:   r.audioUrl   || l.audioUrl,
+        // Take remote content if it has translations and local doesn't
+        content:    (r.content?.some(p => p.translation) && !l.content?.some(p => p.translation))
+                      ? r.content : l.content,
+      }
+      if (JSON.stringify(updated) !== JSON.stringify(l)) {
+        localMap.set(r.id, updated)
+        changed = true
+      }
+    }
+  })
+  return changed ? Array.from(localMap.values()) : local
 }
 
 // Union hidden IDs.
