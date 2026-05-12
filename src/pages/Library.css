@@ -84,6 +84,17 @@
 .lib-sync-btn.ok       { background: var(--sage-bg); color: #4F6B4A; border-color: var(--sage); }
 .lib-sync-btn:disabled { opacity: 0.6; cursor: default; }
 
+.lib-token-input {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+  width: 190px;
+  outline: none;
+}
+
 .lib-sync-error {
   font-family: var(--font-mono);
   font-size: 10px;

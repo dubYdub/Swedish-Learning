@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { DIFFICULTY, estimateReadMinutes } from '../data/articles'
 import { getArticleProgress, computeStats, computeStreak, PHASE_LABELS, PHASES } from '../utils/progress'
 import { countAllRecordings } from '../utils/db'
+import { loadToken, saveToken } from '../utils/timestamps'
 import VocabList from '../components/VocabList'
 import Flashcards from '../components/Flashcards'
 import './Library.css'
@@ -21,6 +22,22 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
   const [filterStatus, setFilterStatus] = useState('all')
   const [activeTab, setActiveTab] = useState('articles')   // 'articles' | 'dictionary'
   const [flashMode, setFlashMode] = useState(false)
+  const [showTokenInput, setShowTokenInput] = useState(false)
+  const [tokenDraft, setTokenDraft] = useState('')
+
+  function handleSyncClick() {
+    if (!loadToken()) { setShowTokenInput(true); setTokenDraft(''); return }
+    onPublishVocab()
+  }
+
+  function confirmToken() {
+    const t = tokenDraft.trim()
+    if (!t) return
+    saveToken(t)
+    setShowTokenInput(false)
+    setTokenDraft('')
+    onPublishVocab()
+  }
 
   useEffect(() => {
     countAllRecordings().then(setRecordingCount).catch(() => setRecordingCount(0))
@@ -41,19 +58,42 @@ export default function Library({ articles, progress, vocab, onOpenArticle, onRe
             {new Date().toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' })}
           </span>
           <div className="lib-sync-wrap">
-            {syncStatus === 'error' && (
-              <span className="lib-sync-error" title={syncError}>⚠ {syncError}</span>
+            {showTokenInput ? (
+              <>
+                <input
+                  className="lib-token-input"
+                  type="password"
+                  value={tokenDraft}
+                  onChange={e => setTokenDraft(e.target.value)}
+                  placeholder="GitHub token (ghp_...)"
+                  autoFocus
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' && tokenDraft.trim()) confirmToken()
+                    if (e.key === 'Escape') setShowTokenInput(false)
+                  }}
+                />
+                <button className="lib-sync-btn ok" onClick={confirmToken} disabled={!tokenDraft.trim()}>
+                  ✓ Spara
+                </button>
+                <button className="lib-sync-btn" onClick={() => setShowTokenInput(false)}>✕</button>
+              </>
+            ) : (
+              <>
+                {syncStatus === 'error' && (
+                  <span className="lib-sync-error" title={syncError}>⚠ {syncError}</span>
+                )}
+                <button
+                  className={`lib-sync-btn ${syncStatus === 'ok' ? 'ok' : ''}`}
+                  onClick={handleSyncClick}
+                  disabled={syncStatus === 'pending'}
+                  title="Publicera ordlistan till GitHub så alla enheter synkas"
+                >
+                  {syncStatus === 'pending' ? '⏳ Synkar…'
+                    : syncStatus === 'ok'   ? '✓ Synkad'
+                    : '🌐 Synka ordlista'}
+                </button>
+              </>
             )}
-            <button
-              className={`lib-sync-btn ${syncStatus === 'ok' ? 'ok' : ''}`}
-              onClick={onPublishVocab}
-              disabled={syncStatus === 'pending'}
-              title="Publicera ordlistan till GitHub så alla enheter synkas"
-            >
-              {syncStatus === 'pending' ? '⏳ Synkar…'
-                : syncStatus === 'ok'  ? '✓ Synkad'
-                : '🌐 Synka ordlista'}
-            </button>
           </div>
         </div>
         <h1 className="lib-title">Svenska Dagligen</h1>
