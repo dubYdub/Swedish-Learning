@@ -1,5 +1,92 @@
 {
-  "vocab": [],
+  "vocab": [
+    {
+      "id": 1778582905816,
+      "word": "stärka upp",
+      "context": "to strengthen, to build up (skills/qualifications)",
+      "addedAt": "2026-05-12T10:48:25.816Z",
+      "mnemonic": "Imagine a **stark** (strong) Viking lifting heavy weights to **up** his muscle power—\"stärka upp\" means to strengthen!",
+      "level": 0,
+      "nextReview": "2026-05-12",
+      "lastReviewed": "2026-05-12T10:50:27.155Z"
+    },
+    {
+      "id": 1778582905156,
+      "word": "gårdsvärd",
+      "context": "caretaker / building janitor (lit. yard guardian)",
+      "addedAt": "2026-05-12T10:48:25.157Z",
+      "mnemonic": "\"Gårdsvärd\" sounds like \"guards-ward,\" so picture a stern guard in a ward full of tiny yards, sweeping each one with a janitor's broom.",
+      "level": 0,
+      "nextReview": "2026-05-12",
+      "lastReviewed": "2026-05-12T10:50:31.114Z"
+    },
+    {
+      "id": 1778582904814,
+      "word": "Arbetsförmedlingen",
+      "context": "the Swedish Public Employment Service",
+      "addedAt": "2026-05-12T10:48:24.814Z",
+      "mnemonic": "Picture a \"bear\" (arbet) working at a \"fairy\" (förmedlingen) desk, handing out job applications with sparkly wings.",
+      "level": 0,
+      "nextReview": "2026-05-12",
+      "lastReviewed": "2026-05-12T10:50:36.258Z"
+    },
+    {
+      "id": 1778582904199,
+      "word": "bidrag",
+      "context": "welfare benefit, allowance",
+      "addedAt": "2026-05-12T10:48:24.200Z",
+      "mnemonic": "Imagine a \"bee\" bringing a tiny \"drag\" of honey to its hive as a welfare benefit for the colony."
+    },
+    {
+      "id": 1778582903830,
+      "word": "hyran",
+      "context": "the rent",
+      "addedAt": "2026-05-12T10:48:23.830Z",
+      "mnemonic": "Imagine a \"here and\" now landlord handing you a bill for the rent, shouting \"HYR AN!\" (sounds like \"here and\") as he points to the spot where you must pay."
+    },
+    {
+      "id": 1778582903537,
+      "word": "likvärdig",
+      "context": "equivalent, of equal value",
+      "addedAt": "2026-05-12T10:48:23.537Z",
+      "mnemonic": "Think of \"lik\" as \"like\" and \"värdig\" as \"worthy,\" so something \"like-worthy\" is its \"equivalent\" in value."
+    },
+    {
+      "id": 1778582902788,
+      "word": "hemland",
+      "context": "home country",
+      "addedAt": "2026-05-12T10:48:22.788Z",
+      "mnemonic": "Imagine a \"hem\" (home) stitched into the land like a giant quilt, where every thread says \"this is my home country.\""
+    },
+    {
+      "id": 1778582902399,
+      "word": "satsningen",
+      "context": "the initiative, the investment (in a project)",
+      "addedAt": "2026-05-12T10:48:22.400Z",
+      "mnemonic": "Imagine you're launching a rocket ship (a SATellite) and your boss yells \"SATSningen!\" as you push the big red button—it's your big initiative, so you mustn't SIT on it."
+    },
+    {
+      "id": 1778582901929,
+      "word": "trapphus",
+      "context": "stairwell",
+      "addedAt": "2026-05-12T10:48:21.930Z",
+      "mnemonic": "Imagine a **trap** door in the **house** that opens into a hidden stairwell."
+    },
+    {
+      "id": 1778582901299,
+      "word": "fastighetsbolaget",
+      "context": "the property company",
+      "addedAt": "2026-05-12T10:48:21.300Z",
+      "mnemonic": "\"FASTen your seatbelt, the property company’s BOLAgement is rolling out a new high-rise!\""
+    },
+    {
+      "id": 1778582900525,
+      "word": "arbetslöshet",
+      "context": "unemployment",
+      "addedAt": "2026-05-12T10:48:20.525Z",
+      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down."
+    }
+  ],
   "progress": {
     "arbetsloshet": {
       "status": "not-started",
@@ -10,9 +97,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T10:41:57.919Z",
+      "lastStudied": "2026-05-12T10:48:44.938Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 1633
+      "studyTimeSec": 1696
     },
     "horseltest": {
       "status": "not-started",
@@ -99,5 +186,5 @@
       }
     ]
   },
-  "syncedAt": "2026-05-12T10:41:58.963Z"
+  "syncedAt": "2026-05-12T10:50:39.542Z"
 }
