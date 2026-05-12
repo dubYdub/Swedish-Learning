@@ -506,9 +506,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T22:31:44.893Z",
+      "lastStudied": "2026-05-12T22:40:04.519Z",
       "firstStarted": "2026-05-12T22:10:08.181Z",
-      "studyTimeSec": 282
+      "studyTimeSec": 639
     }
   },
   "timestamps": {
@@ -803,5 +803,5 @@
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-12T22:31:47.440Z"
+  "syncedAt": "2026-05-12T22:40:07.506Z"
 }
