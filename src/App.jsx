@@ -21,15 +21,24 @@ export default function App() {
   const [syncStatus, setSyncStatus] = useState(null)  // null | 'pending' | 'ok' | 'error'
   const [syncError, setSyncError]   = useState('')
 
-  // On mount: silently merge remote vocab into local
+  // On mount: silently merge remote vocab + progress into local
   useEffect(() => {
-    sync.fetchRemoteVocab().then(remote => {
-      if (!remote || !Array.isArray(remote) || remote.length === 0) return
-      setVocab(prev => {
-        const merged = sync.mergeVocab(prev, remote)
-        if (merged.length !== prev.length) saveVocab(merged)
-        return merged.length !== prev.length ? merged : prev
-      })
+    sync.fetchRemote().then(remote => {
+      if (!remote) return
+      if (Array.isArray(remote.vocab) && remote.vocab.length > 0) {
+        setVocab(prev => {
+          const merged = sync.mergeVocab(prev, remote.vocab)
+          if (merged.length !== prev.length) saveVocab(merged)
+          return merged.length !== prev.length ? merged : prev
+        })
+      }
+      if (remote.progress && typeof remote.progress === 'object') {
+        setProgress(prev => {
+          const merged = sync.mergeProgress(prev, remote.progress)
+          saveProgress(merged)
+          return merged
+        })
+      }
     }).catch(() => {})
   }, [])
 
@@ -74,14 +83,14 @@ export default function App() {
     setSyncStatus('pending')
     setSyncError('')
     try {
-      await sync.publishVocab(vocab)
+      await sync.publishAll(vocab, progress)
       setSyncStatus('ok')
       setTimeout(() => setSyncStatus(null), 3000)
     } catch (err) {
       setSyncStatus('error')
       setSyncError(err.message)
     }
-  }, [vocab])
+  }, [vocab, progress])
 
   const updateVocabSRS = useCallback((id, correct) => {
     setVocab(prev => {

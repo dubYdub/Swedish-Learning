@@ -56,10 +56,6 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
   const [editingIdx, setEditingIdx]   = useState(null)   // paragraph index with active text input
   const [editVal, setEditVal]         = useState('')
   const [copied, setCopied]           = useState(false)
-  const [publishStatus, setPublishStatus] = useState(null)  // null | 'pending' | 'ok' | 'error'
-  const [publishError, setPublishError]   = useState('')
-  const [showTokenInput, setShowTokenInput] = useState(false)
-  const [tokenInput, setTokenInput]       = useState('')
   const editInputRef = useRef(null)
 
   // ── Load timestamps: JSON file → localStorage → estimate ─────────────────
@@ -219,40 +215,6 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
     setTimeout(() => editInputRef.current?.select(), 0)
   }
 
-  async function doPublish(token) {
-    const finalized = draft.map((item, i) => ({
-      id:    item.id,
-      start: item.start ?? 0,
-      end:   item.end ?? (i < draft.length - 1 ? draft[i + 1].start ?? duration : duration),
-    }))
-    ts.saveLocal(article.id, finalized)
-    setTimestamps(finalized)
-    setPublishStatus('pending')
-    setPublishError('')
-    try {
-      await ts.publishToGitHub(article.id, finalized, token)
-      ts.saveToken(token)
-      setPublishStatus('ok')
-      setTimeout(() => { setPublishStatus(null); exitEditMode() }, 1800)
-    } catch (err) {
-      setPublishStatus('error')
-      setPublishError(err.message)
-    }
-  }
-
-  async function handlePublish() {
-    const token = ts.loadToken()
-    if (!token) { setShowTokenInput(true); return }
-    await doPublish(token)
-  }
-
-  async function confirmToken() {
-    const t = tokenInput.trim()
-    if (!t) return
-    setShowTokenInput(false)
-    await doPublish(t)
-  }
-
   function commitInlineEdit(idx) {
     const t = ts.parseTimeStr(editVal)
     if (t !== null) {
@@ -346,49 +308,12 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
             Spela upp och tryck <strong>📍 Markera</strong> när varje stycke börjar.
             Klicka på en tid för att justera manuellt.
           </div>
-          {showTokenInput ? (
-            <div className="pl-token-row">
-              <span className="pl-token-label">GitHub Token:</span>
-              <input
-                className="pl-token-input"
-                type="password"
-                value={tokenInput}
-                onChange={e => setTokenInput(e.target.value)}
-                placeholder="ghp_xxxxxxxxxxxx"
-                autoFocus
-                onKeyDown={e => {
-                  if (e.key === 'Enter' && tokenInput.trim()) confirmToken()
-                  if (e.key === 'Escape') setShowTokenInput(false)
-                }}
-              />
-              <button className="pl-edit-btn publish" onClick={confirmToken} disabled={!tokenInput.trim()}>
-                🌐 Publicera
-              </button>
-              <button className="pl-edit-btn ghost" onClick={() => setShowTokenInput(false)}>✕</button>
-            </div>
-          ) : (
-            <div className="pl-edit-actions">
+          <div className="pl-edit-actions">
               <button className={`pl-edit-btn export ${copied ? 'copied' : ''}`} onClick={handleExport}>
                 {copied ? '✓ Kopierat!' : '📋 Kopiera'}
               </button>
-              <button
-                className={`pl-edit-btn publish ${publishStatus === 'ok' ? 'ok' : ''}`}
-                onClick={handlePublish}
-                disabled={publishStatus === 'pending'}
-              >
-                {publishStatus === 'pending' ? '⏳ Publicerar…' : publishStatus === 'ok' ? '✓ Publicerat!' : '🌐 Publicera'}
-              </button>
-              <button
-                className="pl-edit-btn ghost"
-                title="Ändra GitHub-token"
-                onClick={() => { ts.saveToken(''); setTokenInput(''); setShowTokenInput(true) }}
-              >🔑</button>
               <button className="pl-edit-btn save" onClick={handleSave}>✓ Spara</button>
             </div>
-          )}
-          {publishStatus === 'error' && (
-            <p className="pl-publish-error">⚠ {publishError}</p>
-          )}
         </div>
       )}
 

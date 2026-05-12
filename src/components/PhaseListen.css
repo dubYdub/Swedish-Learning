@@ -189,48 +189,6 @@
 .pl-edit-btn.export { background: var(--bg-card);     color: var(--text-h); }
 .pl-edit-btn.export.copied { background: var(--sage); color: #fff; border-color: var(--sage); }
 .pl-edit-btn.save   { background: var(--accent);      color: #FFF8EA; border-color: var(--accent); }
-.pl-edit-btn.publish { background: var(--blue-bg, #EAF0F8); color: var(--blue); border-color: var(--blue); box-shadow: 2px 2px 0 0 var(--blue); }
-.pl-edit-btn.publish:hover { box-shadow: 3px 3px 0 0 var(--blue); }
-.pl-edit-btn.publish.ok { background: var(--sage-bg); color: #4F6B4A; border-color: var(--sage); box-shadow: 2px 2px 0 0 var(--sage); }
-.pl-edit-btn.publish:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: 2px 2px 0 0 var(--blue); }
-
-.pl-token-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.pl-token-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  white-space: nowrap;
-}
-
-.pl-token-input {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  padding: 6px 10px;
-  background: var(--bg-card);
-  border: 1px solid var(--blue);
-  color: var(--text-h);
-  width: 200px;
-  outline: none;
-  box-shadow: 0 0 0 2px var(--blue-bg, #EAF0F8);
-}
-
-.pl-publish-error {
-  width: 100%;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: #B03030;
-  letter-spacing: 0.06em;
-  margin: 4px 0 0;
-}
 
 .pl-edit-toggle.active {
   background: var(--bg-card);
