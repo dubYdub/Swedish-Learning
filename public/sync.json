@@ -1,6 +1,66 @@
 {
   "vocab": [
     {
+      "id": 1778619679340,
+      "word": "störst behov",
+      "context": "greatest need",
+      "addedAt": "2026-05-12T21:01:19.342Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "prioritera",
+      "context": "to prioritise",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "sortera",
+      "context": "to sort, to triage",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "hörselmottagningen",
+      "context": "the hearing clinic / audiology unit",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "ton",
+      "context": "tone, sound signal",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "hörlurar",
+      "context": "headphones, earphones",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "pedagogiskt",
+      "context": "easy to follow, well-explained (lit. pedagogical)",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "smidigt",
+      "context": "smooth, effortless",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "hörselhjälpmedel",
+      "context": "hearing aid(s)",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
+      "id": 1778619679340,
+      "word": "hörseltest",
+      "context": "hearing test",
+      "addedAt": "2026-05-12T21:01:19.341Z"
+    },
+    {
       "id": 1778617019027,
       "word": "ÖVA",
       "context": "Practice, train, rehearse",
@@ -151,9 +211,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T20:09:47.868Z",
+      "lastStudied": "2026-05-12T20:53:39.000Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 1776
+      "studyTimeSec": 1795
     },
     "horseltest": {
       "status": "not-started",
@@ -164,9 +224,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T20:13:40.340Z",
+      "lastStudied": "2026-05-12T21:01:30.898Z",
       "firstStarted": "2026-05-12T07:13:56.215Z",
-      "studyTimeSec": 841
+      "studyTimeSec": 862
     }
   },
   "timestamps": {
@@ -240,5 +300,5 @@
       }
     ]
   },
-  "syncedAt": "2026-05-12T20:23:56.647Z"
+  "syncedAt": "2026-05-12T21:01:33.870Z"
 }
