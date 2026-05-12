@@ -1,6 +1,103 @@
 {
   "vocab": [
     {
+      "id": 1778622741908.6865,
+      "word": "rymde",
+      "context": "escaped (past tense)",
+      "addedAt": "2026-05-12T21:52:21.908Z"
+    },
+    {
+      "id": 1778622741908.5989,
+      "word": "kungskobra",
+      "context": "king cobra",
+      "addedAt": "2026-05-12T21:52:21.908Z"
+    },
+    {
+      "id": 1778622741908.7078,
+      "word": "slingrade sig",
+      "context": "slithered",
+      "addedAt": "2026-05-12T21:52:21.908Z"
+    },
+    {
+      "id": 1778622741908.7317,
+      "word": "locka fram",
+      "context": "lure out",
+      "addedAt": "2026-05-12T21:52:21.908Z"
+    },
+    {
+      "id": 1778622741908.9187,
+      "word": "botemedel",
+      "context": "antidote, remedy",
+      "addedAt": "2026-05-12T21:52:21.908Z"
+    },
+    {
+      "id": 1778622741908.6975,
+      "word": "kvävs",
+      "context": "suffocates",
+      "addedAt": "2026-05-12T21:52:21.908Z"
+    },
+    {
+      "id": 1778622741908.7112,
+      "word": "respekt",
+      "context": "respect",
+      "addedAt": "2026-05-12T21:52:21.908Z"
+    },
+    {
+      "id": 1778622647809.9749,
+      "word": "jagade",
+      "context": "chased, hunted",
+      "addedAt": "2026-05-12T21:50:47.809Z"
+    },
+    {
+      "id": 1778622647809.971,
+      "word": "möss",
+      "context": "mice",
+      "addedAt": "2026-05-12T21:50:47.809Z"
+    },
+    {
+      "id": 1778622647809.5134,
+      "word": "skräp",
+      "context": "trash, rubbish",
+      "addedAt": "2026-05-12T21:50:47.809Z"
+    },
+    {
+      "id": 1778622647809.3044,
+      "word": "husse",
+      "context": "male owner (of a pet)",
+      "addedAt": "2026-05-12T21:50:47.809Z"
+    },
+    {
+      "id": 1778622647809.408,
+      "word": "glasspapper",
+      "context": "ice cream wrapper",
+      "addedAt": "2026-05-12T21:50:47.809Z"
+    },
+    {
+      "id": 1778622647809.0347,
+      "word": "soppåse",
+      "context": "garbage bag",
+      "addedAt": "2026-05-12T21:50:47.809Z"
+    },
+    {
+      "id": 1778622647809.2568,
+      "word": "plockar",
+      "context": "picks up, collects",
+      "addedAt": "2026-05-12T21:50:47.809Z"
+    },
+    {
+      "id": 1778622647809.4094,
+      "word": "badplats",
+      "context": "swimming spot, beach",
+      "addedAt": "2026-05-12T21:50:47.809Z"
+    },
+    {
+      "id": 1778622259746,
+      "word": "Anpassad",
+      "context": "Adapted, customized, or tailored.",
+      "addedAt": "2026-05-12T21:44:20.622Z",
+      "mnemonic": "Picture a \"pasta\" chef in Sweden **adapting** a recipe so it's *tailored* for a giant, saying \"**Anpassad** pasta!\" (An-pah-sad)."
+    },
+    {
       "id": 1778622160173.3098,
       "word": "behåller",
       "context": "keeps, retains",
@@ -330,6 +427,32 @@
       "lastStudied": "2026-05-12T21:43:59.799Z",
       "firstStarted": "2026-05-12T21:43:59.799Z",
       "studyTimeSec": 80
+    },
+    "custom-1778622645904": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T21:50:59.657Z",
+      "firstStarted": "2026-05-12T21:50:59.657Z",
+      "studyTimeSec": 7
+    },
+    "custom-1778622739665": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T21:52:28.239Z",
+      "firstStarted": "2026-05-12T21:52:28.239Z",
+      "studyTimeSec": 7
     }
   },
   "timestamps": {
@@ -435,5 +558,5 @@
       }
     ]
   },
-  "syncedAt": "2026-05-12T21:44:01.078Z"
+  "syncedAt": "2026-05-12T21:52:31.397Z"
 }
