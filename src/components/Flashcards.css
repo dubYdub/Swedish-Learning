@@ -48,10 +48,10 @@
 .fc-due-num {
   font-family: var(--font-display);
   font-size: 80px;
-  font-weight: 900;
-  font-style: italic;
+  font-weight: 700;
   color: var(--accent);
   line-height: 1;
+  letter-spacing: -0.04em;
 }
 
 .fc-due-sub {
@@ -297,12 +297,12 @@
 .fc-word {
   font-family: var(--font-display);
   font-size: 42px;
-  font-weight: 900;
-  font-style: italic;
+  font-weight: 700;
   color: var(--text-h);
   text-align: center;
   line-height: 1.1;
   margin: 0;
+  letter-spacing: -0.02em;
 }
 
 .fc-word-sm { font-size: 22px; }
@@ -449,11 +449,11 @@
 .fc-done-score {
   font-family: var(--font-display);
   font-size: 80px;
-  font-weight: 900;
-  font-style: italic;
+  font-weight: 700;
   color: var(--text-h);
   line-height: 1;
   margin: 0;
+  letter-spacing: -0.04em;
 }
 
 .fc-done-score span { font-size: 40px; color: var(--text-dim); }

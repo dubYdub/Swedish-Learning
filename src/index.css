@@ -1,47 +1,48 @@
-/* ─── Wes Anderson / The French Dispatch ─── */
-/* Editorial magazine palette: cream paper, ink-black rules, pastel accents */
+/* ─── Clean Bauhaus / Swiss editorial ─── */
+/* Geometric sans, calm green accents, neutral cream ground */
 
 :root {
-  /* Paper & ink */
-  --bg:           #EDE4D0;   /* cream parchment */
-  --bg-card:      #FAF5E8;   /* lighter cream */
-  --bg-elevated:  #FFFFFF;   /* paper-white inset */
-  --bg-section:   #E5DCC3;   /* slightly darker cream for section bands */
+  /* Ground */
+  --bg:           #EDEBE3;   /* warm neutral cream */
+  --bg-card:      #F6F4EE;   /* lifted card surface */
+  --bg-elevated:  #FFFFFF;   /* pure white inset */
+  --bg-section:   #E4E1D7;   /* slightly darker band */
 
-  --text:         #4A3D2E;   /* warm dark brown body */
-  --text-h:       #1A1612;   /* near-black headings */
-  --text-dim:     #8B7960;   /* muted brown metadata */
+  /* Ink */
+  --text:         #3A3530;   /* warm dark body */
+  --text-h:       #161412;   /* near-black headings */
+  --text-dim:     #89857A;   /* muted metadata */
 
   /* Newspaper rules */
-  --border:       #1A1612;
-  --border-soft:  rgba(26, 22, 18, 0.18);
+  --border:       #161412;
+  --border-soft:  rgba(22, 20, 18, 0.15);
 
-  /* Dispatch accents */
-  --accent:       #C25B5B;   /* dispatch red — primary CTA */
-  --accent-bg:    rgba(194, 91, 91, 0.10);
-  --accent-border:rgba(194, 91, 91, 0.45);
+  /* Calm green — primary CTA */
+  --accent:       #4A7C59;
+  --accent-bg:    rgba(74, 124, 89, 0.10);
+  --accent-border:rgba(74, 124, 89, 0.40);
 
-  --blue:         #5A7AA8;   /* French blue — links, in-progress */
+  --blue:         #5A7AA8;   /* in-progress */
   --blue-bg:      rgba(90, 122, 168, 0.10);
-  --butter:       #E8C76A;   /* yellow — highlights, current */
-  --butter-bg:    rgba(232, 199, 106, 0.20);
-  --sage:         #88A083;   /* sage — completed/success */
-  --sage-bg:      rgba(136, 160, 131, 0.14);
-  --pink:         #D8889E;   /* dusty pink — secondary accents */
-  --pink-bg:      rgba(216, 136, 158, 0.12);
+  --butter:       #D4AF3A;   /* highlight / current */
+  --butter-bg:    rgba(212, 175, 58, 0.18);
+  --sage:         #6B9E72;   /* completed / success (lighter than accent) */
+  --sage-bg:      rgba(107, 158, 114, 0.14);
+  --pink:         #C07890;   /* recordings / secondary */
+  --pink-bg:      rgba(192, 120, 144, 0.12);
 
-  /* Compatibility aliases (old token names used across files) */
+  /* Compatibility aliases */
   --border-glow:  var(--border);
   --success:      var(--sage);
-  --danger:       var(--accent);
+  --danger:       #C25050;   /* keep error red distinct */
   --warn:         var(--butter);
   --shadow:       0 2px 0 0 var(--border);
   --shadow-hover: 0 3px 0 0 var(--border);
 
-  /* Fonts */
-  --font-display: 'Playfair Display', 'Georgia', serif;
+  /* Fonts — geometric sans system */
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
   --font-body:    'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono:    'Special Elite', 'Courier New', monospace;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
 
   font-family: var(--font-body);
   font-size: 15px;
@@ -52,25 +53,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Paper texture — subtle grain */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0.05;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 320 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-}
-
 * { box-sizing: border-box; }
 body { margin: 0; }
 html { scroll-behavior: smooth; }
 #root { min-height: 100svh; }
 
-/* Keyboard navigation — only show ring on keyboard, never on mouse */
+/* Keyboard navigation — ring only on keyboard, never on click */
 :focus { outline: none; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -79,12 +67,12 @@ h1, h2, h3, h4 {
   font-weight: 700;
   color: var(--text-h);
   margin: 0;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 p { margin: 0; }
 button { font-family: var(--font-body); }
 
-/* Selection — soft butter wash */
-::selection { background: var(--butter); color: var(--text-h); }
+/* Selection — subtle green wash */
+::selection { background: rgba(74, 124, 89, 0.25); color: var(--text-h); }

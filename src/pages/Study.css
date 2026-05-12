@@ -71,12 +71,12 @@
   max-width: 1280px;
   margin: 0 auto;
   font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   color: var(--text-h);
   text-align: center;
-  line-height: 1.1;
+  line-height: 1.05;
   padding-bottom: 18px;
 }
 

@@ -13,11 +13,11 @@
 
 .ps-intro-title {
   font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 900;
-  font-style: italic;
+  font-size: 26px;
+  font-weight: 700;
   color: var(--text-h);
   margin: 0 0 10px;
+  letter-spacing: -0.02em;
 }
 
 .ps-intro-text {
