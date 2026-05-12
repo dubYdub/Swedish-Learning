@@ -380,6 +380,11 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
               >
                 {publishStatus === 'pending' ? '⏳ Publicerar…' : publishStatus === 'ok' ? '✓ Publicerat!' : '🌐 Publicera'}
               </button>
+              <button
+                className="pl-edit-btn ghost"
+                title="Ändra GitHub-token"
+                onClick={() => { ts.saveToken(''); setTokenInput(''); setShowTokenInput(true) }}
+              >🔑</button>
             </div>
           )}
           {publishStatus === 'error' && (
