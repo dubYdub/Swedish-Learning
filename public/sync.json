@@ -453,6 +453,19 @@
       "lastStudied": "2026-05-12T21:52:28.239Z",
       "firstStarted": "2026-05-12T21:52:28.239Z",
       "studyTimeSec": 7
+    },
+    "custom-1778623690101": {
+      "status": "not-started",
+      "phases": {
+        "listen": false,
+        "read": false,
+        "shadow": false,
+        "record": false
+      },
+      "recordingCount": 0,
+      "lastStudied": "2026-05-12T22:08:32.718Z",
+      "firstStarted": "2026-05-12T22:08:32.718Z",
+      "studyTimeSec": 15
     }
   },
   "timestamps": {
@@ -526,7 +539,52 @@
       }
     ]
   },
-  "customArticles": [],
+  "customArticles": [
+    {
+      "id": "custom-1778623690101",
+      "topic": "other",
+      "topicLabel": "Övrigt",
+      "topicEmoji": "📄",
+      "difficulty": "B1",
+      "title": "Djurskötare har hittat den giftiga ormen som rymde från sin ",
+      "summary": "",
+      "keyVocab": [],
+      "isCustom": true,
+      "content": [
+        {
+          "id": "custom-1778623690101-1",
+          "text": "Djurskötare har hittat den giftiga ormen som rymde från sin bur i lördags. Ormen är kvar på djurparken Skansenakvariet i Stockholm. Ormen är en kungskobra. Den är två och en halv meter lång och mycket giftig.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623690101-2",
+          "text": "Ormen är inne i en vägg nära sin bur. Djurskötarna har sett ormen med en speciell liten kamera. De har också hört kobran väsa. Det säger Skansenakvariets ägare Jonas Wahlström till P1 morgon.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623690101-3",
+          "text": "– Vi såg honom och hörde honom till och med väsa.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623690101-4",
+          "text": "Nu ska de som jobbar i djurparken göra ett hål i väggen och försöka fånga in kobran.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623690101-5",
+          "text": "Kobran rymde från sin bur för nästan en vecka sedan. Händelsen har fått mycket uppmärksamhet både i Sverige och i andra länder. Flera medier i USA har till exempel rapporterat om ormen.",
+          "translation": ""
+        },
+        {
+          "id": "custom-1778623690101-6",
+          "text": "Kungskobran är världens längsta giftiga orm. Den kan bli fem och en halv meter lång. Om en människa blir biten av ormen måste hen få ett botemedel snabbt. Annars kan giftet döda personen inom en timme. Giftet gör att offret kvävs. Ormen i Stockholm har varit lös länge, men ingen har blivit skadad.",
+          "translation": ""
+        }
+      ],
+      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2022/10/program_djurskotare_har_hittat_den_gif_20221028_1528286119_a96.m4a?_h_publicationId=8174692"
+    }
+  ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-12T22:07:33.354Z"
+  "syncedAt": "2026-05-12T22:08:34.124Z"
 }
