@@ -333,6 +333,19 @@
   max-width: 36ch;
 }
 
+.fc-mnemonic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 36ch;
+  border-top: 1px solid var(--butter);
+  padding-top: 8px;
+}
+
 /* Feedback overlay */
 .fc-feedback-overlay {
   position: absolute;

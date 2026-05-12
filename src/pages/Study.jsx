@@ -18,7 +18,7 @@ const CHAPTERS = {
   record: 'IV',
 }
 
-export default function Study({ article, progress, updateProgress, vocab, addToVocab, removeFromVocab, updateVocabContext, onBack }) {
+export default function Study({ article, progress, updateProgress, vocab, addToVocab, removeFromVocab, updateVocabContext, updateVocabMnemonic, onBack }) {
   const [activePhase, setActivePhase] = useState('read')
   const studyStartRef = useState(() => ({ start: Date.now() }))[0]
 
@@ -111,6 +111,7 @@ export default function Study({ article, progress, updateProgress, vocab, addToV
               article={article}
               addToVocab={addToVocab}
               onUpdateVocab={updateVocabContext}
+              onUpdateMnemonic={updateVocabMnemonic}
               addedWords={new Set(vocab.map(v => v.word.toLowerCase()))}
               isDone={articleProgress.phases.read}
               onMarkDone={() => togglePhaseDone('read')}

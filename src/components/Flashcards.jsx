@@ -189,6 +189,7 @@ function Session({ initialDeck, onAnswer, onDone }) {
             <p className="fc-word fc-word-sm">{card.word}</p>
             <div className="fc-rule" />
             <p className="fc-def">{card.context || '—'}</p>
+            {card.mnemonic && <p className="fc-mnemonic">{card.mnemonic}</p>}
           </div>
         </div>
 

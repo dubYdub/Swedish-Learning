@@ -118,6 +118,14 @@ export default function App() {
     })
   }, [])
 
+  const updateVocabMnemonic = useCallback((id, mnemonic) => {
+    setVocab(prev => {
+      const updated = prev.map(v => v.id === id ? { ...v, mnemonic } : v)
+      saveVocab(updated)
+      return updated
+    })
+  }, [])
+
   const currentArticle = studyId ? articles.find(a => a.id === studyId) : null
 
   return (
@@ -145,6 +153,7 @@ export default function App() {
           addToVocab={addToVocab}
           removeFromVocab={removeFromVocab}
           updateVocabContext={updateVocabContext}
+          updateVocabMnemonic={updateVocabMnemonic}
           onBack={goLibrary}
         />
       )}

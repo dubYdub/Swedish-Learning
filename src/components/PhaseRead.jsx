@@ -3,7 +3,7 @@ import * as tts from '../utils/tts'
 import * as ds from '../utils/deepseek'
 import './PhaseRead.css'
 
-export default function PhaseRead({ article, addToVocab, onUpdateVocab, addedWords, isDone, onMarkDone }) {
+export default function PhaseRead({ article, addToVocab, onUpdateVocab, onUpdateMnemonic, addedWords, isDone, onMarkDone }) {
   const [playingId, setPlayingId]         = useState(null)
   const [tooltip, setTooltip]             = useState(null)
   const [adding, setAdding]               = useState(false)
@@ -73,11 +73,31 @@ export default function PhaseRead({ article, addToVocab, onUpdateVocab, addedWor
     setAdding(false)
     window.getSelection()?.removeAllRanges()
 
-    // Silently upgrade with DeepSeek in the background if key is set
+    // Silently upgrade definition + generate mnemonic in background
     if (ds.getKey()) {
       ds.fetchDefinition(word)
-        .then(def => { if (def) onUpdateVocab?.(id, def) })
+        .then(def => {
+          if (def) {
+            onUpdateVocab?.(id, def)
+            ds.fetchMnemonic(word, def)
+              .then(m => { if (m) onUpdateMnemonic?.(id, m) })
+              .catch(() => {})
+          }
+        })
         .catch(() => {})
+    }
+  }
+
+  async function handleGrammar() {
+    if (!tooltip || tooltip.grammarLoading) return
+    const phrase = tooltip.text
+    const context = article.content.find(p => p.text.includes(phrase))?.text || phrase
+    setTooltip(t => ({ ...t, grammarLoading: true, grammarExpl: null }))
+    try {
+      const expl = await ds.fetchGrammarExplanation(phrase, context)
+      setTooltip(t => t ? { ...t, grammarLoading: false, grammarExpl: expl || 'Ingen förklaring hittades.' } : null)
+    } catch {
+      setTooltip(t => t ? { ...t, grammarLoading: false } : null)
     }
   }
 
@@ -158,16 +178,30 @@ export default function PhaseRead({ article, addToVocab, onUpdateVocab, addedWor
       {/* Word selection tooltip */}
       {tooltip && (
         <div
-          className="pr-tooltip"
+          className={`pr-tooltip ${tooltip.grammarExpl ? 'has-expl' : ''}`}
           style={{ left: tooltip.x, top: tooltip.y + 8, transform: 'translate(-50%, 0)' }}
         >
-          <span className="pr-tooltip-word">{tooltip.text}</span>
-          {alreadyInVocab ? (
-            <span className="pr-tooltip-exists">Redan tillagd</span>
-          ) : (
-            <button className="pr-tooltip-add" onClick={handleAddToVocab} disabled={adding}>
-              {adding ? '…' : '+ Ordlista'}
-            </button>
+          <div className="pr-tooltip-row">
+            <span className="pr-tooltip-word">{tooltip.text}</span>
+            {alreadyInVocab ? (
+              <span className="pr-tooltip-exists">Redan tillagd</span>
+            ) : (
+              <button className="pr-tooltip-add" onClick={handleAddToVocab} disabled={adding}>
+                {adding ? '…' : '+ Ordlista'}
+              </button>
+            )}
+            {ds.getKey() && (
+              <button
+                className={`pr-tooltip-grammar ${tooltip.grammarLoading ? 'loading' : ''}`}
+                onClick={handleGrammar}
+                disabled={tooltip.grammarLoading}
+              >
+                {tooltip.grammarLoading ? '⏳' : '🧠 Grammatik'}
+              </button>
+            )}
+          </div>
+          {tooltip.grammarExpl && (
+            <p className="pr-tooltip-expl">{tooltip.grammarExpl}</p>
           )}
         </div>
       )}
