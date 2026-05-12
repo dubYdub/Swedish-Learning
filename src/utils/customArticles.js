@@ -23,3 +23,9 @@ export function removeCustomArticle(id) {
   save(arr)
   return arr
 }
+
+export function updateCustomArticle(id, updates) {
+  const arr = load().map(a => a.id === id ? { ...a, ...updates } : a)
+  save(arr)
+  return arr
+}

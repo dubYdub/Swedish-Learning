@@ -8,7 +8,7 @@ import * as srs from './utils/srs'
 import * as sync from './utils/sync'
 import * as ds from './utils/deepseek'
 import { articles as staticArticles } from './data/articles'
-import { loadCustomArticles, addCustomArticle, removeCustomArticle } from './utils/customArticles'
+import { loadCustomArticles, addCustomArticle, removeCustomArticle, updateCustomArticle } from './utils/customArticles'
 import { saveCustomAudio, loadCustomAudio, deleteCustomAudio } from './utils/db'
 import './App.css'
 
@@ -181,11 +181,12 @@ export default function App() {
     addCustomArticle(articleData)
     setCustomArticles(prev => [...prev, withUrl])
 
-    // Background vocab extraction
+    // Background vocab extraction — adds to global vocab AND patches article.keyVocab
     if (ds.getKey() && articleData.content?.length) {
       const fullText = articleData.content.map(p => p.text).join('\n\n')
       ds.fetchKeyVocab(fullText).then(words => {
         if (!words.length) return
+        // 1. Add new words to the global vocab list
         setVocab(prev => {
           const set = new Set(prev.map(v => v.word.toLowerCase()))
           const toAdd = words
@@ -196,6 +197,12 @@ export default function App() {
           saveVocab(updated)
           return updated
         })
+        // 2. Store words in the article's keyVocab so PhaseRead shows them
+        const keyVocab = words.map(w => ({ word: w.word, def: w.definition }))
+        updateCustomArticle(articleData.id, { keyVocab })
+        setCustomArticles(prev =>
+          prev.map(a => a.id === articleData.id ? { ...a, keyVocab } : a)
+        )
       }).catch(() => {})
     }
   }, [])
