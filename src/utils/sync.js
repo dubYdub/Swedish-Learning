@@ -3,16 +3,53 @@ import { loadToken } from './timestamps'
 const REPO      = 'dubydub/Swedish-Learning'
 const SYNC_PATH = 'public/sync.json'
 
-// ── Fetch ────────────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload  = () => resolve(reader.result.split(',')[1])
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  })
+}
+
+function mimeToExt(type = '') {
+  return (
+    { 'audio/mpeg': '.mp3', 'audio/mp4': '.m4a', 'audio/x-m4a': '.m4a',
+      'audio/wav': '.wav', 'audio/ogg': '.ogg', 'audio/aac': '.aac' }[type] || '.audio'
+  )
+}
+
+async function ghPut(path, b64, message, headers) {
+  const apiUrl = `https://api.github.com/repos/${REPO}/contents/${path}`
+  let sha
+  try {
+    const r = await fetch(apiUrl, { headers })
+    if (r.ok) sha = (await r.json()).sha
+  } catch {}
+  const put = await fetch(apiUrl, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify({ message, content: b64, ...(sha ? { sha } : {}) }),
+  })
+  if (!put.ok) {
+    let msg = `HTTP ${put.status}`
+    try { msg = (await put.json()).message || msg } catch {}
+    throw new Error(msg)
+  }
+}
+
+// ── Fetch ─────────────────────────────────────────────────────────────────────
 
 export async function fetchRemote() {
   const base = import.meta.env.BASE_URL
   const res  = await fetch(`${base}sync.json?_=${Date.now()}`)
   if (!res.ok) return null
-  return res.json()  // { vocab, progress, syncedAt }
+  return res.json()
 }
 
-// ── Merge ────────────────────────────────────────────────────────────────────
+// ── Merge ─────────────────────────────────────────────────────────────────────
 
 // Union vocab by word; prefer the entry with a higher SRS level.
 export function mergeVocab(local, remote) {
@@ -44,7 +81,7 @@ export function mergeProgress(local, remote) {
       studyTimeSec: Math.max(l.studyTimeSec || 0, r.studyTimeSec || 0),
       lastStudied:  later(l.lastStudied, r.lastStudied),
       firstStarted: earlier(l.firstStarted, r.firstStarted),
-      recordingCount: l.recordingCount || 0,  // recordings stay local
+      recordingCount: l.recordingCount || 0,
     }
   })
   return merged
@@ -53,10 +90,7 @@ export function mergeProgress(local, remote) {
 function later(a, b)   { if (!a) return b; if (!b) return a; return a > b ? a : b }
 function earlier(a, b) { if (!a) return b; if (!b) return a; return a < b ? a : b }
 
-// ── Merge timestamps ─────────────────────────────────────────────────────────
-
 // Remote timestamps fill in articles where local has nothing.
-// Local always wins — so edited timestamps on this device are never clobbered.
 export function mergeTimestamps(localMap, remoteMap) {
   const result = { ...localMap }
   for (const [id, ts] of Object.entries(remoteMap)) {
@@ -65,42 +99,63 @@ export function mergeTimestamps(localMap, remoteMap) {
   return result
 }
 
-// ── Publish ──────────────────────────────────────────────────────────────────
+// Merge remote custom articles: add any not already present locally.
+export function mergeCustomArticles(local, remote) {
+  if (!Array.isArray(remote) || !remote.length) return local
+  const localIds = new Set(local.map(a => a.id))
+  const incoming = remote.filter(a => !localIds.has(a.id))
+  return incoming.length ? [...local, ...incoming] : local
+}
 
-export async function publishAll(vocab, progress, timestamps = {}) {
+// Union hidden IDs.
+export function mergeHiddenIds(local, remote) {
+  if (!Array.isArray(remote) || !remote.length) return local
+  const combined = new Set([...local, ...remote])
+  return Array.from(combined)
+}
+
+// ── Publish ───────────────────────────────────────────────────────────────────
+
+// customArticles entries may carry a `_audioBlob` Blob for file-upload audio.
+// publishAll uploads those as static files and replaces the field with a URL.
+export async function publishAll(vocab, progress, timestamps = {}, customArticles = [], hiddenIds = []) {
   const token = loadToken()
   if (!token) throw new Error('no-token')
-
-  const payload = { vocab, progress, timestamps, syncedAt: new Date().toISOString() }
-  const content = JSON.stringify(payload, null, 2)
-  const b64     = btoa(unescape(encodeURIComponent(content)))
-  const apiUrl  = `https://api.github.com/repos/${REPO}/contents/${SYNC_PATH}`
   const headers = {
     'Authorization': `token ${token}`,
     'Accept':        'application/vnd.github+json',
     'Content-Type':  'application/json',
   }
+  const BASE = import.meta.env.BASE_URL
 
-  let sha
-  try {
-    const r = await fetch(apiUrl, { headers })
-    if (r.ok) sha = (await r.json()).sha
-  } catch {}
+  // Upload audio blobs and build a serialisable article list
+  const syncedArticles = await Promise.all(
+    customArticles.map(async article => {
+      const { _audioBlob, audioBlobUrl, ...rest } = article
+      if (_audioBlob instanceof Blob) {
+        try {
+          const ext      = mimeToExt(_audioBlob.type)
+          const filePath = `public/custom-audio/${article.id}${ext}`
+          const b64      = await blobToBase64(_audioBlob)
+          await ghPut(filePath, b64, `Sync audio for ${article.id}`, headers)
+          return { ...rest, audioUrl: `${BASE}custom-audio/${article.id}${ext}` }
+        } catch {
+          return rest // audio upload failed — sync metadata without it
+        }
+      }
+      return rest
+    })
+  )
 
-  const put = await fetch(apiUrl, {
-    method: 'PUT',
-    headers,
-    body: JSON.stringify({
-      message: 'Sync app data',
-      content: b64,
-      ...(sha ? { sha } : {}),
-    }),
-  })
-
-  if (!put.ok) {
-    let msg = `HTTP ${put.status}`
-    try { msg = (await put.json()).message || msg } catch {}
-    throw new Error(msg)
+  const payload = {
+    vocab,
+    progress,
+    timestamps,
+    customArticles: syncedArticles,
+    hiddenIds,
+    syncedAt: new Date().toISOString(),
   }
-  return put.json()
+  const content = JSON.stringify(payload, null, 2)
+  const b64     = btoa(unescape(encodeURIComponent(content)))
+  await ghPut(SYNC_PATH, b64, 'Sync app data', headers)
 }

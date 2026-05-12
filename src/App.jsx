@@ -48,10 +48,11 @@ export default function App() {
     [customArticles, hiddenIds]
   )
 
-  // On mount: silently merge remote vocab + progress into local
+  // On mount: silently merge remote vocab, progress, custom articles + hidden IDs
   useEffect(() => {
     sync.fetchRemote().then(remote => {
       if (!remote) return
+
       if (Array.isArray(remote.vocab) && remote.vocab.length > 0) {
         setVocab(prev => {
           const merged = sync.mergeVocab(prev, remote.vocab)
@@ -59,6 +60,7 @@ export default function App() {
           return merged.length !== prev.length ? merged : prev
         })
       }
+
       if (remote.progress && typeof remote.progress === 'object') {
         setProgress(prev => {
           const merged = sync.mergeProgress(prev, remote.progress)
@@ -66,13 +68,33 @@ export default function App() {
           return merged
         })
       }
+
       if (remote.timestamps && typeof remote.timestamps === 'object') {
-        const articleIds = allArticles.map(a => a.id)
-        const localMap = tsUtils.loadAll(articleIds)
+        const localMap = tsUtils.loadAll(Object.keys(remote.timestamps))
         const merged = sync.mergeTimestamps(localMap, remote.timestamps)
         for (const [id, ts] of Object.entries(merged)) {
           if (!localMap[id]) tsUtils.saveLocal(id, ts)
         }
+      }
+
+      if (Array.isArray(remote.customArticles) && remote.customArticles.length > 0) {
+        setCustomArticles(prev => {
+          const merged = sync.mergeCustomArticles(prev, remote.customArticles)
+          if (merged.length !== prev.length) {
+            // Persist newly arrived articles to localStorage
+            const prevIds = new Set(prev.map(a => a.id))
+            merged.filter(a => !prevIds.has(a.id)).forEach(a => addCustomArticle(a))
+          }
+          return merged
+        })
+      }
+
+      if (Array.isArray(remote.hiddenIds) && remote.hiddenIds.length > 0) {
+        setHiddenIds(prev => {
+          const merged = sync.mergeHiddenIds(prev, remote.hiddenIds)
+          if (merged.length !== prev.length) saveHiddenIds(merged)
+          return merged.length !== prev.length ? merged : prev
+        })
       }
     }).catch(() => {})
   }, [])
@@ -119,14 +141,28 @@ export default function App() {
     setSyncError('')
     try {
       const timestamps = tsUtils.loadAll(allArticles.map(a => a.id))
-      await sync.publishAll(vocab, progress, timestamps)
+
+      // Attach IndexedDB audio blobs for file-uploaded articles so they get pushed to GitHub
+      const articlesForSync = await Promise.all(
+        customArticles.map(async a => {
+          if (!a.audioUrl && a.audioBlobUrl) {
+            try {
+              const blob = await loadCustomAudio(a.id)
+              if (blob) return { ...a, _audioBlob: blob }
+            } catch {}
+          }
+          return a
+        })
+      )
+
+      await sync.publishAll(vocab, progress, timestamps, articlesForSync, hiddenIds)
       setSyncStatus('ok')
       setTimeout(() => setSyncStatus(null), 3000)
     } catch (err) {
       setSyncStatus('error')
       setSyncError(err.message)
     }
-  }, [vocab, progress, allArticles])
+  }, [vocab, progress, allArticles, customArticles, hiddenIds])
 
   const updateVocabSRS = useCallback((id, correct) => {
     setVocab(prev => {
