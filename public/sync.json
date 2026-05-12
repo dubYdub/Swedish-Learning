@@ -97,9 +97,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T10:48:44.938Z",
+      "lastStudied": "2026-05-12T20:09:47.868Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 1696
+      "studyTimeSec": 1776
     },
     "horseltest": {
       "status": "not-started",
@@ -186,5 +186,5 @@
       }
     ]
   },
-  "syncedAt": "2026-05-12T10:50:39.542Z"
+  "syncedAt": "2026-05-12T20:10:26.270Z"
 }
