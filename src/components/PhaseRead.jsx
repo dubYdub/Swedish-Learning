@@ -42,8 +42,8 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
     if (!tooltip || adding) return
     setAdding(true)
     let translation = ''
+    const INFLECTION_PATTERN = /\b(form of|degree of|inflection of|definite|plural|superlative|comparative|genitive|past tense|present tense)\b/i
     try {
-      // Try Wiktionary first — gives real dictionary definitions
       const wikiRes = await fetch(
         `https://en.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(tooltip.text.toLowerCase())}`
       )
@@ -51,10 +51,12 @@ export default function PhaseRead({ article, addToVocab, addedWords, isDone, onM
         const wikiData = await wikiRes.json()
         const svEntries = wikiData['sv'] || []
         const firstDef = svEntries[0]?.definitions?.[0]?.definition
-        if (firstDef) translation = firstDef.replace(/<[^>]+>/g, '').trim()
+        if (firstDef) {
+          const clean = firstDef.replace(/<[^>]+>/g, '').trim()
+          if (!INFLECTION_PATTERN.test(clean)) translation = clean
+        }
       }
     } catch {}
-    // Fall back to MyMemory if Wiktionary had nothing
     if (!translation) {
       try {
         const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(tooltip.text)}&langpair=sv|en`)
