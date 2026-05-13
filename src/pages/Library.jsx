@@ -57,7 +57,7 @@ function RingChart({ counts, total }) {
   )
 }
 
-function DictSidebar({ vocab, vocabFilter, onFilterChange, onStart }) {
+function DictSidebar({ vocab, onStart }) {
   const counts = useMemo(() => {
     const c = Array(6).fill(0)
     vocab.forEach(v => c[Math.min(5, v.level ?? 0)]++)
@@ -78,23 +78,12 @@ function DictSidebar({ vocab, vocabFilter, onFilterChange, onStart }) {
       {total > 0 && (
         <div className="lib-ring-legend">
           {[0,1,2,3,4,5].map(l => counts[l] > 0 && (
-            <button
-              key={l}
-              className={`lib-ring-leg-row ${vocabFilter === l ? 'active' : ''}`}
-              onClick={() => onFilterChange(vocabFilter === l ? 'all' : l)}
-              title={`Filtrera: ${srs.LABELS[l]}`}
-            >
+            <div key={l} className="lib-ring-leg-row">
               <span className="lib-ring-dot" style={{ background: RING_COLORS[l] }} />
               <span className="lib-ring-count">{counts[l]}</span>
               <span className="lib-ring-label">{srs.LABELS[l]}</span>
-              {vocabFilter === l && <span className="lib-ring-check">✓</span>}
-            </button>
+            </div>
           ))}
-          {vocabFilter !== 'all' && (
-            <button className="lib-ring-clear" onClick={() => onFilterChange('all')}>
-              × Visa alla
-            </button>
-          )}
         </div>
       )}
       <button
@@ -461,30 +450,23 @@ export default function Library({
                 />
                 <div className="lib-dict-head">
                   <h2 className="lib-toc-title">Ordlista</h2>
-                  <div className="lib-dict-actions">
-                    {vocab.length > 0 && ds.getKey() && (() => {
-                      const missing = vocab.filter(v => !v.context || !v.mnemonic).length
-                      return (
-                        <button
-                          className={`lib-enrich-btn${enrichProgress ? ' loading' : ''}`}
-                          onClick={onEnrichVocab}
-                          disabled={!!enrichProgress || missing === 0}
-                          title={missing === 0 ? 'Alla ord har betydelse och minnestips' : `Berika ${missing} ord med AI`}
-                        >
-                          {enrichProgress
-                            ? `✦ ${enrichProgress.done}/${enrichProgress.total}`
-                            : missing === 0
-                              ? '✦ Alla klara'
-                              : `✦ Berika ord (${missing})`}
-                        </button>
-                      )
-                    })()}
-                    {vocab.length > 0 && (
-                      <button className="lib-flash-btn" onClick={() => setFlashMode(true)}>
-                        ▶ Flashcards ({vocab.filter(v => srs.isDue(v)).length} klara)
+                  {vocab.length > 0 && ds.getKey() && (() => {
+                    const missing = vocab.filter(v => !v.context || !v.mnemonic).length
+                    return (
+                      <button
+                        className={`lib-enrich-btn${enrichProgress ? ' loading' : ''}`}
+                        onClick={onEnrichVocab}
+                        disabled={!!enrichProgress || missing === 0}
+                        title={missing === 0 ? 'Alla ord har definitioner och minnestips' : `Berika ${missing} ord med AI`}
+                      >
+                        {enrichProgress
+                          ? `✦ ${enrichProgress.done}/${enrichProgress.total}`
+                          : missing === 0
+                            ? '✦ Klart'
+                            : `✦ Berika (${missing})`}
                       </button>
-                    )}
-                  </div>
+                    )
+                  })()}
                 </div>
 
                 {/* Level filter chips */}
@@ -669,8 +651,6 @@ export default function Library({
           {activeTab === 'dictionary' && !flashMode
             ? <DictSidebar
                 vocab={vocab}
-                vocabFilter={vocabFilter}
-                onFilterChange={setVocabFilter}
                 onStart={() => setFlashMode(true)}
               />
             : (
