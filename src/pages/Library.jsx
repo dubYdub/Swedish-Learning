@@ -305,7 +305,10 @@ export default function Library({
   const [showTokenInput, setShowTokenInput] = useState(false)
   const [tokenDraft, setTokenDraft]         = useState('')
   const [showUploader, setShowUploader]     = useState(false)
-  const [reprocessing, setReprocessing]     = useState(null) // articleId being reprocessed
+  const [reprocessing, setReprocessing]     = useState(null)
+  const [headerScrolled, setHeaderScrolled] = useState(false)
+  const mastheadRef = useRef(null)
+  const [mastheadH, setMastheadH]           = useState(0)
 
   function handleSyncClick() {
     if (!loadToken()) { setShowTokenInput(true); setTokenDraft(''); return }
@@ -324,6 +327,27 @@ export default function Library({
   useEffect(() => {
     countAllRecordings().then(setRecordingCount).catch(() => setRecordingCount(0))
   }, [progress])
+
+  useEffect(() => {
+    const measure = () => {
+      if (mastheadRef.current) setMastheadH(mastheadRef.current.offsetHeight)
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [])
+
+  useEffect(() => {
+    let lastY = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      if (y > 100 && y > lastY) setHeaderScrolled(true)
+      else if (y < lastY)       setHeaderScrolled(false)
+      lastY = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const filtered = articles.filter(a => {
     if (filterStatus === 'all') return true
@@ -352,8 +376,16 @@ export default function Library({
     setReprocessing(null)
   }
 
+  const tickerBase = articles.map(a => `${a.topicEmoji} ${a.topicLabel.toUpperCase()}`).join('  ·  ') + '  ·  '
+  const tickerText = tickerBase.repeat(4)
+
   return (
     <div className="library">
+      <div
+        className={`lib-header-wrap${headerScrolled ? ' scrolled' : ''}`}
+        style={{ '--mh-offset': mastheadH ? `-${mastheadH}px` : '-400px' }}
+      >
+      <div ref={mastheadRef}>
       {/* ── Masthead ── */}
       <header className="lib-masthead">
         <div className="lib-mast-top">
@@ -402,6 +434,12 @@ export default function Library({
         <div className="lib-mast-rule" />
       </header>
 
+      {/* Ticker */}
+      <div className="lib-ticker" aria-hidden="true">
+        <span className="lib-ticker-inner">{tickerText}{tickerText}</span>
+      </div>
+      </div>{/* /mastheadRef */}
+
       {/* Tab bar */}
       <div className="lib-tabs">
         <span className="lib-tab-indicator" style={{ '--tab-i': activeTab === 'dictionary' ? 1 : 0 }} />
@@ -418,6 +456,7 @@ export default function Library({
           <span className="lib-tab-icon">📖</span> Ordlista {vocab.length > 0 && <span className="lib-tab-count">{vocab.length}</span>}
         </button>
       </div>
+      </div>{/* /lib-header-wrap */}
 
       <div className={`lib-body ${activeTab === 'dictionary' ? (flashMode ? 'dict-flash' : 'dict-active') : ''}`}>
         <main className="lib-main">
