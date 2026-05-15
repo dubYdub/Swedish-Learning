@@ -381,7 +381,7 @@ export default function Library({
   const tickerText = tickerBase.repeat(4)
 
   return (
-    <div className="library">
+    <div className={`library${flashMode ? ' library--flash' : ''}`}>
       <div
         className={`lib-header-wrap${headerScrolled ? ' scrolled' : ''}`}
         style={{ '--mh-offset': mastheadH ? `-${mastheadH}px` : '-400px' }}

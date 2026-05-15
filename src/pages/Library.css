@@ -4,6 +4,11 @@
   flex-direction: column;
 }
 
+/* ─── FLASH MODE (full-screen focus) ─── */
+.library--flash .lib-header-wrap { display: none; }
+.library--flash .lib-footer       { display: none; }
+.library--flash .lib-body         { padding-top: 0; }
+
 /* ─── STICKY HEADER WRAP ─── */
 .lib-header-wrap {
   position: sticky;
