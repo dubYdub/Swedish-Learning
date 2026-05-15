@@ -3,6 +3,26 @@ import * as srs from '../utils/srs'
 import * as tts from '../utils/tts'
 import './Flashcards.css'
 
+const CORRECT_MSGS = [
+  ['🌱', 'Växer i minnet!'],
+  ['🎯', 'Pricksäkert!'],
+  ['✨', 'Snyggt jobbat!'],
+  ['🔥', 'Du är på eld!'],
+  ['💪', 'Muskelminne aktiverat!'],
+  ['🧠', 'Hjärnan gillar det här!'],
+  ['⚡', 'Blixtsnabbt!'],
+  ['🎉', 'Ja precis, det var det!'],
+]
+const CORRECT_MAX = ['🏆', 'Helt memorerat — legendariskt!']
+const WRONG_MSGS = [
+  ['🙈', 'Hoppsan — snart sitter det!'],
+  ['😅', 'Ingen fara, öva igen!'],
+  ['💡', 'Tips: kolla minnestipset!'],
+  ['🤔', 'Hmm, svår den — försök igen!'],
+  ['🎲', 'Nästa gång lyckas det!'],
+  ['🌧️', 'Liten motgång, stor framgång!'],
+]
+
 // ── Shared sub-components ────────────────────────────────────────────────────
 
 function Pips({ level, size = 'md' }) {
@@ -14,6 +34,30 @@ function Pips({ level, size = 'md' }) {
           className={`fc-pip ${i <= level ? 'on' : ''} ${level >= srs.MAX_LEVEL ? 'memorized' : ''}`}
         />
       ))}
+    </div>
+  )
+}
+
+function FeedbackPips({ oldLevel, newLevel, correct }) {
+  return (
+    <div className="fc-pips fc-pips-md">
+      {[1,2,3,4,5].map(i => {
+        const isOn  = i <= newLevel
+        const isNew = correct  && i === newLevel && newLevel > oldLevel
+        const wasOn = !correct && i === oldLevel && newLevel < oldLevel
+        return (
+          <span
+            key={i}
+            className={[
+              'fc-pip',
+              isOn  ? 'on'        : '',
+              newLevel >= srs.MAX_LEVEL ? 'memorized' : '',
+              isNew ? 'pip-gained' : '',
+              wasOn ? 'pip-lost'   : '',
+            ].filter(Boolean).join(' ')}
+          />
+        )
+      })}
     </div>
   )
 }
@@ -45,12 +89,18 @@ function Session({ initialDeck, onAnswer, onDone }) {
 
   function answer(correct) {
     if (feedback) return
-    const changes = srs.advance(card, correct)
+    const oldLevel = card.level ?? 0
+    const changes  = srs.advance(card, correct)
     onAnswer(card.id, correct)
+
+    const msgs = correct ? CORRECT_MSGS : WRONG_MSGS
+    const [emoji, message] = (correct && changes.level >= srs.MAX_LEVEL)
+      ? CORRECT_MAX
+      : msgs[(typeof card.id === 'number' ? card.id : 0) % msgs.length]
 
     const newStats = { correct: stats.correct + (correct ? 1 : 0), wrong: stats.wrong + (correct ? 0 : 1) }
     setStats(newStats)
-    setFeedback({ correct, newLevel: changes.level, interval: srs.INTERVALS[changes.level] })
+    setFeedback({ correct, newLevel: changes.level, oldLevel, interval: srs.INTERVALS[changes.level], emoji, message })
     if (!correct) { setShaking(true); setTimeout(() => setShaking(false), 600) }
 
     setTimeout(() => {
@@ -125,30 +175,23 @@ function Session({ initialDeck, onAnswer, onDone }) {
           </div>
         </div>
 
-        {/* Feedback overlay */}
-        {feedback && (
-          <div className={`fc-feedback-overlay ${feedback.correct ? 'correct' : 'wrong'}`}>
-            {feedback.correct ? (
-              <div className="fc-fb-inner">
-                <span className="fc-fb-icon">✓</span>
-                <Pips level={feedback.newLevel} size="sm" />
-                <span className="fc-fb-text">
-                  {feedback.newLevel >= srs.MAX_LEVEL
-                    ? 'Memorerad!'
-                    : `Nästa om ${feedback.interval} dag${feedback.interval > 1 ? 'ar' : ''}`}
-                </span>
-              </div>
-            ) : (
-              <div className="fc-fb-inner">
-                <span className="fc-fb-icon">✗</span>
-                <Pips level={feedback.newLevel} size="sm" />
-                <span className="fc-fb-text">Öva igen snart</span>
-              </div>
-            )}
-          </div>
-        )}
       </div>
       </div>{/* /fc-card-wrap */}
+
+      {/* Feedback — below the card */}
+      {feedback && (
+        <div className={`fc-feedback ${feedback.correct ? 'correct' : 'wrong'}`}>
+          <span className="fc-fb-emoji">{feedback.emoji}</span>
+          <p className="fc-fb-msg">{feedback.message}</p>
+          <div className="fc-fb-level-row">
+            <FeedbackPips oldLevel={feedback.oldLevel} newLevel={feedback.newLevel} correct={feedback.correct} />
+            <span className="fc-fb-level-name">{srs.LABELS[feedback.newLevel]}</span>
+            <span className={`fc-fb-delta ${feedback.correct ? 'up' : 'down'}`}>
+              {feedback.correct && feedback.newLevel > feedback.oldLevel ? '+1' : feedback.correct ? '✓' : '−1'}
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Answer buttons */}
       {flipped && !feedback && (
