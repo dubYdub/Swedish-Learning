@@ -285,7 +285,6 @@ function localToday() {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
-const ISSUE_NO = 4
 
 export default function Library({
   articles, progress, vocab,
@@ -298,57 +297,30 @@ export default function Library({
   const stats = computeStats(progress)
   const streak = computeStreak(progress, today)
   const [recordingCount, setRecordingCount] = useState(0)
-  const [filterStatus, setFilterStatus]     = useState('all')
-  const [vocabFilter, setVocabFilter]       = useState('all')
-  const [activeTab, setActiveTab]           = useState('articles')
-  const [flashMode, setFlashMode]           = useState(false)
-  const [showTokenInput, setShowTokenInput] = useState(false)
-  const [tokenDraft, setTokenDraft]         = useState('')
-  const [showUploader, setShowUploader]     = useState(false)
-  const [reprocessing, setReprocessing]     = useState(null)
-  const [headerScrolled, setHeaderScrolled] = useState(false)
-  const mastheadRef = useRef(null)
-  const [mastheadH, setMastheadH]           = useState(0)
+  const [filterStatus, setFilterStatus] = useState('all')
+  const [vocabFilter, setVocabFilter]   = useState('all')
+  const [activeTab, setActiveTab]       = useState('articles')
+  const [flashMode, setFlashMode]       = useState(false)
+  const [showUploader, setShowUploader] = useState(false)
+  const [reprocessing, setReprocessing] = useState(null)
+  const [menuOpen, setMenuOpen]         = useState(false)
+  const [tokenDraft, setTokenDraft]     = useState(() => loadToken() || '')
+  const [dsKeyDraft, setDsKeyDraft]     = useState(() => ds.getKey() || '')
 
-  function handleSyncClick() {
-    if (!loadToken()) { setShowTokenInput(true); setTokenDraft(''); return }
+  function handleSync() {
+    const t = tokenDraft.trim()
+    if (t) saveToken(t)
     onPublishVocab()
   }
 
-  function confirmToken() {
-    const t = tokenDraft.trim()
-    if (!t) return
-    saveToken(t)
-    setShowTokenInput(false)
-    setTokenDraft('')
-    onPublishVocab()
+  function saveDsKey() {
+    ds.setKey(dsKeyDraft.trim())
+    setMenuOpen(false)
   }
 
   useEffect(() => {
     countAllRecordings().then(setRecordingCount).catch(() => setRecordingCount(0))
   }, [progress])
-
-  useEffect(() => {
-    const measure = () => {
-      if (mastheadRef.current) setMastheadH(mastheadRef.current.offsetHeight)
-    }
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
-  }, [])
-
-  useEffect(() => {
-    let lastY = window.scrollY
-    const onScroll = () => {
-      const y = window.scrollY
-      const threshold = window.innerWidth < 640 ? 30 : 100
-      if (y > threshold && y > lastY) setHeaderScrolled(true)
-      else if (y < lastY)             setHeaderScrolled(false)
-      lastY = y
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   const filtered = articles.filter(a => {
     if (filterStatus === 'all') return true
@@ -377,87 +349,71 @@ export default function Library({
     setReprocessing(null)
   }
 
-  const tickerBase = articles.map(a => `${a.topicEmoji} ${a.topicLabel.toUpperCase()}`).join('  ·  ') + '  ·  '
-  const tickerText = tickerBase.repeat(4)
-
   return (
     <div className={`library${flashMode ? ' library--flash' : ''}`}>
-      <div
-        className={`lib-header-wrap${headerScrolled ? ' scrolled' : ''}`}
-        style={{ '--mh-offset': mastheadH ? `-${mastheadH}px` : '-400px' }}
-      >
-      <div ref={mastheadRef}>
-      {/* ── Masthead ── */}
-      <header className="lib-masthead">
-        <div className="lib-mast-top">
-          <span className="metadata">No. {ISSUE_NO}</span>
-          <span className="metadata">
-            {new Date().toLocaleDateString('sv-SE', { weekday: 'long', day: 'numeric', month: 'long' })}
-          </span>
-          <div className="lib-sync-wrap">
-            {showTokenInput ? (
-              <>
-                <input
-                  className="lib-token-input"
-                  type="password"
-                  value={tokenDraft}
-                  onChange={e => setTokenDraft(e.target.value)}
-                  placeholder="GitHub token (ghp_...)"
-                  autoFocus
-                  onKeyDown={e => {
-                    if (e.key === 'Enter' && tokenDraft.trim()) confirmToken()
-                    if (e.key === 'Escape') setShowTokenInput(false)
-                  }}
-                />
-                <button className="lib-sync-btn ok" onClick={confirmToken} disabled={!tokenDraft.trim()}>✓ Spara</button>
-                <button className="lib-sync-btn" onClick={() => setShowTokenInput(false)}>✕</button>
-              </>
-            ) : (
-              <>
-                {syncStatus === 'error' && (
-                  <span className="lib-sync-error" title={syncError}>⚠ {syncError}</span>
-                )}
-                <button
-                  className={`lib-sync-btn ${syncStatus === 'ok' ? 'ok' : ''}`}
-                  onClick={handleSyncClick}
-                  disabled={syncStatus === 'pending'}
-                >
-                  {syncStatus === 'pending' ? '⏳ Synkar…'
-                    : syncStatus === 'ok'   ? '✓ Synkad'
-                    : '🌐 Synka ordlista'}
-                </button>
-              </>
-            )}
-          </div>
+      <header className="lib-header">
+        <div className="lib-pill-switcher">
+          <div className={`lib-pill-knob${activeTab === 'dictionary' ? ' right' : ''}`} />
+          <button
+            className={`lib-pill-tab${activeTab === 'articles' ? ' active' : ''}`}
+            onClick={() => { setActiveTab('articles'); setFlashMode(false) }}
+          >
+            📰 Artiklar
+          </button>
+          <button
+            className={`lib-pill-tab${activeTab === 'dictionary' ? ' active' : ''}`}
+            onClick={() => { setActiveTab('dictionary'); setFlashMode(false) }}
+          >
+            📖 Ordlista {vocab.length > 0 && <span className="lib-pill-count">{vocab.length}</span>}
+          </button>
         </div>
-        <h1 className="lib-title">Svenska Dagligen</h1>
-        <p className="lib-tagline">A reader for students of the Swedish language · Issue {ISSUE_NO}</p>
-        <div className="lib-mast-rule" />
+        <span className="lib-logo">Svenska Dagligen</span>
+        <button className="lib-menu-btn" onClick={() => setMenuOpen(v => !v)} aria-label="Inställningar">
+          {menuOpen ? '✕' : '☰'}
+        </button>
       </header>
 
-      {/* Ticker */}
-      <div className="lib-ticker" aria-hidden="true">
-        <span className="lib-ticker-inner">{tickerText}{tickerText}</span>
-      </div>
-      </div>{/* /mastheadRef */}
-
-      {/* Tab bar */}
-      <div className="lib-tabs">
-        <span className="lib-tab-indicator" style={{ '--tab-i': activeTab === 'dictionary' ? 1 : 0 }} />
-        <button
-          className={`lib-tab ${activeTab === 'articles' ? 'active' : ''}`}
-          onClick={() => { setActiveTab('articles'); setFlashMode(false) }}
-        >
-          <span className="lib-tab-icon">📰</span> Artiklar
-        </button>
-        <button
-          className={`lib-tab ${activeTab === 'dictionary' ? 'active' : ''}`}
-          onClick={() => { setActiveTab('dictionary'); setFlashMode(false) }}
-        >
-          <span className="lib-tab-icon">📖</span> Ordlista {vocab.length > 0 && <span className="lib-tab-count">{vocab.length}</span>}
-        </button>
-      </div>
-      </div>{/* /lib-header-wrap */}
+      {menuOpen && (
+        <div className="lib-menu-drawer">
+          <div className="lib-drawer-section">
+            <p className="lib-drawer-label">GitHub-token</p>
+            <div className="lib-drawer-row">
+              <input
+                className="lib-drawer-input"
+                type="password"
+                value={tokenDraft}
+                onChange={e => setTokenDraft(e.target.value)}
+                placeholder="ghp_…"
+                autoComplete="off"
+              />
+            </div>
+          </div>
+          <div className="lib-drawer-section">
+            <p className="lib-drawer-label">DeepSeek API-nyckel</p>
+            <div className="lib-drawer-row">
+              <input
+                className="lib-drawer-input"
+                type="password"
+                value={dsKeyDraft}
+                onChange={e => setDsKeyDraft(e.target.value)}
+                placeholder="sk-…"
+                autoComplete="off"
+              />
+              <button className="lib-drawer-save" onClick={saveDsKey}>Spara</button>
+            </div>
+          </div>
+          <div className="lib-drawer-section">
+            {syncStatus === 'error' && <p className="lib-drawer-error">⚠ {syncError}</p>}
+            <button
+              className={`lib-drawer-sync${syncStatus === 'ok' ? ' ok' : ''}`}
+              onClick={handleSync}
+              disabled={syncStatus === 'pending'}
+            >
+              {syncStatus === 'pending' ? '⏳ Synkar…' : syncStatus === 'ok' ? '✓ Synkad' : '🌐 Synka ordlista'}
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className={`lib-body ${activeTab === 'dictionary' ? (flashMode ? 'dict-flash' : 'dict-active') : ''}`}>
         <main className="lib-main">

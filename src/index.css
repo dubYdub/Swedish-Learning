@@ -1,7 +1,7 @@
 /* ─── Clean Bauhaus / Swiss editorial — Enhanced ─── */
 /* Geometric sans, calm green accents, warm cream ground */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 :root {
   /* Ground */
@@ -53,6 +53,7 @@
   --font-display: 'Space Grotesk', 'Inter', sans-serif;
   --font-body:    'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:    'DM Mono', 'Courier New', monospace;
+  --font-script:  'Dancing Script', cursive;
 
   font-family: var(--font-body);
   font-size: 15px;
