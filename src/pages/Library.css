@@ -1258,10 +1258,13 @@
 }
 
 @media (max-width: 640px) {
-  .lib-masthead { padding: 28px 16px 0; }
-  .lib-title { font-size: 44px; }
-  .lib-tagline { font-size: 14px; }
-  .lib-mast-top { flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .lib-masthead { padding: 16px 16px 0; }
+  .lib-mast-top { flex-wrap: wrap; gap: 8px; justify-content: center; padding-bottom: 10px; }
+  .lib-title { font-size: 40px; padding: 18px 0 6px; }
+  .lib-tagline { font-size: 10px; padding-bottom: 14px; }
+  .lib-mast-rule { display: none; }
+  .lib-ticker { height: 28px; }
+  .lib-tab { padding: 16px 16px; }
   .lib-body { padding: 32px 16px; }
   .lib-stats-row { grid-template-columns: repeat(2, 1fr); }
   .lib-toc-row-inner { grid-template-columns: 60px 1fr; gap: 16px; }

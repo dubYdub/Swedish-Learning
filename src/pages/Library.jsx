@@ -341,8 +341,9 @@ export default function Library({
     let lastY = window.scrollY
     const onScroll = () => {
       const y = window.scrollY
-      if (y > 100 && y > lastY) setHeaderScrolled(true)
-      else if (y < lastY)       setHeaderScrolled(false)
+      const threshold = window.innerWidth < 640 ? 30 : 100
+      if (y > threshold && y > lastY) setHeaderScrolled(true)
+      else if (y < lastY)             setHeaderScrolled(false)
       lastY = y
     }
     window.addEventListener('scroll', onScroll, { passive: true })
