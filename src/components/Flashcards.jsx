@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import * as srs from '../utils/srs'
 import * as tts from '../utils/tts'
 import './Flashcards.css'
@@ -235,14 +235,21 @@ function Done({ stats, total, onRestart, onExit }) {
 // ── Root ─────────────────────────────────────────────────────────────────────
 
 export default function Flashcards({ vocab, onAnswer, onExit }) {
-  const dueCards = useMemo(() => vocab.filter(srs.isDue), [vocab])
-  const [screen, setScreen] = useState('session')
-  const [doneStats, setDoneStats] = useState(null)
+  // Freeze the deck at mount — don't let vocab re-renders prematurely unmount Session
+  const [sessionDeck, setSessionDeck] = useState(() => vocab.filter(srs.isDue))
+  const [screen, setScreen]           = useState('session')
+  const [doneStats, setDoneStats]     = useState(null)
 
-  if (screen === 'session' && dueCards.length > 0) {
+  function restartSession() {
+    setSessionDeck(vocab.filter(srs.isDue))
+    setScreen('session')
+  }
+
+  if (screen === 'session' && sessionDeck.length > 0) {
     return (
       <Session
-        initialDeck={dueCards}
+        key="session"
+        initialDeck={sessionDeck}
         onAnswer={onAnswer}
         onDone={(stats, total) => { setDoneStats({ stats, total }); setScreen('done') }}
       />
@@ -254,13 +261,12 @@ export default function Flashcards({ vocab, onAnswer, onExit }) {
       <Done
         stats={doneStats.stats}
         total={doneStats.total}
-        onRestart={() => setScreen('session')}
+        onRestart={restartSession}
         onExit={onExit}
       />
     )
   }
 
-  // No due cards (shouldn't normally be reachable since Library disables the button)
   return (
     <div className="fc-noduetoday">
       <p className="fc-noduetoday-msg">Allt klart för idag ✓</p>

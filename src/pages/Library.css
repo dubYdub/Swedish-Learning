@@ -5,128 +5,123 @@
 }
 
 /* ─── FLASH MODE (full-screen focus) ─── */
-.library--flash .lib-header  { display: none; }
-.library--flash .lib-footer  { display: none; }
-.library--flash .lib-body    { padding-top: 0; }
+.library--flash .lib-header      { display: none; }
+.library--flash .lib-footer      { display: none; }
+.library--flash .lib-body        { padding-top: 0; }
+.library--flash .lib-menu-drawer { display: none; }
+/* Lift the animation fill so it doesn't create a stacking context that blocks clicks */
+.library--flash .lib-main        { animation: none; }
 
-/* ─── COMPACT STICKY HEADER ─── */
+/* ─── COMPACT STICKY HEADER — retro 3-column grid ─── */
 .lib-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 10px 24px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
   background: var(--bg);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border);
+  min-height: 52px;
 }
 
-/* ─── PILL SWITCHER ─── */
-.lib-pill-switcher {
+/* ─── EDITORIAL SECTION TABS (left zone) ─── */
+.lib-section-tabs {
+  display: flex;
+  align-items: stretch;
+  border-right: 1px solid var(--border-soft);
+}
+
+.lib-sec-tab {
   display: flex;
   align-items: center;
-  position: relative;
-  background: var(--bg-section);
-  border: 1px solid var(--border);
-  padding: 3px;
-  gap: 0;
-  flex-shrink: 0;
-}
-
-.lib-pill-knob {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: calc(50% - 3px);
-  bottom: 3px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-xs);
-  transition: transform 0.32s var(--ease-spring);
-  pointer-events: none;
-}
-
-.lib-pill-knob.right {
-  transform: translateX(100%);
-}
-
-.lib-pill-tab {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 16px;
+  gap: 8px;
+  padding: 0 20px;
   background: transparent;
   border: none;
+  border-top: 3px solid transparent;
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-dim);
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.2s;
-  min-width: 110px;
-  justify-content: center;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
 }
 
-.lib-pill-tab.active { color: var(--text-h); }
-.lib-pill-tab:hover  { color: var(--text-h); }
+.lib-sec-tab + .lib-sec-tab {
+  border-left: 1px solid var(--border-soft);
+}
 
-.lib-pill-count {
-  background: var(--accent);
-  color: #FFF8EA;
+.lib-sec-tab:hover { color: var(--text-h); background: var(--bg-section); }
+
+.lib-sec-tab.active {
+  color: var(--text-h);
+  border-top-color: var(--border);
+  background: var(--bg-card);
+}
+
+.lib-sec-count {
+  background: var(--text-h);
+  color: var(--bg);
   font-size: 9px;
   font-weight: 700;
   padding: 1px 6px;
-  line-height: 1.5;
-  animation: popIn 0.3s var(--ease-spring) both;
+  line-height: 1.6;
 }
 
-/* ─── SCRIPT LOGO ─── */
+/* ─── SCRIPT LOGO (center zone) ─── */
 .lib-logo {
   font-family: var(--font-script);
-  font-size: 26px;
+  font-size: 24px;
   color: var(--text-h);
-  letter-spacing: 0.01em;
-  line-height: 1;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
   white-space: nowrap;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
 }
 
-/* ─── BURGER BUTTON ─── */
+/* ─── RIGHT ZONE (burger) ─── */
+.lib-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px;
+}
+
 .lib-menu-btn {
   background: none;
   border: 1px solid var(--border-soft);
   color: var(--text-dim);
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
-  padding: 6px 10px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s, background 0.15s;
-  flex-shrink: 0;
 }
 .lib-menu-btn:hover { color: var(--text-h); border-color: var(--border); background: var(--bg-card); }
 
 /* ─── SETTINGS DRAWER ─── */
 .lib-menu-drawer {
   position: sticky;
-  top: 57px;
+  top: 52px;
   z-index: 99;
   background: var(--bg-card);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border);
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   padding: 16px 24px;
-  animation: fadeUp 0.22s var(--ease-out) both;
+  animation: fadeDown 0.22s var(--ease-out) both;
 }
 
 .lib-drawer-section {
@@ -1256,9 +1251,8 @@
 }
 
 @media (max-width: 640px) {
-  .lib-header { padding: 8px 12px; gap: 10px; }
-  .lib-pill-tab { padding: 7px 10px; min-width: 90px; font-size: 10px; }
-  .lib-logo { font-size: 20px; }
+  .lib-sec-tab { padding: 0 12px; font-size: 9px; letter-spacing: 0.12em; }
+  .lib-logo { font-size: 18px; padding: 0 10px; }
   .lib-menu-drawer { padding: 12px 16px; gap: 12px; }
   .lib-body { padding: 32px 16px; }
   .lib-stats-row { grid-template-columns: repeat(2, 1fr); }
