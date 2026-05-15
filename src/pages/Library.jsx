@@ -352,27 +352,29 @@ export default function Library({
   return (
     <div className={`library${flashMode ? ' library--flash' : ''}`}>
       <header className="lib-header">
-        <nav className="lib-section-tabs">
+        <span className="lib-logo">Svenska Dagligen</span>
+        <button className="lib-menu-btn" onClick={() => setMenuOpen(v => !v)} aria-label="Inställningar">
+          {menuOpen ? '✕' : '☰'}
+        </button>
+      </header>
+
+      {!flashMode && (
+        <nav className="lib-float-tabs">
           <button
-            className={`lib-sec-tab${activeTab === 'articles' ? ' active' : ''}`}
+            className={`lib-float-tab${activeTab === 'articles' ? ' active' : ''}`}
             onClick={() => { setActiveTab('articles'); setFlashMode(false) }}
           >
             Artiklar
           </button>
+          <span className="lib-float-rule" />
           <button
-            className={`lib-sec-tab${activeTab === 'dictionary' ? ' active' : ''}`}
+            className={`lib-float-tab${activeTab === 'dictionary' ? ' active' : ''}`}
             onClick={() => { setActiveTab('dictionary'); setFlashMode(false) }}
           >
-            Ordlista {vocab.length > 0 && <span className="lib-sec-count">{vocab.length}</span>}
+            Ordlista {vocab.length > 0 && <span className="lib-float-count">{vocab.length}</span>}
           </button>
         </nav>
-        <span className="lib-logo">Svenska Dagligen</span>
-        <div className="lib-header-right">
-          <button className="lib-menu-btn" onClick={() => setMenuOpen(v => !v)} aria-label="Inställningar">
-            {menuOpen ? '✕' : '☰'}
-          </button>
-        </div>
-      </header>
+      )}
 
       {menuOpen && (
         <div className="lib-menu-drawer">

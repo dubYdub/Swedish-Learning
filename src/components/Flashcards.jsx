@@ -235,21 +235,16 @@ function Done({ stats, total, onRestart, onExit }) {
 // ── Root ─────────────────────────────────────────────────────────────────────
 
 export default function Flashcards({ vocab, onAnswer, onExit }) {
-  // Freeze the deck at mount — don't let vocab re-renders prematurely unmount Session
-  const [sessionDeck, setSessionDeck] = useState(() => vocab.filter(srs.isDue))
-  const [screen, setScreen]           = useState('session')
-  const [doneStats, setDoneStats]     = useState(null)
+  // Snapshot due cards once at mount so vocab updates from onAnswer
+  // don't prematurely unmount the session mid-review.
+  const [initialDeck] = useState(() => vocab.filter(srs.isDue))
+  const [screen, setScreen] = useState('session')
+  const [doneStats, setDoneStats] = useState(null)
 
-  function restartSession() {
-    setSessionDeck(vocab.filter(srs.isDue))
-    setScreen('session')
-  }
-
-  if (screen === 'session' && sessionDeck.length > 0) {
+  if (screen === 'session' && initialDeck.length > 0) {
     return (
       <Session
-        key="session"
-        initialDeck={sessionDeck}
+        initialDeck={initialDeck}
         onAnswer={onAnswer}
         onDone={(stats, total) => { setDoneStats({ stats, total }); setScreen('done') }}
       />
@@ -261,7 +256,7 @@ export default function Flashcards({ vocab, onAnswer, onExit }) {
       <Done
         stats={doneStats.stats}
         total={doneStats.total}
-        onRestart={restartSession}
+        onRestart={() => setScreen('session')}
         onExit={onExit}
       />
     )
