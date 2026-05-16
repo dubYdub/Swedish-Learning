@@ -5,9 +5,9 @@
       "word": "Tro",
       "context": "belief (that something is true or real (without being perfectly certain))",
       "addedAt": "2026-05-13T12:26:12.347Z",
-      "level": 1,
-      "nextReview": "2026-05-14",
-      "lastReviewed": "2026-05-13T12:28:14.763Z"
+      "level": 2,
+      "nextReview": "2026-05-17",
+      "lastReviewed": "2026-05-15T20:55:30.816Z"
     },
     {
       "id": 1778626162907.6355,
@@ -146,8 +146,7 @@
       "addedAt": "2026-05-12T21:52:21.908Z",
       "mnemonic": "Picture a giant \"QUEUE\" (kvävs) of people so tightly packed that the person in front can't breathe, and she \"suffocates.\"",
       "nextReview": "2026-05-13",
-      "lastReviewed": "2026-05-13T13:08:05.679Z",
-      "level": 0
+      "lastReviewed": "2026-05-13T13:08:05.679Z"
     },
     {
       "id": 1778622741908.7112,
@@ -166,8 +165,7 @@
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine a jaguar chasing you as you yell \"JAGADE!\"—like \"jaguar\" mixed with \"aided\" by your own screams while being hunted.",
       "nextReview": "2026-05-13",
-      "lastReviewed": "2026-05-13T13:08:37.475Z",
-      "level": 0
+      "lastReviewed": "2026-05-13T13:08:37.475Z"
     },
     {
       "id": 1778622647809.971,
@@ -186,8 +184,7 @@
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine \"scrap\" metal is \"trash\" — just drop the 'c' and you've got \"skräp\" for rubbish.",
       "nextReview": "2026-05-13",
-      "lastReviewed": "2026-05-13T13:08:26.041Z",
-      "level": 0
+      "lastReviewed": "2026-05-13T13:08:26.041Z"
     },
     {
       "id": 1778622647809.3044,
@@ -239,59 +236,59 @@
       "mnemonic": "Imagine a \"bear\" who \"holds\" onto a jar of honey and \"retains\" it—saying \"bear-holder\" for \"behåller.\""
     },
     {
-      "id": 1778621579888.9082,
+      "id": 1778621579887.0393,
       "word": "räddat",
       "context": "saved, rescued",
-      "addedAt": "2026-05-12T21:32:59.888Z",
+      "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a **red** lifebuoy that just **saved** a swimmer—\"räddat\" sounds like \"red-dat\" is the thing that rescued them."
     },
     {
-      "id": 1778621579889,
+      "id": 1778621579887.0889,
       "word": "dammar",
       "context": "ponds",
-      "addedAt": "2026-05-12T21:32:59.888Z",
+      "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a beaver building a DAM across a stream to create many small PONDS, and as it works, it mutters \"DAM-are\" (dammar) to remind itself of the job."
     },
     {
-      "id": 1778621579888.087,
+      "id": 1778621579887.0046,
       "word": "släpper ut",
       "context": "release, let out",
-      "addedAt": "2026-05-12T21:32:59.888Z",
+      "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a \"slapper\" (släpper) unclipping a cage door so a bird can \"ut\" (hoot like \"out!\") fly free."
     },
     {
-      "id": 1778621579888.3506,
+      "id": 1778621579887.4902,
       "word": "dumpar",
       "context": "dumps, abandons",
-      "addedAt": "2026-05-12T21:32:59.888Z",
+      "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Picture a DUMP truck loudly dumping a load of trash onto a lover's front lawn to abandon them."
     },
     {
-      "id": 1778621579888.1467,
+      "id": 1778621579887.9092,
       "word": "ekosystemet",
       "context": "the ecosystem",
-      "addedAt": "2026-05-12T21:32:59.888Z",
+      "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a giant **eco**-friendly **system** where a Viking shouts, \"Eko! Systemet!\" to remind you that every sound echoes through nature."
     },
     {
-      "id": 1778621579888.8203,
+      "id": 1778621579887.072,
       "word": "förändras",
       "context": "changes, is altered",
-      "addedAt": "2026-05-12T21:32:59.888Z",
+      "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a **furry** AND **grass** field that suddenly morphs into a desert — \"furry-and-grass\" sounds like \"förändras,\" meaning the landscape **changes**."
     },
     {
-      "id": 1778621579888.6106,
+      "id": 1778621579887.4487,
       "word": "fisklösa",
       "context": "fishless",
-      "addedAt": "2026-05-12T21:32:59.888Z",
+      "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a \"fist\" full of \"lösa\" (loose) sand where the fish should be—completely fishless!"
     },
     {
-      "id": 1778621579888.6768,
+      "id": 1778621579887.163,
       "word": "omplacerat",
       "context": "relocated, rehomed",
-      "addedAt": "2026-05-12T21:32:59.888Z",
+      "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "\"Omplacerat\" sounds like \"om-placed-a rat\" — imagine finding a rat in your kitchen, so you calmly pick it up and relocate it to a new home outside!"
     },
     {
@@ -395,6 +392,16 @@
       "lastReviewed": "2026-05-12T20:19:24.290Z"
     },
     {
+      "id": 1778597217552,
+      "word": "Saker",
+      "context": "Things; objects; matters",
+      "addedAt": "2026-05-12T14:46:58.640Z",
+      "mnemonic": "Imagine \"socks\" are the most important \"things\" you pack for a trip, and you say \"I pack my **saker** socks!\"",
+      "level": 1,
+      "nextReview": "2026-05-13",
+      "lastReviewed": "2026-05-12T14:47:23.092Z"
+    },
+    {
       "id": 1778582905816,
       "word": "stärka upp",
       "context": "to strengthen, to build up (skills/qualifications)",
@@ -495,14 +502,14 @@
       "lastReviewed": "2026-05-12T20:23:13.384Z"
     },
     {
-      "id": 1778579853449,
+      "id": 1778582900525,
       "word": "arbetslöshet",
       "context": "unemployment",
-      "addedAt": "2026-05-12T09:57:33.449Z",
+      "addedAt": "2026-05-12T10:48:20.525Z",
+      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down.",
       "level": 1,
       "nextReview": "2026-05-13",
-      "lastReviewed": "2026-05-12T20:23:05.730Z",
-      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down."
+      "lastReviewed": "2026-05-12T20:23:05.730Z"
     },
     {
       "id": 1778576627259,
@@ -527,7 +534,7 @@
       "recordingCount": 0,
       "lastStudied": "2026-05-13T09:11:59.527Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 1803
+      "studyTimeSec": 1813
     },
     "horseltest": {
       "status": "not-started",
@@ -704,38 +711,6 @@
         "end": 130.78
       }
     ],
-    "custom-1778623690101": [
-      {
-        "id": "custom-1778624854092-1",
-        "start": 0,
-        "end": 24.98
-      },
-      {
-        "id": "custom-1778624854092-2",
-        "start": 24.98,
-        "end": 47.26
-      },
-      {
-        "id": "custom-1778624854092-3",
-        "start": 47.26,
-        "end": 51.29
-      },
-      {
-        "id": "custom-1778624854092-4",
-        "start": 51.29,
-        "end": 59.2
-      },
-      {
-        "id": "custom-1778624854092-5",
-        "start": 59.2,
-        "end": 79.18
-      },
-      {
-        "id": "custom-1778624854092-6",
-        "start": 79.18,
-        "end": 120.22
-      }
-    ],
     "custom-1778623798016": [
       {
         "id": "custom-1778624861811-1",
@@ -767,86 +742,41 @@
         "start": 75.09,
         "end": 90.74
       }
+    ],
+    "custom-1778623690101": [
+      {
+        "id": "custom-1778624854092-1",
+        "start": 0,
+        "end": 24.98
+      },
+      {
+        "id": "custom-1778624854092-2",
+        "start": 24.98,
+        "end": 47.26
+      },
+      {
+        "id": "custom-1778624854092-3",
+        "start": 47.26,
+        "end": 51.29
+      },
+      {
+        "id": "custom-1778624854092-4",
+        "start": 51.29,
+        "end": 59.2
+      },
+      {
+        "id": "custom-1778624854092-5",
+        "start": 59.2,
+        "end": 79.18
+      },
+      {
+        "id": "custom-1778624854092-6",
+        "start": 79.18,
+        "end": 120.22
+      }
     ]
   },
   "customArticles": [
-    {
-      "id": "custom-1778623690101",
-      "topic": "världen",
-      "topicLabel": "Världen",
-      "topicEmoji": "🌍",
-      "difficulty": "A2",
-      "title": "Kungskobran på Skansenakvariet har hittats",
-      "summary": "The escaped king cobra at Skansenakvariet in Stockholm has been located inside a wall near its enclosure. Staff plan to cut a hole to capture it.",
-      "keyVocab": [
-        {
-          "word": "djurskötare",
-          "def": "animal keeper"
-        },
-        {
-          "word": "rymde",
-          "def": "escaped"
-        },
-        {
-          "word": "giftig",
-          "def": "poisonous"
-        },
-        {
-          "word": "kungskobra",
-          "def": "king cobra"
-        },
-        {
-          "word": "väsa",
-          "def": "hiss"
-        },
-        {
-          "word": "fånga in",
-          "def": "capture"
-        },
-        {
-          "word": "botemedel",
-          "def": "antidote"
-        },
-        {
-          "word": "kvävas",
-          "def": "suffocate"
-        }
-      ],
-      "isCustom": true,
-      "content": [
-        {
-          "id": "custom-1778624854092-1",
-          "text": "Djurskötare har hittat den giftiga ormen som rymde från sin bur i lördags. Ormen är kvar på djurparken Skansenakvariet i Stockholm. Ormen är en kungskobra. Den är två och en halv meter lång och mycket giftig.",
-          "translation": "Animal keepers have found the poisonous snake that escaped from its cage last Saturday. The snake is still at the Skansen Aquarium zoo in Stockholm. The snake is a king cobra. It is two and a half meters long and very poisonous."
-        },
-        {
-          "id": "custom-1778624854092-2",
-          "text": "Ormen är inne i en vägg nära sin bur. Djurskötarna har sett ormen med en speciell liten kamera. De har också hört kobran väsa. Det säger Skansenakvariets ägare Jonas Wahlström till P1 morgon.",
-          "translation": "The snake is inside a wall near its cage. The animal keepers have seen the snake with a special small camera. They have also heard the cobra hiss. That's what Skansen Aquarium's owner Jonas Wahlström says to P1 Morning."
-        },
-        {
-          "id": "custom-1778624854092-3",
-          "text": "– Vi såg honom och hörde honom till och med väsa.",
-          "translation": "– We saw him and even heard him hiss."
-        },
-        {
-          "id": "custom-1778624854092-4",
-          "text": "Nu ska de som jobbar i djurparken göra ett hål i väggen och försöka fånga in kobran.",
-          "translation": "Now those who work at the zoo will make a hole in the wall and try to catch the cobra."
-        },
-        {
-          "id": "custom-1778624854092-5",
-          "text": "Kobran rymde från sin bur för nästan en vecka sedan. Händelsen har fått mycket uppmärksamhet både i Sverige och i andra länder. Flera medier i USA har till exempel rapporterat om ormen.",
-          "translation": "The cobra escaped from its cage almost a week ago. The event has received a lot of attention both in Sweden and in other countries. Several media outlets in the USA, for example, have reported about the snake."
-        },
-        {
-          "id": "custom-1778624854092-6",
-          "text": "Kungskobran är världens längsta giftiga orm. Den kan bli fem och en halv meter lång. Om en människa blir biten av ormen måste hen få ett botemedel snabbt. Annars kan giftet döda personen inom en timme. Giftet gör att offret kvävs. Ormen i Stockholm har varit lös länge, men ingen har blivit skadad.",
-          "translation": "The king cobra is the world's longest poisonous snake. It can become five and a half meters long. If a person is bitten by the snake, they must get an antidote quickly. Otherwise, the poison can kill the person within an hour. The poison causes the victim to suffocate. The snake in Stockholm has been loose for a long time, but no one has been injured."
-        }
-      ],
-      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2022/10/program_djurskotare_har_hittat_den_gif_20221028_1528286119_a96.m4a?_h_publicationId=8174692"
-    },
     {
       "id": "custom-1778623798016",
       "topic": "natur",
@@ -892,39 +822,116 @@
       "isCustom": true,
       "content": [
         {
-          "id": "custom-1778624861811-1",
+          "id": "custom-1778626145501-1",
           "text": "Cheyenne van Keeken har räddat över 400 guldfiskar från dammar i Göteborg. Hon säger till P4 Göteborg att det är synd att folk släpper ut guldfiskar i dammar.",
-          "translation": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg. She tells P4 Gothenburg that it's a shame people release goldfish into ponds."
+          "translation": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg. She tells P4 Gothenburg that it's a shame that people release goldfish into ponds."
         },
         {
-          "id": "custom-1778624861811-2",
+          "id": "custom-1778626145501-2",
           "text": "– Bara den här sommaren har jag varit på sex olika ställen. Det är så tragiskt att folk dumpar dem och dumpar djur på det sättet.",
-          "translation": "– Just this summer I've been to six different places. It's so tragic that people dump them and dump animals in that way."
+          "translation": "– Just this summer I have been to six different places. It's so tragic that people dump them and dump animals in that way."
         },
         {
-          "id": "custom-1778624861811-3",
+          "id": "custom-1778626145501-3",
           "text": "Vem som har släppt ut guldfiskarna i dammarna vet man inte. Fredrik Larsson som jobbar på Länsstyrelsen i Västra Götaland säger att ekosystemet i dammarna, alltså vilka växter och djur som lever där, kan förändras av fiskarna.",
-          "translation": "Who released the goldfish into the ponds is unknown. Fredrik Larsson, who works at the County Administrative Board of Västra Götaland, says the ecosystem of the ponds, meaning which plants and animals live there, can be changed by the fish."
+          "translation": "Who released the goldfish into the ponds is unknown. Fredrik Larsson, who works at the County Administrative Board of Västra Götaland, says that the ecosystem in the ponds, meaning which plants and animals live there, can be changed by the fish."
         },
         {
-          "id": "custom-1778624861811-4",
+          "id": "custom-1778626145501-4",
           "text": "– Många dammar är naturligt fisklösa vilket innebär att släpper man då helt plötsligt i fisk i de dammarna så kommer man att ändra ekosystemet i den dammen.",
-          "translation": "– Many ponds are naturally fishless, which means if you suddenly release fish into those ponds, you will change the ecosystem of that pond."
+          "translation": "– Many ponds are naturally fishless, which means that if you suddenly introduce fish into those ponds, you will change the ecosystem in that pond."
         },
         {
-          "id": "custom-1778624861811-5",
+          "id": "custom-1778626145501-5",
           "text": "Cheyenne van Keeken säger att det är svårt att få plats med alla guldfiskar hemma. Hon låter några av dem bo i badkaret. Hon säger att hon behåller några fiskar själv och lämnar några vidare till andra personer.",
-          "translation": "Cheyenne van Keeken says it's difficult to find room for all the goldfish at home. She lets some of them live in the bathtub. She says she keeps some fish herself and passes some on to other people."
+          "translation": "Cheyenne van Keeken says it's difficult to find room for all the goldfish at home. She lets some of them live in the bathtub. She says she keeps some fish herself and passes others on to other people."
         },
         {
-          "id": "custom-1778624861811-6",
+          "id": "custom-1778626145501-6",
           "text": "– Guldfiskarna som har varit väldigt fina har jag ju valt att behålla själv. Men de allra största så har jag ju på direkten omplacerat dem för det går inte att ha dem här hemma. Jag har inte plats för dem.",
           "translation": "– The goldfish that have been very nice I have chosen to keep myself. But the very largest ones I have immediately rehomed because it's not possible to have them here at home. I don't have room for them."
         }
       ],
       "audioUrl": "https://lyssna-cdn.sr.se/isidor/2024/07/program_hon_har_raddat_400_guldfiskar_20240724_1507172154_a96.m4a?_h_publicationId=8717940"
+    },
+    {
+      "id": "custom-1778623690101",
+      "topic": "världen",
+      "topicLabel": "Världen",
+      "topicEmoji": "🌍",
+      "difficulty": "A2",
+      "title": "Kungskobran på Skansenakvariet har hittats",
+      "summary": "The escaped king cobra at Skansenakvariet in Stockholm has been located inside a wall near its enclosure. Staff plan to cut a hole to capture it.",
+      "keyVocab": [
+        {
+          "word": "djurskötare",
+          "def": "animal keeper"
+        },
+        {
+          "word": "rymde",
+          "def": "escaped"
+        },
+        {
+          "word": "giftig",
+          "def": "poisonous"
+        },
+        {
+          "word": "kungskobra",
+          "def": "king cobra"
+        },
+        {
+          "word": "väsa",
+          "def": "hiss"
+        },
+        {
+          "word": "fånga in",
+          "def": "capture"
+        },
+        {
+          "word": "botemedel",
+          "def": "antidote"
+        },
+        {
+          "word": "kvävas",
+          "def": "suffocate"
+        }
+      ],
+      "isCustom": true,
+      "content": [
+        {
+          "id": "custom-1778626157002-1",
+          "text": "Djurskötare har hittat den giftiga ormen som rymde från sin bur i lördags. Ormen är kvar på djurparken Skansenakvariet i Stockholm. Ormen är en kungskobra. Den är två och en halv meter lång och mycket giftig.",
+          "translation": "Animal keepers have found the poisonous snake that escaped from its cage last Saturday. The snake is still at the Skansen Aquarium zoo in Stockholm. The snake is a king cobra. It is two and a half meters long and very poisonous."
+        },
+        {
+          "id": "custom-1778626157002-2",
+          "text": "Ormen är inne i en vägg nära sin bur. Djurskötarna har sett ormen med en speciell liten kamera. De har också hört kobran väsa. Det säger Skansenakvariets ägare Jonas Wahlström till P1 morgon.",
+          "translation": "The snake is inside a wall near its cage. The animal keepers have seen the snake with a special small camera. They have also heard the cobra hiss. That's what Skansen Aquarium's owner Jonas Wahlström says to P1 Morning."
+        },
+        {
+          "id": "custom-1778626157002-3",
+          "text": "– Vi såg honom och hörde honom till och med väsa.",
+          "translation": "– We saw him and even heard him hiss."
+        },
+        {
+          "id": "custom-1778626157002-4",
+          "text": "Nu ska de som jobbar i djurparken göra ett hål i väggen och försöka fånga in kobran.",
+          "translation": "Now the people who work at the zoo will make a hole in the wall and try to catch the cobra."
+        },
+        {
+          "id": "custom-1778626157002-5",
+          "text": "Kobran rymde från sin bur för nästan en vecka sedan. Händelsen har fått mycket uppmärksamhet både i Sverige och i andra länder. Flera medier i USA har till exempel rapporterat om ormen.",
+          "translation": "The cobra escaped from its cage almost a week ago. The event has received a lot of attention both in Sweden and in other countries. Several media outlets in the USA, for example, have reported about the snake."
+        },
+        {
+          "id": "custom-1778626157002-6",
+          "text": "Kungskobran är världens längsta giftiga orm. Den kan bli fem och en halv meter lång. Om en människa blir biten av ormen måste hen få ett botemedel snabbt. Annars kan giftet döda personen inom en timme. Giftet gör att offret kvävs. Ormen i Stockholm har varit lös länge, men ingen har blivit skadad.",
+          "translation": "The king cobra is the world's longest poisonous snake. It can become five and a half meters long. If a person is bitten by the snake, they must get an antidote quickly. Otherwise, the poison can kill the person within an hour. The poison causes the victim to suffocate. The snake in Stockholm has been loose for a long time, but no one has been injured."
+        }
+      ],
+      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2022/10/program_djurskotare_har_hittat_den_gif_20221028_1528286119_a96.m4a?_h_publicationId=8174692"
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-13T13:08:53.851Z"
+  "syncedAt": "2026-05-16T07:39:46.025Z"
 }
