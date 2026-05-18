@@ -125,6 +125,7 @@
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,6 +144,12 @@
   box-shadow: 4px 4px 0 0 var(--butter);
   transform: rotateY(180deg);
 }
+
+/* Hit-test fix: the hidden face must not eat clicks.
+   Safari and some Chromium versions don't reliably exclude the
+   backface from hit-testing even with backface-visibility:hidden. */
+.fc-card:not(.flipped) .fc-card-back  { pointer-events: none; }
+.fc-card.flipped       .fc-card-front { pointer-events: none; }
 
 .fc-card-meta {
   display: flex;

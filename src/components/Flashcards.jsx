@@ -84,7 +84,13 @@ function Session({ initialDeck, onAnswer, onDone }) {
 
   function speakWord(e) {
     e.stopPropagation()
-    tts.speak(card.word, { rate: 0.8 })
+    try { tts.speak(card.word, { rate: 0.8 }) } catch {}
+  }
+
+  function flipCard() {
+    if (flipped || feedback) return
+    setFlipped(true)
+    try { tts.speak(card.word, { rate: 0.8 }) } catch {}
   }
 
   function answer(correct) {
@@ -148,8 +154,11 @@ function Session({ initialDeck, onAnswer, onDone }) {
       {/* Card */}
       <div key={card.id} className={`fc-card-wrap${shaking ? ' shaking' : ''}`}>
       <div
+        role="button"
+        tabIndex={0}
         className={`fc-card ${flipped ? 'flipped' : ''} ${feedback ? 'no-click' : ''}`}
-        onClick={() => { if (!flipped && !feedback) { tts.speak(card.word, { rate: 0.8 }); setFlipped(true) } }}
+        onClick={flipCard}
+        onKeyDown={e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipCard() } }}
       >
         <div className="fc-card-inner">
           {/* Front */}
