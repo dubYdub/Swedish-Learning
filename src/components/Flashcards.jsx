@@ -100,9 +100,12 @@ function Session({ initialDeck, onAnswer, onDone }) {
     onAnswer(card.id, correct)
 
     const msgs = correct ? CORRECT_MSGS : WRONG_MSGS
+    // card.id may be a fractional number (Date.now() + Math.random() style).
+    // Floor + abs the index so msgs[i] is always a valid entry.
+    const seed = Math.abs(Math.floor(Number(card.id) || 0))
     const [emoji, message] = (correct && changes.level >= srs.MAX_LEVEL)
       ? CORRECT_MAX
-      : msgs[(typeof card.id === 'number' ? card.id : 0) % msgs.length]
+      : msgs[seed % msgs.length]
 
     const newStats = { correct: stats.correct + (correct ? 1 : 0), wrong: stats.wrong + (correct ? 0 : 1) }
     setStats(newStats)

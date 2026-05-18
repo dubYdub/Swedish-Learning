@@ -126,7 +126,7 @@ export default function App() {
     })
   }, [])
 
-  const addToVocab = useCallback((word, context, id = Date.now()) => {
+  const addToVocab = useCallback((word, context, id = Date.now() + Math.floor(Math.random() * 1e6)) => {
     setVocab(prev => {
       if (prev.find(v => v.word.toLowerCase() === word.toLowerCase())) return prev
       const updated = [{ id, word, context, addedAt: new Date().toISOString() }, ...prev]

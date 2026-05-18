@@ -116,7 +116,7 @@ function MiniQuickAdd({ vocab, onAdd, onUpdateContext, onUpdateMnemonic }) {
     }
 
     setStatus('loading')
-    const id = Date.now()
+    const id = Date.now() + Math.floor(Math.random() * 1e6)
     let definition = ''
 
     try {
@@ -198,7 +198,7 @@ function QuickAdd({ vocab, onAdd, onUpdateContext, onUpdateMnemonic }) {
     }
 
     setStatus('loading')
-    const id = Date.now()
+    const id = Date.now() + Math.floor(Math.random() * 1e6)
     let definition = context.trim()
 
     if (!definition) {
