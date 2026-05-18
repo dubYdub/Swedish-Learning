@@ -1,7 +1,7 @@
 /* ─── Clean Bauhaus / Swiss editorial — Enhanced ─── */
 /* Geometric sans, calm green accents, warm cream ground */
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 :root {
   /* Ground */
@@ -33,6 +33,12 @@
   --pink:         #C07890;
   --pink-bg:      rgba(192, 120, 144, 0.12);
 
+  /* Ox-blood: signature editorial accent (header banner, active states, eyebrows) */
+  --oxblood:      #6E2424;
+  --oxblood-deep: #561818;
+  --oxblood-bg:   rgba(110, 36, 36, 0.10);
+  --oxblood-soft: #F5E9C7;  /* cream that pairs with ox-blood */
+
   /* Compatibility aliases */
   --border-glow:  var(--border);
   --success:      var(--sage);
@@ -53,7 +59,8 @@
   --font-display: 'Space Grotesk', 'Inter', sans-serif;
   --font-body:    'Inter', system-ui, -apple-system, sans-serif;
   --font-mono:    'DM Mono', 'Courier New', monospace;
-  --font-script:  'Dancing Script', cursive;
+  --font-script:  'Fraunces', 'Playfair Display', Georgia, serif;
+  --font-masthead:'Fraunces', 'Playfair Display', Georgia, serif;
 
   font-family: var(--font-body);
   font-size: 15px;

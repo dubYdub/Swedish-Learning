@@ -315,8 +315,24 @@ export default function Library({
 
   function saveDsKey() {
     ds.setKey(dsKeyDraft.trim())
-    setMenuOpen(false)
   }
+
+  function saveGhToken() {
+    const t = tokenDraft.trim()
+    if (t) saveToken(t)
+  }
+
+  const ghTokenSet = !!loadToken()
+  const dsKeySet   = !!ds.getKey()
+  const dueCount   = vocab.filter(v => srs.isDue(v)).length
+
+  // Swedish editorial date string: "MÅNDAG · 18 MAJ"
+  const dateStr = useMemo(() => {
+    const d  = new Date()
+    const wd = ['SÖNDAG','MÅNDAG','TISDAG','ONSDAG','TORSDAG','FREDAG','LÖRDAG'][d.getDay()]
+    const mo = ['JAN','FEB','MAR','APR','MAJ','JUN','JUL','AUG','SEP','OKT','NOV','DEC'][d.getMonth()]
+    return `${wd} · ${d.getDate()} ${mo}`
+  }, [today])
 
   useEffect(() => {
     countAllRecordings().then(setRecordingCount).catch(() => setRecordingCount(0))
@@ -352,10 +368,31 @@ export default function Library({
   return (
     <div className={`library${flashMode ? ' library--flash' : ''}`}>
       <header className="lib-header">
-        <span className="lib-logo">Svenska Dagligen</span>
-        <button className="lib-menu-btn" onClick={() => setMenuOpen(v => !v)} aria-label="Inställningar">
-          {menuOpen ? '✕' : '☰'}
-        </button>
+        <div className="lib-header-left">
+          <span className="lib-logo">Svenska Dagligen</span>
+          <span className="lib-header-date">{dateStr}</span>
+        </div>
+        <div className="lib-header-right">
+          {streak > 0 && (
+            <span className="lib-header-chip" title={`${streak} dagars studiestreck`}>
+              <span className="lib-chip-icon">🔥</span>
+              <span className="lib-chip-val">{streak}</span>
+            </span>
+          )}
+          {dueCount > 0 && (
+            <span className="lib-header-chip blue" title={`${dueCount} ord att repetera`}>
+              <span className="lib-chip-icon">●</span>
+              <span className="lib-chip-val">{dueCount}</span>
+            </span>
+          )}
+          <button
+            className={`lib-menu-btn${menuOpen ? ' open' : ''}`}
+            onClick={() => setMenuOpen(v => !v)}
+            aria-label="Inställningar"
+          >
+            <span /><span /><span />
+          </button>
+        </div>
       </header>
 
       {!flashMode && (
@@ -378,43 +415,80 @@ export default function Library({
 
       {menuOpen && (
         <div className="lib-menu-drawer">
-          <div className="lib-drawer-section">
-            <p className="lib-drawer-label">GitHub-token</p>
-            <div className="lib-drawer-row">
-              <input
-                className="lib-drawer-input"
-                type="password"
-                value={tokenDraft}
-                onChange={e => setTokenDraft(e.target.value)}
-                placeholder="ghp_…"
-                autoComplete="off"
-              />
+          {/* ── API keys ── */}
+          <section className="lib-drawer-block">
+            <h3 className="lib-drawer-heading">
+              <span className="lib-drawer-heading-bar" />
+              API-nycklar
+            </h3>
+
+            <div className="lib-drawer-field">
+              <div className="lib-drawer-field-head">
+                <label className="lib-drawer-label">GitHub-token</label>
+                <span className={`lib-drawer-status${ghTokenSet ? ' on' : ''}`}>
+                  {ghTokenSet ? '● aktiv' : '○ saknas'}
+                </span>
+              </div>
+              <p className="lib-drawer-hint">För att publicera ordlista &amp; artiklar till molnet.</p>
+              <div className="lib-drawer-row">
+                <input
+                  className="lib-drawer-input"
+                  type="password"
+                  value={tokenDraft}
+                  onChange={e => setTokenDraft(e.target.value)}
+                  placeholder="ghp_…"
+                  autoComplete="off"
+                />
+                <button className="lib-drawer-save" onClick={saveGhToken} disabled={!tokenDraft.trim()}>
+                  Spara
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="lib-drawer-section">
-            <p className="lib-drawer-label">DeepSeek API-nyckel</p>
-            <div className="lib-drawer-row">
-              <input
-                className="lib-drawer-input"
-                type="password"
-                value={dsKeyDraft}
-                onChange={e => setDsKeyDraft(e.target.value)}
-                placeholder="sk-…"
-                autoComplete="off"
-              />
-              <button className="lib-drawer-save" onClick={saveDsKey}>Spara</button>
+
+            <div className="lib-drawer-field">
+              <div className="lib-drawer-field-head">
+                <label className="lib-drawer-label">DeepSeek API-nyckel</label>
+                <span className={`lib-drawer-status${dsKeySet ? ' on' : ''}`}>
+                  {dsKeySet ? '● aktiv' : '○ saknas'}
+                </span>
+              </div>
+              <p className="lib-drawer-hint">Krävs för AI-funktioner (översättningar, minnestips, nyckelord).</p>
+              <div className="lib-drawer-row">
+                <input
+                  className="lib-drawer-input"
+                  type="password"
+                  value={dsKeyDraft}
+                  onChange={e => setDsKeyDraft(e.target.value)}
+                  placeholder="sk-…"
+                  autoComplete="off"
+                />
+                <button className="lib-drawer-save" onClick={saveDsKey} disabled={!dsKeyDraft.trim()}>
+                  Spara
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="lib-drawer-section">
-            {syncStatus === 'error' && <p className="lib-drawer-error">⚠ {syncError}</p>}
+          </section>
+
+          {/* ── Sync ── */}
+          <section className="lib-drawer-block">
+            <h3 className="lib-drawer-heading">
+              <span className="lib-drawer-heading-bar" />
+              Synkronisering
+            </h3>
+            <p className="lib-drawer-hint">Skicka dina ord, framsteg och artiklar till molnet så att de finns på alla enheter.</p>
             <button
-              className={`lib-drawer-sync${syncStatus === 'ok' ? ' ok' : ''}`}
+              className={`lib-drawer-sync${syncStatus === 'ok' ? ' ok' : ''}${syncStatus === 'error' ? ' err' : ''}`}
               onClick={handleSync}
-              disabled={syncStatus === 'pending'}
+              disabled={syncStatus === 'pending' || !ghTokenSet}
             >
-              {syncStatus === 'pending' ? '⏳ Synkar…' : syncStatus === 'ok' ? '✓ Synkad' : '🌐 Synka ordlista'}
+              {syncStatus === 'pending' ? '⏳ Synkar…'
+                : syncStatus === 'ok'   ? '✓ Allt synkat'
+                : syncStatus === 'error'? '⚠ Försök igen'
+                : !ghTokenSet           ? '🌐 Ange GitHub-token först'
+                :                         '🌐 Synka allt nu'}
             </button>
-          </div>
+            {syncStatus === 'error' && <p className="lib-drawer-error">{syncError}</p>}
+          </section>
         </div>
       )}
 
@@ -423,14 +497,21 @@ export default function Library({
           {/* ── Dashboard ── */}
           {activeTab === 'articles' && (
             <section className="lib-dashboard">
-              <p className="lib-section-eyebrow">— Studierapport —</p>
+              <header className="lib-dashboard-head">
+                <span className="lib-dash-flourish">✦</span>
+                <div className="lib-dash-titlewrap">
+                  <p className="lib-dash-eyebrow">Editionens</p>
+                  <h2 className="lib-dash-title">Studierapport</h2>
+                </div>
+                <span className="lib-dash-flourish">✦</span>
+              </header>
               <div className="lib-stats-row">
-                <StatBlock value={streak} label="Streak" hot={streak >= 2} idx={0} />
-                <StatBlock value={stats.completed} label="Klara" idx={1} />
-                <StatBlock value={stats.inProgress} label="Pågående" accent="blue" idx={2} />
-                <StatBlock value={recordingCount} label="Inspelningar" accent="pink" idx={3} />
-                <StatBlock value={vocab.length} label="Ord" accent="butter" idx={4} />
-                <StatBlock value={stats.totalStudyMin} label="Minuter" idx={5} />
+                <StatBlock value={streak} label="Streak" hot={streak >= 2} idx={0} roman="I" />
+                <StatBlock value={stats.completed} label="Klara" idx={1} roman="II" />
+                <StatBlock value={stats.inProgress} label="Pågående" accent="blue" idx={2} roman="III" />
+                <StatBlock value={recordingCount} label="Inspelningar" accent="pink" idx={3} roman="IV" />
+                <StatBlock value={vocab.length} label="Ord" accent="butter" idx={4} roman="V" />
+                <StatBlock value={stats.totalStudyMin} label="Minuter" idx={5} roman="VI" />
               </div>
             </section>
           )}
@@ -670,11 +751,13 @@ export default function Library({
   )
 }
 
-function StatBlock({ value, label, accent = 'accent', hot, idx = 0 }) {
+function StatBlock({ value, label, accent = 'accent', hot, idx = 0, roman }) {
   return (
-    <div className={`lib-stat accent-${accent}`} style={{ '--i': idx }}>
+    <div className={`lib-stat accent-${accent}${hot ? ' hot' : ''}`} style={{ '--i': idx }}>
+      {roman && <span className="lib-stat-roman">{roman}</span>}
       <span className="lib-stat-value">{value}</span>
-      <span className="lib-stat-label">{hot && '🔥 '}{label}</span>
+      <span className="lib-stat-rule" />
+      <span className="lib-stat-label">{hot && <span className="lib-stat-flame">🔥</span>}{label}</span>
     </div>
   )
 }
