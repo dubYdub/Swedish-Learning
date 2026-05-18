@@ -1,6 +1,13 @@
 {
   "vocab": [
     {
+      "id": 1779113491993,
+      "word": "Lägg",
+      "context": "Place, put, lay, or add.",
+      "addedAt": "2026-05-18T14:11:23.664Z",
+      "mnemonic": "Imagine you're laying down a LEGO brick and say, \"I **lägg** a LEGO to place it here.\""
+    },
+    {
       "id": 1778675171881,
       "word": "Tro",
       "context": "belief (that something is true or real (without being perfectly certain))",
@@ -1011,5 +1018,5 @@
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-18T13:38:36.120Z"
+  "syncedAt": "2026-05-18T14:11:34.043Z"
 }
