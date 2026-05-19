@@ -5,7 +5,10 @@
       "word": "Lägg",
       "context": "Place, put, lay, or add.",
       "addedAt": "2026-05-18T14:11:23.664Z",
-      "mnemonic": "Imagine you're laying down a LEGO brick and say, \"I **lägg** a LEGO to place it here.\""
+      "mnemonic": "Imagine you're laying down a LEGO brick and say, \"I **lägg** a LEGO to place it here.\"",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:53:34.139Z",
+      "level": 1
     },
     {
       "id": 1778675171881,
@@ -22,9 +25,9 @@
       "context": "capture",
       "addedAt": "2026-05-12T22:49:22.907Z",
       "mnemonic": "Imagine a FANGED snake lunging IN to capture its prey.",
-      "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T10:44:50.145Z"
+      "level": 3,
+      "nextReview": "2026-05-23",
+      "lastReviewed": "2026-05-19T06:53:20.843Z"
     },
     {
       "id": 1778625866677,
@@ -42,8 +45,8 @@
       "context": "a piece of advice, counsel",
       "addedAt": "2026-05-12T22:41:04.174Z",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T10:45:03.220Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:53:27.183Z",
       "mnemonic": "Imagine a \"rod\" of advice, like a wise fisherman handing you a fishing rod to counsel you."
     },
     {
@@ -71,9 +74,9 @@
       "word": "väsa",
       "context": "hiss",
       "addedAt": "2026-05-12T22:27:39.953Z",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T10:45:05.632Z",
-      "level": 1,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:53:15.095Z",
+      "level": 2,
       "mnemonic": "Picture a snake hissing \"VÄSA\" as it warns you to \"VÄ\" (go away) and \"SA\" (say) nothing, or you'll get bit!"
     },
     {
@@ -81,8 +84,8 @@
       "word": "kvävas",
       "context": "suffocate",
       "addedAt": "2026-05-12T22:27:39.953Z",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:13:46.831Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:54:06.322Z",
       "level": 1,
       "mnemonic": "Imagine a \"quiche\" filled with gas that makes you choke—\"kvävas\" sounds like \"quiche gas\" and suffocates you at a fancy party."
     },
@@ -102,9 +105,9 @@
       "context": "escaped (past tense)",
       "addedAt": "2026-05-12T21:52:21.908Z",
       "mnemonic": "Imagine a rocket **r**oaring into the s**ky**—then, with a loud \"**M**\" sound, it **de**parts—so \"rymde\" sounds like \"roam the sky\" when you've escaped.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:13:33.312Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:53:37.183Z",
+      "level": 2
     },
     {
       "id": 1778622741908.5989,
@@ -122,8 +125,8 @@
       "context": "slithered",
       "addedAt": "2026-05-12T21:52:21.908Z",
       "mnemonic": "Imagine a snake **sliding** through the grass, but its tail gets caught in a **wreath** (a \"sling\"), forcing it to **wiggle and writhe** to get free.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T10:46:17.801Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:54:03.443Z",
       "level": 1
     },
     {
@@ -132,8 +135,8 @@
       "context": "lure out",
       "addedAt": "2026-05-12T21:52:21.908Z",
       "mnemonic": "Imagine a **lock** on a treasure chest, and you're playing a flute to **lure** a snake out from under it — \"locka fram\" sounds like \"lock a from,\" tricking the lock's owner into opening it.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T10:46:33.166Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:54:09.100Z",
       "level": 1
     },
     {
@@ -142,8 +145,8 @@
       "context": "antidote, remedy",
       "addedAt": "2026-05-12T21:52:21.908Z",
       "mnemonic": "Imagine a \"boat\" (bot) racing to deliver a \"medal\" (medel) that cures your poison—your \"boat-medal\" is the ultimate antidote!",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:13:28.122Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:54:11.381Z",
       "level": 1
     },
     {
@@ -152,9 +155,9 @@
       "context": "suffocates",
       "addedAt": "2026-05-12T21:52:21.908Z",
       "mnemonic": "Picture a giant \"QUEUE\" (kvävs) of people so tightly packed that the person in front can't breathe, and she \"suffocates.\"",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:13:38.364Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:54:14.326Z",
+      "level": 2
     },
     {
       "id": 1778622741908.7112,
@@ -172,8 +175,8 @@
       "context": "chased, hunted",
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine a jaguar chasing you as you yell \"JAGADE!\"—like \"jaguar\" mixed with \"aided\" by your own screams while being hunted.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:20:15.775Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:55:16.450Z",
       "level": 1
     },
     {
@@ -182,9 +185,9 @@
       "context": "mice",
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine mice wearing tiny \"moose\" antlers, and as they scurry, they squeak \"möss, möss\" instead of \"mice.\"",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:14:09.554Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:54:27.207Z",
+      "level": 2
     },
     {
       "id": 1778622647809.5134,
@@ -192,9 +195,9 @@
       "context": "trash, rubbish",
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine \"scrap\" metal is \"trash\" — just drop the 'c' and you've got \"skräp\" for rubbish.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:14:12.888Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:54:32.001Z",
+      "level": 2
     },
     {
       "id": 1778622647809.3044,
@@ -202,8 +205,8 @@
       "context": "male owner (of a pet)",
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine \"who's he?\" asking who owns the dog, and the stern-faced man replies \"Husse!\" — like \"who's he?\" but it's the male owner.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:14:15.280Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:54:50.241Z",
       "level": 1
     },
     {
@@ -212,9 +215,9 @@
       "context": "ice cream wrapper",
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine a glass container shattering as you yank off its lid, revealing a peppery hot ice cream wrapper inside.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:14:35.167Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:54:43.600Z",
+      "level": 2
     },
     {
       "id": 1778622647809.0347,
@@ -222,8 +225,8 @@
       "context": "garbage bag",
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine a sad, soggy \"soup\" (sopp) spilling from a torn bag, so you cry \"Åse!\" (like \"oh, say!\") as you grab a new garbage bag.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:17:25.803Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:55:06.665Z",
       "level": 1
     },
     {
@@ -232,8 +235,8 @@
       "context": "picks up, collects",
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Think of a plucky little bird who \"plockar\" up crumbs with its beak, collecting them one by one.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:20:43.099Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:55:20.427Z",
       "level": 1
     },
     {
@@ -242,9 +245,9 @@
       "context": "swimming spot, beach",
       "addedAt": "2026-05-12T21:50:47.809Z",
       "mnemonic": "Imagine a \"bad\" pirate \"plats\" his treasure chest at the very spot where you swim—so you always remember \"badplats\" is the beach.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:14:59.941Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:55:12.223Z",
+      "level": 2
     },
     {
       "id": 1778622259746,
@@ -252,8 +255,8 @@
       "context": "Adapted, customized, or tailored.",
       "addedAt": "2026-05-12T21:44:20.622Z",
       "mnemonic": "Picture a \"pasta\" chef in Sweden **adapting** a recipe so it's *tailored* for a giant, saying \"**Anpassad** pasta!\" (An-pah-sad).",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:20:54.562Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:56:09.597Z",
       "level": 1
     },
     {
@@ -262,9 +265,9 @@
       "context": "keeps, retains",
       "addedAt": "2026-05-12T21:42:40.173Z",
       "mnemonic": "Imagine a \"bear\" who \"holds\" onto a jar of honey and \"retains\" it—saying \"bear-holder\" for \"behåller.\"",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:20:59.488Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:55:27.068Z",
+      "level": 2
     },
     {
       "id": 1778621579887.0393,
@@ -282,8 +285,8 @@
       "context": "ponds",
       "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a beaver building a DAM across a stream to create many small PONDS, and as it works, it mutters \"DAM-are\" (dammar) to remind itself of the job.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:22:16.701Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T06:55:48.299Z",
       "level": 1
     },
     {
@@ -302,9 +305,9 @@
       "context": "dumps, abandons",
       "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Picture a DUMP truck loudly dumping a load of trash onto a lover's front lawn to abandon them.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:22:26.732Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T06:56:06.370Z",
+      "level": 2
     },
     {
       "id": 1778621579887.9092,
@@ -587,14 +590,14 @@
       "lastReviewed": "2026-05-18T13:37:59.040Z"
     },
     {
-      "id": 1778582900525,
+      "id": 1778579853449,
       "word": "arbetslöshet",
       "context": "unemployment",
-      "addedAt": "2026-05-12T10:48:20.525Z",
-      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down.",
+      "addedAt": "2026-05-12T09:57:33.449Z",
       "level": 1,
       "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T13:38:19.648Z"
+      "lastReviewed": "2026-05-18T13:38:19.648Z",
+      "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down."
     },
     {
       "id": 1778576627259,
@@ -617,9 +620,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-13T09:11:59.527Z",
+      "lastStudied": "2026-05-19T07:07:27.473Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 1813
+      "studyTimeSec": 1993
     },
     "horseltest": {
       "status": "not-started",
@@ -708,9 +711,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T22:48:54.391Z",
+      "lastStudied": "2026-05-15T16:04:51.996Z",
       "firstStarted": "2026-05-12T22:08:32.718Z",
-      "studyTimeSec": 395
+      "studyTimeSec": 551
     },
     "custom-1778623798016": {
       "status": "not-started",
@@ -721,9 +724,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-12T22:40:04.519Z",
+      "lastStudied": "2026-05-14T22:23:52.211Z",
       "firstStarted": "2026-05-12T22:10:08.181Z",
-      "studyTimeSec": 639
+      "studyTimeSec": 1595
     }
   },
   "timestamps": {
@@ -796,38 +799,6 @@
         "end": 130.78
       }
     ],
-    "custom-1778623798016": [
-      {
-        "id": "custom-1778624861811-1",
-        "start": 0,
-        "end": 16.74
-      },
-      {
-        "id": "custom-1778624861811-2",
-        "start": 16.74,
-        "end": 25.53
-      },
-      {
-        "id": "custom-1778624861811-3",
-        "start": 25.53,
-        "end": 45.6
-      },
-      {
-        "id": "custom-1778624861811-4",
-        "start": 45.6,
-        "end": 56.47
-      },
-      {
-        "id": "custom-1778624861811-5",
-        "start": 56.47,
-        "end": 75.09
-      },
-      {
-        "id": "custom-1778624861811-6",
-        "start": 75.09,
-        "end": 90.74
-      }
-    ],
     "custom-1778623690101": [
       {
         "id": "custom-1778624854092-1",
@@ -859,86 +830,41 @@
         "start": 79.18,
         "end": 120.22
       }
+    ],
+    "custom-1778623798016": [
+      {
+        "id": "custom-1778624861811-1",
+        "start": 0,
+        "end": 16.74
+      },
+      {
+        "id": "custom-1778624861811-2",
+        "start": 16.74,
+        "end": 25.53
+      },
+      {
+        "id": "custom-1778624861811-3",
+        "start": 25.53,
+        "end": 45.6
+      },
+      {
+        "id": "custom-1778624861811-4",
+        "start": 45.6,
+        "end": 56.47
+      },
+      {
+        "id": "custom-1778624861811-5",
+        "start": 56.47,
+        "end": 75.09
+      },
+      {
+        "id": "custom-1778624861811-6",
+        "start": 75.09,
+        "end": 90.74
+      }
     ]
   },
   "customArticles": [
-    {
-      "id": "custom-1778623798016",
-      "topic": "natur",
-      "topicLabel": "Natur",
-      "topicEmoji": "🐟",
-      "difficulty": "A2",
-      "title": "Kvinna räddar över 400 guldfiskar från dammar",
-      "summary": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg, Sweden. She criticizes people for dumping goldfish in ponds, which can disrupt local ecosystems.",
-      "keyVocab": [
-        {
-          "word": "räddat",
-          "def": "saved, rescued"
-        },
-        {
-          "word": "dammar",
-          "def": "ponds"
-        },
-        {
-          "word": "släpper ut",
-          "def": "releases, lets out"
-        },
-        {
-          "word": "dumpar",
-          "def": "dumps, abandons"
-        },
-        {
-          "word": "ekosystemet",
-          "def": "the ecosystem"
-        },
-        {
-          "word": "förändras",
-          "def": "changes, is altered"
-        },
-        {
-          "word": "fisklösa",
-          "def": "fishless"
-        },
-        {
-          "word": "omplacerat",
-          "def": "relocated, rehomed"
-        }
-      ],
-      "isCustom": true,
-      "content": [
-        {
-          "id": "custom-1778626145501-1",
-          "text": "Cheyenne van Keeken har räddat över 400 guldfiskar från dammar i Göteborg. Hon säger till P4 Göteborg att det är synd att folk släpper ut guldfiskar i dammar.",
-          "translation": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg. She tells P4 Gothenburg that it's a shame that people release goldfish into ponds."
-        },
-        {
-          "id": "custom-1778626145501-2",
-          "text": "– Bara den här sommaren har jag varit på sex olika ställen. Det är så tragiskt att folk dumpar dem och dumpar djur på det sättet.",
-          "translation": "– Just this summer I have been to six different places. It's so tragic that people dump them and dump animals in that way."
-        },
-        {
-          "id": "custom-1778626145501-3",
-          "text": "Vem som har släppt ut guldfiskarna i dammarna vet man inte. Fredrik Larsson som jobbar på Länsstyrelsen i Västra Götaland säger att ekosystemet i dammarna, alltså vilka växter och djur som lever där, kan förändras av fiskarna.",
-          "translation": "Who released the goldfish into the ponds is unknown. Fredrik Larsson, who works at the County Administrative Board of Västra Götaland, says that the ecosystem in the ponds, meaning which plants and animals live there, can be changed by the fish."
-        },
-        {
-          "id": "custom-1778626145501-4",
-          "text": "– Många dammar är naturligt fisklösa vilket innebär att släpper man då helt plötsligt i fisk i de dammarna så kommer man att ändra ekosystemet i den dammen.",
-          "translation": "– Many ponds are naturally fishless, which means that if you suddenly introduce fish into those ponds, you will change the ecosystem in that pond."
-        },
-        {
-          "id": "custom-1778626145501-5",
-          "text": "Cheyenne van Keeken säger att det är svårt att få plats med alla guldfiskar hemma. Hon låter några av dem bo i badkaret. Hon säger att hon behåller några fiskar själv och lämnar några vidare till andra personer.",
-          "translation": "Cheyenne van Keeken says it's difficult to find room for all the goldfish at home. She lets some of them live in the bathtub. She says she keeps some fish herself and passes others on to other people."
-        },
-        {
-          "id": "custom-1778626145501-6",
-          "text": "– Guldfiskarna som har varit väldigt fina har jag ju valt att behålla själv. Men de allra största så har jag ju på direkten omplacerat dem för det går inte att ha dem här hemma. Jag har inte plats för dem.",
-          "translation": "– The goldfish that have been very nice I have chosen to keep myself. But the very largest ones I have immediately rehomed because it's not possible to have them here at home. I don't have room for them."
-        }
-      ],
-      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2024/07/program_hon_har_raddat_400_guldfiskar_20240724_1507172154_a96.m4a?_h_publicationId=8717940"
-    },
     {
       "id": "custom-1778623690101",
       "topic": "världen",
@@ -984,39 +910,116 @@
       "isCustom": true,
       "content": [
         {
-          "id": "custom-1778626157002-1",
+          "id": "custom-1778624854092-1",
           "text": "Djurskötare har hittat den giftiga ormen som rymde från sin bur i lördags. Ormen är kvar på djurparken Skansenakvariet i Stockholm. Ormen är en kungskobra. Den är två och en halv meter lång och mycket giftig.",
           "translation": "Animal keepers have found the poisonous snake that escaped from its cage last Saturday. The snake is still at the Skansen Aquarium zoo in Stockholm. The snake is a king cobra. It is two and a half meters long and very poisonous."
         },
         {
-          "id": "custom-1778626157002-2",
+          "id": "custom-1778624854092-2",
           "text": "Ormen är inne i en vägg nära sin bur. Djurskötarna har sett ormen med en speciell liten kamera. De har också hört kobran väsa. Det säger Skansenakvariets ägare Jonas Wahlström till P1 morgon.",
           "translation": "The snake is inside a wall near its cage. The animal keepers have seen the snake with a special small camera. They have also heard the cobra hiss. That's what Skansen Aquarium's owner Jonas Wahlström says to P1 Morning."
         },
         {
-          "id": "custom-1778626157002-3",
+          "id": "custom-1778624854092-3",
           "text": "– Vi såg honom och hörde honom till och med väsa.",
           "translation": "– We saw him and even heard him hiss."
         },
         {
-          "id": "custom-1778626157002-4",
+          "id": "custom-1778624854092-4",
           "text": "Nu ska de som jobbar i djurparken göra ett hål i väggen och försöka fånga in kobran.",
-          "translation": "Now the people who work at the zoo will make a hole in the wall and try to catch the cobra."
+          "translation": "Now those who work at the zoo will make a hole in the wall and try to catch the cobra."
         },
         {
-          "id": "custom-1778626157002-5",
+          "id": "custom-1778624854092-5",
           "text": "Kobran rymde från sin bur för nästan en vecka sedan. Händelsen har fått mycket uppmärksamhet både i Sverige och i andra länder. Flera medier i USA har till exempel rapporterat om ormen.",
           "translation": "The cobra escaped from its cage almost a week ago. The event has received a lot of attention both in Sweden and in other countries. Several media outlets in the USA, for example, have reported about the snake."
         },
         {
-          "id": "custom-1778626157002-6",
+          "id": "custom-1778624854092-6",
           "text": "Kungskobran är världens längsta giftiga orm. Den kan bli fem och en halv meter lång. Om en människa blir biten av ormen måste hen få ett botemedel snabbt. Annars kan giftet döda personen inom en timme. Giftet gör att offret kvävs. Ormen i Stockholm har varit lös länge, men ingen har blivit skadad.",
           "translation": "The king cobra is the world's longest poisonous snake. It can become five and a half meters long. If a person is bitten by the snake, they must get an antidote quickly. Otherwise, the poison can kill the person within an hour. The poison causes the victim to suffocate. The snake in Stockholm has been loose for a long time, but no one has been injured."
         }
       ],
       "audioUrl": "https://lyssna-cdn.sr.se/isidor/2022/10/program_djurskotare_har_hittat_den_gif_20221028_1528286119_a96.m4a?_h_publicationId=8174692"
+    },
+    {
+      "id": "custom-1778623798016",
+      "topic": "natur",
+      "topicLabel": "Natur",
+      "topicEmoji": "🐟",
+      "difficulty": "A2",
+      "title": "Kvinna räddar över 400 guldfiskar från dammar",
+      "summary": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg, Sweden. She criticizes people for dumping goldfish in ponds, which can disrupt local ecosystems.",
+      "keyVocab": [
+        {
+          "word": "räddat",
+          "def": "saved, rescued"
+        },
+        {
+          "word": "dammar",
+          "def": "ponds"
+        },
+        {
+          "word": "släpper ut",
+          "def": "releases, lets out"
+        },
+        {
+          "word": "dumpar",
+          "def": "dumps, abandons"
+        },
+        {
+          "word": "ekosystemet",
+          "def": "the ecosystem"
+        },
+        {
+          "word": "förändras",
+          "def": "changes, is altered"
+        },
+        {
+          "word": "fisklösa",
+          "def": "fishless"
+        },
+        {
+          "word": "omplacerat",
+          "def": "relocated, rehomed"
+        }
+      ],
+      "isCustom": true,
+      "content": [
+        {
+          "id": "custom-1778624861811-1",
+          "text": "Cheyenne van Keeken har räddat över 400 guldfiskar från dammar i Göteborg. Hon säger till P4 Göteborg att det är synd att folk släpper ut guldfiskar i dammar.",
+          "translation": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg. She tells P4 Gothenburg that it's a shame people release goldfish into ponds."
+        },
+        {
+          "id": "custom-1778624861811-2",
+          "text": "– Bara den här sommaren har jag varit på sex olika ställen. Det är så tragiskt att folk dumpar dem och dumpar djur på det sättet.",
+          "translation": "– Just this summer I've been to six different places. It's so tragic that people dump them and dump animals in that way."
+        },
+        {
+          "id": "custom-1778624861811-3",
+          "text": "Vem som har släppt ut guldfiskarna i dammarna vet man inte. Fredrik Larsson som jobbar på Länsstyrelsen i Västra Götaland säger att ekosystemet i dammarna, alltså vilka växter och djur som lever där, kan förändras av fiskarna.",
+          "translation": "Who released the goldfish into the ponds is unknown. Fredrik Larsson, who works at the County Administrative Board of Västra Götaland, says the ecosystem of the ponds, meaning which plants and animals live there, can be changed by the fish."
+        },
+        {
+          "id": "custom-1778624861811-4",
+          "text": "– Många dammar är naturligt fisklösa vilket innebär att släpper man då helt plötsligt i fisk i de dammarna så kommer man att ändra ekosystemet i den dammen.",
+          "translation": "– Many ponds are naturally fishless, which means if you suddenly release fish into those ponds, you will change the ecosystem of that pond."
+        },
+        {
+          "id": "custom-1778624861811-5",
+          "text": "Cheyenne van Keeken säger att det är svårt att få plats med alla guldfiskar hemma. Hon låter några av dem bo i badkaret. Hon säger att hon behåller några fiskar själv och lämnar några vidare till andra personer.",
+          "translation": "Cheyenne van Keeken says it's difficult to find room for all the goldfish at home. She lets some of them live in the bathtub. She says she keeps some fish herself and passes some on to other people."
+        },
+        {
+          "id": "custom-1778624861811-6",
+          "text": "– Guldfiskarna som har varit väldigt fina har jag ju valt att behålla själv. Men de allra största så har jag ju på direkten omplacerat dem för det går inte att ha dem här hemma. Jag har inte plats för dem.",
+          "translation": "– The goldfish that have been very nice I have chosen to keep myself. But the very largest ones I have immediately rehomed because it's not possible to have them here at home. I don't have room for them."
+        }
+      ],
+      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2024/07/program_hon_har_raddat_400_guldfiskar_20240724_1507172154_a96.m4a?_h_publicationId=8717940"
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-18T14:11:34.043Z"
+  "syncedAt": "2026-05-19T12:40:05.111Z"
 }
