@@ -1,6 +1,18 @@
 {
   "vocab": [
     {
+      "id": 1779205841983,
+      "word": "Bill",
+      "context": "a share; the cutting blade of a plough",
+      "addedAt": "2026-05-19T15:45:59.881Z"
+    },
+    {
+      "id": 1779203465050,
+      "word": "Synd",
+      "context": "sin",
+      "addedAt": "2026-05-19T15:04:03.972Z"
+    },
+    {
       "id": 1779202522134,
       "word": "Skjut",
       "context": "a bang (act of sexual intercourse)",
@@ -913,9 +925,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-14T22:23:52.211Z",
+      "lastStudied": "2026-05-19T15:03:54.524Z",
       "firstStarted": "2026-05-12T22:10:08.181Z",
-      "studyTimeSec": 1595
+      "studyTimeSec": 1820
     }
   },
   "timestamps": {
@@ -1210,5 +1222,5 @@
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-19T14:58:44.636Z"
+  "syncedAt": "2026-05-19T18:23:39.559Z"
 }
