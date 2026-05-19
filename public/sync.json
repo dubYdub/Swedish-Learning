@@ -1,6 +1,195 @@
 {
   "vocab": [
     {
+      "id": 1779202522134,
+      "word": "Skjut",
+      "context": "a bang (act of sexual intercourse)",
+      "addedAt": "2026-05-19T14:50:18.573Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:52:40.204Z"
+    },
+    {
+      "id": 1779202691798,
+      "word": "Uppmana",
+      "context": "to urge, to ask (someone to do something)",
+      "addedAt": "2026-05-19T14:50:01.053Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:52:33.630Z"
+    },
+    {
+      "id": 1779202362230,
+      "word": "Alltid",
+      "context": "always",
+      "addedAt": "2026-05-19T14:49:40.014Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:52:35.896Z"
+    },
+    {
+      "id": 1779202177880,
+      "word": "Dra",
+      "context": "to pull (on something, possibly causing it to move)",
+      "addedAt": "2026-05-19T14:49:34.002Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:52:37.894Z"
+    },
+    {
+      "id": 1779203028726,
+      "word": "Olycka",
+      "context": "an accident (unfortunate mishap)",
+      "addedAt": "2026-05-19T14:48:44.633Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:54:50.987Z"
+    },
+    {
+      "id": 1779202182337,
+      "word": "Byta",
+      "context": "to switch; to exchange",
+      "addedAt": "2026-05-19T14:48:23.186Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:53:01.473Z"
+    },
+    {
+      "id": 1779202547447,
+      "word": "Finnas",
+      "context": "to exist; to be",
+      "addedAt": "2026-05-19T14:48:04.128Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:53:32.978Z"
+    },
+    {
+      "id": 1779202406764,
+      "word": "Enheter",
+      "context": "Devices",
+      "addedAt": "2026-05-19T14:47:38.781Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:53:25.754Z"
+    },
+    {
+      "id": 1779202320671,
+      "word": "Framsteg",
+      "context": "progress, improvement",
+      "addedAt": "2026-05-19T14:47:26.055Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:54:53.604Z"
+    },
+    {
+      "id": 1779203007489,
+      "word": "Skicka",
+      "context": "send (make something go somewhere)",
+      "addedAt": "2026-05-19T14:47:12.926Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:54:48.408Z"
+    },
+    {
+      "id": 1779202751856,
+      "word": "Nycklar",
+      "context": "Keys",
+      "addedAt": "2026-05-19T14:47:01.311Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:54:45.881Z"
+    },
+    {
+      "id": 1779202930381,
+      "word": "Valfri",
+      "context": "that can be chosen freely",
+      "addedAt": "2026-05-19T14:46:36.037Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:55:57.737Z"
+    },
+    {
+      "id": 1779202946577,
+      "word": "Källa",
+      "context": "a source (of information, or other things)",
+      "addedAt": "2026-05-19T14:46:08.954Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:56:54.111Z"
+    },
+    {
+      "id": 1779202235537,
+      "word": "Säker",
+      "context": "safe",
+      "addedAt": "2026-05-19T14:45:38.743Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:55:08.751Z"
+    },
+    {
+      "id": 1779202656869,
+      "word": "Inlärda",
+      "context": "Learned",
+      "addedAt": "2026-05-19T14:45:27.630Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:55:27.034Z"
+    },
+    {
+      "id": 1779202347456,
+      "word": "Lära",
+      "context": "teachings\na scientific branch, a theory\na creed, a doctrine, a tenet\nan apprenticeship",
+      "addedAt": "2026-05-19T14:45:13.778Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:55:23.506Z"
+    },
+    {
+      "id": 1779202195900,
+      "word": "Bekant",
+      "context": "known, familiar",
+      "addedAt": "2026-05-19T14:44:45.705Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:57:32.036Z"
+    },
+    {
+      "id": 1779202317620,
+      "word": "Berika",
+      "context": "to enrich (make richer, especially in an abstract sense)",
+      "addedAt": "2026-05-19T14:44:29.704Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:57:21.833Z"
+    },
+    {
+      "id": 1779202047116,
+      "word": "Hyresrätt",
+      "context": "a rental apartment or other residence rented from a landlord",
+      "addedAt": "2026-05-19T14:43:42.957Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:58:02.457Z"
+    },
+    {
+      "id": 1779202271437,
+      "word": "Mot",
+      "context": "A point where two or more objects meet (e.g. the joint of two bones).",
+      "addedAt": "2026-05-19T14:43:14.668Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:57:29.040Z"
+    },
+    {
+      "id": 1779201859595,
+      "word": "orimlig",
+      "context": "unreasonable, absurd",
+      "addedAt": "2026-05-19T14:42:38.998Z",
+      "level": 1,
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:57:42.720Z"
+    },
+    {
       "id": 1779113491993,
       "word": "Lägg",
       "context": "Place, put, lay, or add.",
@@ -275,8 +464,8 @@
       "context": "saved, rescued",
       "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a **red** lifebuoy that just **saved** a swimmer—\"räddat\" sounds like \"red-dat\" is the thing that rescued them.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:27:04.747Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:38:04.799Z",
       "level": 1
     },
     {
@@ -295,8 +484,8 @@
       "context": "release, let out",
       "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a \"slapper\" (släpper) unclipping a cage door so a bird can \"ut\" (hoot like \"out!\") fly free.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:22:42.508Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:37:46.243Z",
       "level": 1
     },
     {
@@ -315,9 +504,9 @@
       "context": "the ecosystem",
       "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a giant **eco**-friendly **system** where a Viking shouts, \"Eko! Systemet!\" to remind you that every sound echoes through nature.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:22:33.740Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:36:35.719Z",
+      "level": 2
     },
     {
       "id": 1778621579887.072,
@@ -325,8 +514,8 @@
       "context": "changes, is altered",
       "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a **furry** AND **grass** field that suddenly morphs into a desert — \"furry-and-grass\" sounds like \"förändras,\" meaning the landscape **changes**.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:27:17.601Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:37:53.615Z",
       "level": 1
     },
     {
@@ -335,9 +524,9 @@
       "context": "fishless",
       "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "Imagine a \"fist\" full of \"lösa\" (loose) sand where the fish should be—completely fishless!",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:23:16.011Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:37:35.978Z",
+      "level": 2
     },
     {
       "id": 1778621579887.163,
@@ -345,8 +534,8 @@
       "context": "relocated, rehomed",
       "addedAt": "2026-05-12T21:32:59.887Z",
       "mnemonic": "\"Omplacerat\" sounds like \"om-placed-a rat\" — imagine finding a rat in your kitchen, so you calmly pick it up and relocate it to a new home outside!",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:23:21.563Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:38:18.113Z",
       "level": 1
     },
     {
@@ -355,9 +544,9 @@
       "context": "greatest need",
       "addedAt": "2026-05-12T21:01:19.342Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:25:14.842Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:38:10.124Z",
+      "level": 2
     },
     {
       "id": 1779167384750,
@@ -365,8 +554,8 @@
       "context": "to prioritise",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:24:58.324Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:38:37.500Z",
       "level": 1
     },
     {
@@ -375,9 +564,9 @@
       "context": "to sort, to triage",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:26:54.024Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:38:24.053Z",
+      "level": 2
     },
     {
       "id": 1779184013707,
@@ -385,8 +574,8 @@
       "context": "the hearing clinic / audiology unit",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:27:00.590Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:38:47.386Z",
       "level": 1
     },
     {
@@ -395,8 +584,8 @@
       "context": "tone, sound signal",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:27:30.675Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:38:54.408Z",
       "level": 1
     },
     {
@@ -405,9 +594,9 @@
       "context": "headphones, earphones",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:29:11.665Z",
-      "level": 1
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:38:44.772Z",
+      "level": 2
     },
     {
       "id": 1779769009356,
@@ -415,8 +604,8 @@
       "context": "easy to follow, well-explained (lit. pedagogical)",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:49:54.215Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:40:08.468Z",
       "level": 1
     },
     {
@@ -425,8 +614,8 @@
       "context": "smooth, effortless",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:49:44.713Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:39:25.051Z",
       "level": 1
     },
     {
@@ -435,8 +624,8 @@
       "context": "hearing aid(s)",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:28:46.109Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:39:28.660Z",
       "level": 1
     },
     {
@@ -445,8 +634,8 @@
       "context": "hearing test",
       "addedAt": "2026-05-12T21:01:19.341Z",
       "mnemonic": "Imagine a moose named Hörsy putting on huge headphones for a hearing test, screaming \"HÖR-SEL-TEST!\" at the top of her lungs.",
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:49:17.304Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:39:50.292Z",
       "level": 1
     },
     {
@@ -456,8 +645,8 @@
       "addedAt": "2026-05-12T20:16:59.733Z",
       "mnemonic": "Imagine you're at a rehearsal, and the director shouts \"ÖVA!\" so you quickly \"owe\" the band a perfect practice session.",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:53:51.552Z"
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:40:18.103Z"
     },
     {
       "id": 1778616970500,
@@ -465,9 +654,9 @@
       "context": "Content",
       "addedAt": "2026-05-12T20:16:11.909Z",
       "mnemonic": "Imagine the \"in\" side of a jar is \"håll\" (holding) the \"content\" — like a label inside a jar listing what's in there.",
-      "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:49:56.474Z"
+      "level": 2,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:40:04.555Z"
     },
     {
       "id": 1778616816992,
@@ -476,8 +665,8 @@
       "addedAt": "2026-05-12T20:13:36.992Z",
       "mnemonic": "Imagine a \"vent\" in a submarine where you must wait for air pressure to equalize—\"väntetiden\" sounds like \"vent-a-tide-in,\" the tide of waiting time before you can open the hatch.",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:50:46.520Z"
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:40:28.253Z"
     },
     {
       "id": 1778597217552,
@@ -485,9 +674,9 @@
       "context": "Things; objects; matters",
       "addedAt": "2026-05-12T14:46:58.640Z",
       "mnemonic": "Imagine \"socks\" are the most important \"things\" you pack for a trip, and you say \"I pack my **saker** socks!\"",
-      "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:53:20.781Z"
+      "level": 2,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:40:21.831Z"
     },
     {
       "id": 1778582905816,
@@ -496,8 +685,8 @@
       "addedAt": "2026-05-12T10:48:25.816Z",
       "mnemonic": "Imagine a **stark** (strong) Viking lifting heavy weights to **up** his muscle power—\"stärka upp\" means to strengthen!",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:50:54.189Z"
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:40:43.565Z"
     },
     {
       "id": 1778582905156,
@@ -506,8 +695,8 @@
       "addedAt": "2026-05-12T10:48:25.157Z",
       "mnemonic": "\"Gårdsvärd\" sounds like \"guards-ward,\" so picture a stern guard in a ward full of tiny yards, sweeping each one with a janitor's broom.",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:55:11.732Z"
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:40:54.613Z"
     },
     {
       "id": 1778582904814,
@@ -515,9 +704,9 @@
       "context": "the Swedish Public Employment Service",
       "addedAt": "2026-05-12T10:48:24.814Z",
       "mnemonic": "Picture a \"bear\" (arbet) working at a \"fairy\" (förmedlingen) desk, handing out job applications with sparkly wings.",
-      "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T11:53:23.202Z"
+      "level": 2,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:40:40.369Z"
     },
     {
       "id": 1778582904199,
@@ -526,8 +715,8 @@
       "addedAt": "2026-05-12T10:48:24.200Z",
       "mnemonic": "Imagine a \"bee\" bringing a tiny \"drag\" of honey to its hive as a welfare benefit for the colony.",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T13:37:56.181Z"
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:41:21.009Z"
     },
     {
       "id": 1778582903830,
@@ -546,8 +735,8 @@
       "addedAt": "2026-05-12T10:48:23.537Z",
       "mnemonic": "Think of \"lik\" as \"like\" and \"värdig\" as \"worthy,\" so something \"like-worthy\" is its \"equivalent\" in value.",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T13:37:24.616Z"
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:41:27.719Z"
     },
     {
       "id": 1778582902788,
@@ -566,8 +755,8 @@
       "addedAt": "2026-05-12T10:48:22.400Z",
       "mnemonic": "Imagine you're launching a rocket ship (a SATellite) and your boss yells \"SATSningen!\" as you push the big red button—it's your big initiative, so you mustn't SIT on it.",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T13:37:53.453Z"
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:41:32.009Z"
     },
     {
       "id": 1778582901929,
@@ -575,9 +764,9 @@
       "context": "stairwell",
       "addedAt": "2026-05-12T10:48:21.930Z",
       "mnemonic": "Imagine a **trap** door in the **house** that opens into a hidden stairwell.",
-      "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T13:38:01.199Z"
+      "level": 2,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:41:24.055Z"
     },
     {
       "id": 1778582901299,
@@ -586,17 +775,17 @@
       "addedAt": "2026-05-12T10:48:21.300Z",
       "mnemonic": "\"FASTen your seatbelt, the property company’s BOLAgement is rolling out a new high-rise!\"",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T13:37:59.040Z"
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:42:08.302Z"
     },
     {
       "id": 1778579853449,
       "word": "arbetslöshet",
       "context": "unemployment",
       "addedAt": "2026-05-12T09:57:33.449Z",
-      "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T13:38:19.648Z",
+      "level": 2,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-19T14:41:51.714Z",
       "mnemonic": "Imagine \"arbetslöshet\" as a huge, sad **lös** (loose) **hat** floating away from a job site because it has no work to hold it down."
     },
     {
@@ -605,8 +794,8 @@
       "context": "Education or training.",
       "addedAt": "2026-05-12T09:03:48.173Z",
       "level": 1,
-      "nextReview": "2026-05-19",
-      "lastReviewed": "2026-05-18T13:38:23.293Z",
+      "nextReview": "2026-05-20",
+      "lastReviewed": "2026-05-19T14:42:11.234Z",
       "mnemonic": "Imagine an \"out-building\" (utbildning) where you go to get trained—and you have to \"build\" your brain out in that shed."
     }
   ],
@@ -620,9 +809,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-19T07:07:27.473Z",
+      "lastStudied": "2026-05-19T14:33:48.659Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 1993
+      "studyTimeSec": 2055
     },
     "horseltest": {
       "status": "not-started",
@@ -1021,5 +1210,5 @@
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-19T12:40:05.111Z"
+  "syncedAt": "2026-05-19T14:58:39.954Z"
 }
