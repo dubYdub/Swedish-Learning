@@ -45,6 +45,7 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
   // ── Playback state ───────────────────────────────────────────────────────
   const [timestamps, setTimestamps]   = useState(null)
   const [playing, setPlaying]         = useState(false)
+  const [loop, setLoop]               = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration]       = useState(0)
   const [rate, setRate]               = useState(0.82)
@@ -99,11 +100,18 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
     } else {
       ap.play(audioUrl, {
         rate,
+        loop,
         onTime: t => setCurrentTime(t),
         onEnd: () => { setPlaying(false); stopRaf(); setCurrentTime(0) },
       })
       setPlaying(true); startRaf()
     }
+  }
+
+  function toggleLoop() {
+    const next = !loop
+    setLoop(next)
+    ap.setLoop(next)
   }
 
   function handleSeek(e) {
@@ -249,6 +257,11 @@ export default function PhaseListen({ article, isDone, onMarkDone }) {
             <button className={`pl-play-btn ${playing ? 'active' : ''}`} onClick={handleFilePlay}>
               {playing ? '⏸ Pausa' : '▶ Spela'}
             </button>
+            <button
+              className={`pl-loop-btn ${loop ? 'active' : ''}`}
+              onClick={toggleLoop}
+              title={loop ? 'Upprepa: på' : 'Upprepa: av'}
+            >↻</button>
             <span className="pl-file-badge">LJUDFIL</span>
           </div>
           <div className="pl-seek-row">

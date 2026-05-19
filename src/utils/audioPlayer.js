@@ -77,11 +77,12 @@ export function loadSrc(url) {
   }
 }
 
-export function play(url, { start = null, end = null, rate = 1.0, onEnd, onTime } = {}) {
+export function play(url, { start = null, end = null, rate = 1.0, loop = false, onEnd, onTime } = {}) {
   loadSrc(url)
   clearListeners()
   const a = el()
   a.playbackRate = rate
+  a.loop = loop && end == null
   if (start != null) a.currentTime = start
 
   a.onended = () => { clearListeners(); onEnd?.() }
@@ -93,6 +94,8 @@ export function play(url, { start = null, end = null, rate = 1.0, onEnd, onTime 
   a.onerror = () => clearListeners()
   return a.play().catch(() => {})
 }
+
+export function setLoop(v) { el().loop = v }
 
 export function pause() { el().pause() }
 

@@ -11,12 +11,6 @@ import VoicePicker from '../components/VoicePicker'
 import VocabList from '../components/VocabList'
 import './Study.css'
 
-const CHAPTERS = {
-  listen: 'I',
-  read:   'II',
-  shadow: 'III',
-  record: 'IV',
-}
 
 export default function Study({ article, progress, updateProgress, vocab, addToVocab, removeFromVocab, updateVocabContext, updateVocabMnemonic, onBack }) {
   const [activePhase, setActivePhase] = useState('read')
@@ -88,7 +82,6 @@ export default function Study({ article, progress, updateProgress, vocab, addToV
 
         {/* ── Phase tabs as chapters ── */}
         <nav className="st-phases">
-          <span className="st-phase-indicator" style={{ '--phase-i': PHASES.indexOf(activePhase) }} />
           {PHASES.map(p => {
             const isActive = activePhase === p
             const isDone = articleProgress.phases[p]
@@ -98,9 +91,8 @@ export default function Study({ article, progress, updateProgress, vocab, addToV
                 className={`st-phase-btn ${isActive ? 'active' : ''} ${isDone ? 'done' : ''}`}
                 onClick={() => setActivePhase(p)}
               >
-                <span className="st-phase-chapter">Kapitel {CHAPTERS[p]}</span>
+                <span className="st-phase-emoji">{PHASE_LABELS[p].emoji}</span>
                 <span className="st-phase-name">
-                  <span className="st-phase-emoji">{PHASE_LABELS[p].emoji}</span>
                   {PHASE_LABELS[p].label}
                   {isDone && <span className="st-phase-check">✓</span>}
                 </span>

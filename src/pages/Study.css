@@ -80,92 +80,66 @@
   padding-bottom: 18px;
 }
 
-/* ─── Phase tabs as chapters ─── */
+/* ─── Phase tabs ─── */
 .st-phases {
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border: 2px solid var(--border);
+  box-shadow: 3px 3px 0 0 var(--border);
   position: relative;
-}
-
-.st-phase-indicator {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 25%;
-  height: 3px;
-  background: #FFF8EA;
-  transform: translateX(calc(var(--phase-i, 0) * 100%));
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .st-phase-btn {
-  padding: 14px 12px;
+  padding: 10px 8px;
   background: var(--bg);
   border: none;
-  border-right: 1px solid var(--border-soft);
+  border-right: 2px solid var(--border);
   cursor: pointer;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 5px;
-  position: relative;
-  transition: background 0.18s ease;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s ease;
   font-family: var(--font-body);
 }
 
 .st-phase-btn:last-child { border-right: none; }
 .st-phase-btn:hover      { background: var(--bg-card); }
 
-.st-phase-chapter {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  font-style: italic;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-}
+.st-phase-emoji { font-size: 14px; line-height: 1; }
 
 .st-phase-name {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: 10px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-h);
-  font-weight: 600;
+  font-weight: 700;
+  white-space: nowrap;
 }
-
-.st-phase-emoji { font-size: 13px; }
 
 .st-phase-btn.active {
-  background: var(--accent);
-  color: #FFF8EA;
+  background: var(--border);
 }
 
-.st-phase-btn.active .st-phase-chapter,
-.st-phase-btn.active .st-phase-name { color: #FFF8EA; }
+.st-phase-btn.active .st-phase-name,
+.st-phase-btn.active .st-phase-emoji { color: var(--bg); }
 
-.st-phase-btn.done .st-phase-chapter,
 .st-phase-btn.done .st-phase-name { color: #4F6B4A; }
 
-.st-phase-btn.done.active {
-  background: var(--sage);
-}
-.st-phase-btn.done.active .st-phase-chapter,
-.st-phase-btn.done.active .st-phase-name { color: #FFF8EA; }
+.st-phase-btn.done.active { background: var(--sage); }
+.st-phase-btn.done.active .st-phase-name,
+.st-phase-btn.done.active .st-phase-emoji { color: #FFF8EA; }
 
 .st-phase-check {
   color: inherit;
   font-weight: 700;
-  margin-left: 4px;
 }
 
 /* ─── BODY ─── */
@@ -263,8 +237,14 @@
   .st-header-top { flex-wrap: wrap; gap: 8px; }
   .st-issue-meta { display: none; }
   .st-title { font-size: 28px; padding-bottom: 12px; }
-  .st-phases { grid-template-columns: repeat(2, 1fr); }
-  .st-phase-btn:nth-child(2) { border-right: none; }
-  .st-phase-btn:nth-child(-n+2) { border-bottom: 1px solid var(--border-soft); }
+  .st-phase-btn { padding: 9px 4px; gap: 4px; }
+  .st-phase-name { font-size: 9px; letter-spacing: 0.06em; }
+  .st-phase-emoji { font-size: 12px; }
   .st-body { padding: 32px 16px; }
+}
+
+@media (max-width: 400px) {
+  .st-phase-name { display: none; }
+  .st-phase-emoji { font-size: 16px; }
+  .st-phase-btn { padding: 10px 6px; }
 }

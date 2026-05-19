@@ -324,6 +324,27 @@
 .pl-play-btn:active { transform: translate(1px, 1px); box-shadow: 0 0 0 0 var(--border); }
 .pl-play-btn.active { background: var(--text-h); }
 
+.pl-loop-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-soft);
+  color: var(--text-dim);
+  font-size: 17px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.12s;
+  flex-shrink: 0;
+}
+.pl-loop-btn:hover { background: var(--bg-card); color: var(--text-h); border-color: var(--border); }
+.pl-loop-btn.active {
+  background: var(--butter-bg);
+  border-color: var(--butter);
+  color: var(--butter);
+}
+
 .pl-rates {
   display: flex;
   gap: 2px;
