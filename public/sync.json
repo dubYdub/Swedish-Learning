@@ -1,6 +1,36 @@
 {
   "vocab": [
     {
+      "id": 1779262348766,
+      "word": "Sättet",
+      "context": "The way",
+      "addedAt": "2026-05-20T07:19:12.394Z"
+    },
+    {
+      "id": 1779262451876,
+      "word": "Tragiskt",
+      "context": "indefinite neuter singular of tragisk",
+      "addedAt": "2026-05-20T07:18:52.133Z"
+    },
+    {
+      "id": 1779261576039,
+      "word": "Ställen",
+      "context": "Places",
+      "addedAt": "2026-05-20T07:18:42.996Z"
+    },
+    {
+      "id": 1779261860561,
+      "word": "Olika",
+      "context": "Different ",
+      "addedAt": "2026-05-20T07:18:27.975Z"
+    },
+    {
+      "id": 1779262470697,
+      "word": "Varit",
+      "context": "supine of vara; been",
+      "addedAt": "2026-05-20T07:18:16.726Z"
+    },
+    {
       "id": 1779205841983,
       "word": "Bill",
       "context": "a share; the cutting blade of a plough",
@@ -1222,5 +1252,5 @@
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-19T18:23:39.559Z"
+  "syncedAt": "2026-05-20T07:19:46.330Z"
 }
