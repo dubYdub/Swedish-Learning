@@ -196,8 +196,11 @@ export default function App() {
   }, [])
 
   const enrichAllVocab = useCallback(async () => {
-    if (!ds.getKey()) return
-    const needsWork = vocab.filter(v => !v.context || !v.mnemonic)
+    if (!ds.getKey()) {
+      alert('Ange en DeepSeek API-nyckel under Inställningar för att berika ord.')
+      return
+    }
+    const needsWork = vocab.filter(v => !v.context)
     if (!needsWork.length) return
     setEnrichProgress({ done: 0, total: needsWork.length })
     for (let i = 0; i < needsWork.length; i++) {

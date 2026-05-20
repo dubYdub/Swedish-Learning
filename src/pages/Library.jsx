@@ -531,7 +531,7 @@ export default function Library({
                 <div className="lib-dict-head">
                   <h2 className="lib-toc-title">Ordlista</h2>
                   {vocab.length > 0 && ds.getKey() && (() => {
-                    const missing = vocab.filter(v => !v.context || !v.mnemonic).length
+                    const missing = vocab.filter(v => !v.context).length
                     return (
                       <button
                         className={`lib-enrich-btn${enrichProgress ? ' loading' : ''}`}
