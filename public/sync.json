@@ -1,46 +1,142 @@
 {
   "vocab": [
     {
+      "id": 1779312371648,
+      "word": "Förförisk",
+      "context": "seductive (sexually, or more generally alluring in a figurative sense)",
+      "addedAt": "2026-05-20T21:17:11.875Z"
+    },
+    {
+      "id": 1779312282499,
+      "word": "Rolig",
+      "context": "funny (amusing; comical), fun",
+      "addedAt": "2026-05-20T21:16:35.241Z"
+    },
+    {
+      "id": 1779290668458,
+      "word": "Självklart",
+      "context": "of course, self-evident, obviously",
+      "addedAt": "2026-05-20T15:17:56.477Z",
+      "level": 1,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:10:50.567Z"
+    },
+    {
+      "id": 1779290336289,
+      "word": "Sköna",
+      "context": "Beauty",
+      "addedAt": "2026-05-20T15:16:44.632Z",
+      "level": 1,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T15:18:13.868Z"
+    },
+    {
+      "id": 1779262352575,
+      "word": "Själv",
+      "context": "oneself, myself, yourself, himself, herself, itself",
+      "addedAt": "2026-05-20T07:23:02.777Z",
+      "level": 1,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:09:28.205Z"
+    },
+    {
+      "id": 1779261973127,
+      "word": "Utanför",
+      "context": "outside",
+      "addedAt": "2026-05-20T07:22:22.818Z",
+      "level": 1,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:10:53.030Z"
+    },
+    {
+      "id": 1779262419742,
+      "word": "Infö",
+      "context": "Introduce",
+      "addedAt": "2026-05-20T07:21:45.245Z",
+      "level": 1,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:09:42.201Z"
+    },
+    {
+      "id": 1779261736270,
+      "word": "Bland",
+      "context": "among",
+      "addedAt": "2026-05-20T07:21:23.735Z",
+      "level": 1,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:11:44.125Z"
+    },
+    {
+      "id": 1779262017156,
+      "word": "Sjunka",
+      "context": "to sink",
+      "addedAt": "2026-05-20T07:20:31.548Z",
+      "level": 1,
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:11:47.586Z"
+    },
+    {
       "id": 1779262348766,
       "word": "Sättet",
       "context": "The way",
-      "addedAt": "2026-05-20T07:19:12.394Z"
+      "addedAt": "2026-05-20T07:19:12.394Z",
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:12:14.596Z",
+      "level": 1
     },
     {
       "id": 1779262451876,
       "word": "Tragiskt",
       "context": "indefinite neuter singular of tragisk",
-      "addedAt": "2026-05-20T07:18:52.133Z"
+      "addedAt": "2026-05-20T07:18:52.133Z",
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:11:40.230Z",
+      "level": 1
     },
     {
       "id": 1779261576039,
       "word": "Ställen",
       "context": "Places",
-      "addedAt": "2026-05-20T07:18:42.996Z"
+      "addedAt": "2026-05-20T07:18:42.996Z",
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:12:40.106Z",
+      "level": 1
     },
     {
       "id": 1779261860561,
       "word": "Olika",
       "context": "Different ",
-      "addedAt": "2026-05-20T07:18:27.975Z"
+      "addedAt": "2026-05-20T07:18:27.975Z",
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:12:02.996Z",
+      "level": 1
     },
     {
       "id": 1779262470697,
       "word": "Varit",
       "context": "supine of vara; been",
-      "addedAt": "2026-05-20T07:18:16.726Z"
+      "addedAt": "2026-05-20T07:18:16.726Z",
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:12:28.708Z",
+      "level": 1
     },
     {
       "id": 1779205841983,
       "word": "Bill",
       "context": "a share; the cutting blade of a plough",
-      "addedAt": "2026-05-19T15:45:59.881Z"
+      "addedAt": "2026-05-19T15:45:59.881Z",
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:12:43.304Z",
+      "level": 1
     },
     {
       "id": 1779203465050,
       "word": "Synd",
       "context": "sin",
-      "addedAt": "2026-05-19T15:04:03.972Z"
+      "addedAt": "2026-05-19T15:04:03.972Z",
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:13:26.104Z",
+      "level": 1
     },
     {
       "id": 1779202522134,
@@ -48,8 +144,8 @@
       "context": "a bang (act of sexual intercourse)",
       "addedAt": "2026-05-19T14:50:18.573Z",
       "level": 1,
-      "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:52:40.204Z"
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:13:23.710Z"
     },
     {
       "id": 1779202691798,
@@ -57,26 +153,26 @@
       "context": "to urge, to ask (someone to do something)",
       "addedAt": "2026-05-19T14:50:01.053Z",
       "level": 1,
-      "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:52:33.630Z"
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:13:31.797Z"
     },
     {
       "id": 1779202362230,
       "word": "Alltid",
       "context": "always",
       "addedAt": "2026-05-19T14:49:40.014Z",
-      "level": 1,
-      "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:52:35.896Z"
+      "level": 2,
+      "nextReview": "2026-05-23",
+      "lastReviewed": "2026-05-20T21:13:20.248Z"
     },
     {
       "id": 1779202177880,
       "word": "Dra",
       "context": "to pull (on something, possibly causing it to move)",
       "addedAt": "2026-05-19T14:49:34.002Z",
-      "level": 1,
-      "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:52:37.894Z"
+      "level": 2,
+      "nextReview": "2026-05-23",
+      "lastReviewed": "2026-05-20T21:13:42.680Z"
     },
     {
       "id": 1779203028726,
@@ -84,8 +180,8 @@
       "context": "an accident (unfortunate mishap)",
       "addedAt": "2026-05-19T14:48:44.633Z",
       "level": 1,
-      "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:54:50.987Z"
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:14:14.947Z"
     },
     {
       "id": 1779202182337,
@@ -93,8 +189,8 @@
       "context": "to switch; to exchange",
       "addedAt": "2026-05-19T14:48:23.186Z",
       "level": 1,
-      "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:53:01.473Z"
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:14:43.637Z"
     },
     {
       "id": 1779202547447,
@@ -102,8 +198,8 @@
       "context": "to exist; to be",
       "addedAt": "2026-05-19T14:48:04.128Z",
       "level": 1,
-      "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:53:32.978Z"
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:14:46.714Z"
     },
     {
       "id": 1779202406764,
@@ -111,26 +207,26 @@
       "context": "Devices",
       "addedAt": "2026-05-19T14:47:38.781Z",
       "level": 1,
-      "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:53:25.754Z"
+      "nextReview": "2026-05-21",
+      "lastReviewed": "2026-05-20T21:14:32.586Z"
     },
     {
       "id": 1779202320671,
       "word": "Framsteg",
       "context": "progress, improvement",
       "addedAt": "2026-05-19T14:47:26.055Z",
-      "level": 1,
+      "level": 0,
       "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:54:53.604Z"
+      "lastReviewed": "2026-05-20T21:14:40.275Z"
     },
     {
       "id": 1779203007489,
       "word": "Skicka",
       "context": "send (make something go somewhere)",
       "addedAt": "2026-05-19T14:47:12.926Z",
-      "level": 1,
+      "level": 0,
       "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-19T14:54:48.408Z"
+      "lastReviewed": "2026-05-20T21:14:52.638Z"
     },
     {
       "id": 1779202751856,
@@ -851,9 +947,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-19T14:33:48.659Z",
+      "lastStudied": "2026-05-20T07:20:11.750Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 2055
+      "studyTimeSec": 2069
     },
     "horseltest": {
       "status": "not-started",
@@ -955,9 +1051,9 @@
         "record": false
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-19T15:03:54.524Z",
+      "lastStudied": "2026-05-20T15:16:24.605Z",
       "firstStarted": "2026-05-12T22:10:08.181Z",
-      "studyTimeSec": 1820
+      "studyTimeSec": 1838
     }
   },
   "timestamps": {
@@ -1252,5 +1348,5 @@
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-20T07:19:46.330Z"
+  "syncedAt": "2026-05-20T21:17:33.700Z"
 }
