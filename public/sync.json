@@ -4,13 +4,19 @@
       "id": 1779312371648,
       "word": "Förförisk",
       "context": "seductive (sexually, or more generally alluring in a figurative sense)",
-      "addedAt": "2026-05-20T21:17:11.875Z"
+      "addedAt": "2026-05-20T21:17:11.875Z",
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:47:44.436Z",
+      "level": 1
     },
     {
       "id": 1779312282499,
       "word": "Rolig",
       "context": "funny (amusing; comical), fun",
-      "addedAt": "2026-05-20T21:16:35.241Z"
+      "addedAt": "2026-05-20T21:16:35.241Z",
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:47:30.966Z",
+      "level": 1
     },
     {
       "id": 1779290668458,
@@ -18,8 +24,8 @@
       "context": "of course, self-evident, obviously",
       "addedAt": "2026-05-20T15:17:56.477Z",
       "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:10:50.567Z"
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:48:01.615Z"
     },
     {
       "id": 1779290336289,
@@ -27,35 +33,35 @@
       "context": "Beauty",
       "addedAt": "2026-05-20T15:16:44.632Z",
       "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T15:18:13.868Z"
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:48:05.131Z"
     },
     {
       "id": 1779262352575,
       "word": "Själv",
       "context": "oneself, myself, yourself, himself, herself, itself",
       "addedAt": "2026-05-20T07:23:02.777Z",
-      "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:09:28.205Z"
+      "level": 2,
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:47:50.583Z"
     },
     {
       "id": 1779261973127,
       "word": "Utanför",
       "context": "outside",
       "addedAt": "2026-05-20T07:22:22.818Z",
-      "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:10:53.030Z"
+      "level": 2,
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:48:09.350Z"
     },
     {
       "id": 1779262419742,
       "word": "Infö",
       "context": "Introduce",
       "addedAt": "2026-05-20T07:21:45.245Z",
-      "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:09:42.201Z"
+      "level": 2,
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:48:13.184Z"
     },
     {
       "id": 1779261736270,
@@ -63,25 +69,25 @@
       "context": "among",
       "addedAt": "2026-05-20T07:21:23.735Z",
       "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:11:44.125Z"
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:48:41.643Z"
     },
     {
       "id": 1779262017156,
       "word": "Sjunka",
       "context": "to sink",
       "addedAt": "2026-05-20T07:20:31.548Z",
-      "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:11:47.586Z"
+      "level": 2,
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:48:23.609Z"
     },
     {
       "id": 1779262348766,
       "word": "Sättet",
       "context": "The way",
       "addedAt": "2026-05-20T07:19:12.394Z",
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:12:14.596Z",
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:48:57.346Z",
       "level": 1
     },
     {
@@ -89,17 +95,17 @@
       "word": "Tragiskt",
       "context": "indefinite neuter singular of tragisk",
       "addedAt": "2026-05-20T07:18:52.133Z",
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:11:40.230Z",
-      "level": 1
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:48:38.417Z",
+      "level": 2
     },
     {
       "id": 1779261576039,
       "word": "Ställen",
       "context": "Places",
       "addedAt": "2026-05-20T07:18:42.996Z",
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:12:40.106Z",
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:50:32.950Z",
       "level": 1
     },
     {
@@ -107,17 +113,17 @@
       "word": "Olika",
       "context": "Different ",
       "addedAt": "2026-05-20T07:18:27.975Z",
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:12:02.996Z",
-      "level": 1
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:49:00.621Z",
+      "level": 2
     },
     {
       "id": 1779262470697,
       "word": "Varit",
       "context": "supine of vara; been",
       "addedAt": "2026-05-20T07:18:16.726Z",
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:12:28.708Z",
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:49:37.202Z",
       "level": 1
     },
     {
@@ -125,17 +131,17 @@
       "word": "Bill",
       "context": "a share; the cutting blade of a plough",
       "addedAt": "2026-05-19T15:45:59.881Z",
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:12:43.304Z",
-      "level": 1
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:49:30.520Z",
+      "level": 2
     },
     {
       "id": 1779203465050,
       "word": "Synd",
       "context": "sin",
       "addedAt": "2026-05-19T15:04:03.972Z",
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:13:26.104Z",
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:49:48.666Z",
       "level": 1
     },
     {
@@ -144,17 +150,17 @@
       "context": "a bang (act of sexual intercourse)",
       "addedAt": "2026-05-19T14:50:18.573Z",
       "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:13:23.710Z"
+      "nextReview": "2026-05-22",
+      "lastReviewed": "2026-05-21T08:50:17.672Z"
     },
     {
       "id": 1779202691798,
       "word": "Uppmana",
       "context": "to urge, to ask (someone to do something)",
       "addedAt": "2026-05-19T14:50:01.053Z",
-      "level": 1,
+      "level": 0,
       "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:13:31.797Z"
+      "lastReviewed": "2026-05-21T08:50:24.675Z"
     },
     {
       "id": 1779202362230,
@@ -179,27 +185,27 @@
       "word": "Olycka",
       "context": "an accident (unfortunate mishap)",
       "addedAt": "2026-05-19T14:48:44.633Z",
-      "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:14:14.947Z"
+      "level": 2,
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:50:21.928Z"
     },
     {
       "id": 1779202182337,
       "word": "Byta",
       "context": "to switch; to exchange",
       "addedAt": "2026-05-19T14:48:23.186Z",
-      "level": 1,
-      "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:14:43.637Z"
+      "level": 2,
+      "nextReview": "2026-05-24",
+      "lastReviewed": "2026-05-21T08:50:37.884Z"
     },
     {
       "id": 1779202547447,
       "word": "Finnas",
       "context": "to exist; to be",
       "addedAt": "2026-05-19T14:48:04.128Z",
-      "level": 1,
+      "level": 0,
       "nextReview": "2026-05-21",
-      "lastReviewed": "2026-05-20T21:14:46.714Z"
+      "lastReviewed": "2026-05-21T08:50:40.967Z"
     },
     {
       "id": 1779202406764,
@@ -215,18 +221,18 @@
       "word": "Framsteg",
       "context": "progress, improvement",
       "addedAt": "2026-05-19T14:47:26.055Z",
-      "level": 0,
+      "level": 1,
       "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-20T21:14:40.275Z"
+      "lastReviewed": "2026-05-19T14:54:53.604Z"
     },
     {
       "id": 1779203007489,
       "word": "Skicka",
       "context": "send (make something go somewhere)",
       "addedAt": "2026-05-19T14:47:12.926Z",
-      "level": 0,
+      "level": 1,
       "nextReview": "2026-05-20",
-      "lastReviewed": "2026-05-20T21:14:52.638Z"
+      "lastReviewed": "2026-05-19T14:54:48.408Z"
     },
     {
       "id": 1779202751856,
@@ -939,17 +945,17 @@
   ],
   "progress": {
     "arbetsloshet": {
-      "status": "not-started",
+      "status": "in-progress",
       "phases": {
         "listen": false,
         "read": false,
         "shadow": false,
-        "record": false
+        "record": true
       },
       "recordingCount": 0,
-      "lastStudied": "2026-05-20T07:20:11.750Z",
+      "lastStudied": "2026-05-21T08:45:38.286Z",
       "firstStarted": "2026-05-12T07:04:42.158Z",
-      "studyTimeSec": 2069
+      "studyTimeSec": 3581
     },
     "horseltest": {
       "status": "not-started",
@@ -1126,38 +1132,6 @@
         "end": 130.78
       }
     ],
-    "custom-1778623690101": [
-      {
-        "id": "custom-1778624854092-1",
-        "start": 0,
-        "end": 24.98
-      },
-      {
-        "id": "custom-1778624854092-2",
-        "start": 24.98,
-        "end": 47.26
-      },
-      {
-        "id": "custom-1778624854092-3",
-        "start": 47.26,
-        "end": 51.29
-      },
-      {
-        "id": "custom-1778624854092-4",
-        "start": 51.29,
-        "end": 59.2
-      },
-      {
-        "id": "custom-1778624854092-5",
-        "start": 59.2,
-        "end": 79.18
-      },
-      {
-        "id": "custom-1778624854092-6",
-        "start": 79.18,
-        "end": 120.22
-      }
-    ],
     "custom-1778623798016": [
       {
         "id": "custom-1778624861811-1",
@@ -1189,86 +1163,41 @@
         "start": 75.09,
         "end": 90.74
       }
+    ],
+    "custom-1778623690101": [
+      {
+        "id": "custom-1778624854092-1",
+        "start": 0,
+        "end": 24.98
+      },
+      {
+        "id": "custom-1778624854092-2",
+        "start": 24.98,
+        "end": 47.26
+      },
+      {
+        "id": "custom-1778624854092-3",
+        "start": 47.26,
+        "end": 51.29
+      },
+      {
+        "id": "custom-1778624854092-4",
+        "start": 51.29,
+        "end": 59.2
+      },
+      {
+        "id": "custom-1778624854092-5",
+        "start": 59.2,
+        "end": 79.18
+      },
+      {
+        "id": "custom-1778624854092-6",
+        "start": 79.18,
+        "end": 120.22
+      }
     ]
   },
   "customArticles": [
-    {
-      "id": "custom-1778623690101",
-      "topic": "världen",
-      "topicLabel": "Världen",
-      "topicEmoji": "🌍",
-      "difficulty": "A2",
-      "title": "Kungskobran på Skansenakvariet har hittats",
-      "summary": "The escaped king cobra at Skansenakvariet in Stockholm has been located inside a wall near its enclosure. Staff plan to cut a hole to capture it.",
-      "keyVocab": [
-        {
-          "word": "djurskötare",
-          "def": "animal keeper"
-        },
-        {
-          "word": "rymde",
-          "def": "escaped"
-        },
-        {
-          "word": "giftig",
-          "def": "poisonous"
-        },
-        {
-          "word": "kungskobra",
-          "def": "king cobra"
-        },
-        {
-          "word": "väsa",
-          "def": "hiss"
-        },
-        {
-          "word": "fånga in",
-          "def": "capture"
-        },
-        {
-          "word": "botemedel",
-          "def": "antidote"
-        },
-        {
-          "word": "kvävas",
-          "def": "suffocate"
-        }
-      ],
-      "isCustom": true,
-      "content": [
-        {
-          "id": "custom-1778624854092-1",
-          "text": "Djurskötare har hittat den giftiga ormen som rymde från sin bur i lördags. Ormen är kvar på djurparken Skansenakvariet i Stockholm. Ormen är en kungskobra. Den är två och en halv meter lång och mycket giftig.",
-          "translation": "Animal keepers have found the poisonous snake that escaped from its cage last Saturday. The snake is still at the Skansen Aquarium zoo in Stockholm. The snake is a king cobra. It is two and a half meters long and very poisonous."
-        },
-        {
-          "id": "custom-1778624854092-2",
-          "text": "Ormen är inne i en vägg nära sin bur. Djurskötarna har sett ormen med en speciell liten kamera. De har också hört kobran väsa. Det säger Skansenakvariets ägare Jonas Wahlström till P1 morgon.",
-          "translation": "The snake is inside a wall near its cage. The animal keepers have seen the snake with a special small camera. They have also heard the cobra hiss. That's what Skansen Aquarium's owner Jonas Wahlström says to P1 Morning."
-        },
-        {
-          "id": "custom-1778624854092-3",
-          "text": "– Vi såg honom och hörde honom till och med väsa.",
-          "translation": "– We saw him and even heard him hiss."
-        },
-        {
-          "id": "custom-1778624854092-4",
-          "text": "Nu ska de som jobbar i djurparken göra ett hål i väggen och försöka fånga in kobran.",
-          "translation": "Now those who work at the zoo will make a hole in the wall and try to catch the cobra."
-        },
-        {
-          "id": "custom-1778624854092-5",
-          "text": "Kobran rymde från sin bur för nästan en vecka sedan. Händelsen har fått mycket uppmärksamhet både i Sverige och i andra länder. Flera medier i USA har till exempel rapporterat om ormen.",
-          "translation": "The cobra escaped from its cage almost a week ago. The event has received a lot of attention both in Sweden and in other countries. Several media outlets in the USA, for example, have reported about the snake."
-        },
-        {
-          "id": "custom-1778624854092-6",
-          "text": "Kungskobran är världens längsta giftiga orm. Den kan bli fem och en halv meter lång. Om en människa blir biten av ormen måste hen få ett botemedel snabbt. Annars kan giftet döda personen inom en timme. Giftet gör att offret kvävs. Ormen i Stockholm har varit lös länge, men ingen har blivit skadad.",
-          "translation": "The king cobra is the world's longest poisonous snake. It can become five and a half meters long. If a person is bitten by the snake, they must get an antidote quickly. Otherwise, the poison can kill the person within an hour. The poison causes the victim to suffocate. The snake in Stockholm has been loose for a long time, but no one has been injured."
-        }
-      ],
-      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2022/10/program_djurskotare_har_hittat_den_gif_20221028_1528286119_a96.m4a?_h_publicationId=8174692"
-    },
     {
       "id": "custom-1778623798016",
       "topic": "natur",
@@ -1314,39 +1243,116 @@
       "isCustom": true,
       "content": [
         {
-          "id": "custom-1778624861811-1",
+          "id": "custom-1778626145501-1",
           "text": "Cheyenne van Keeken har räddat över 400 guldfiskar från dammar i Göteborg. Hon säger till P4 Göteborg att det är synd att folk släpper ut guldfiskar i dammar.",
-          "translation": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg. She tells P4 Gothenburg that it's a shame people release goldfish into ponds."
+          "translation": "Cheyenne van Keeken has rescued over 400 goldfish from ponds in Gothenburg. She tells P4 Gothenburg that it's a shame that people release goldfish into ponds."
         },
         {
-          "id": "custom-1778624861811-2",
+          "id": "custom-1778626145501-2",
           "text": "– Bara den här sommaren har jag varit på sex olika ställen. Det är så tragiskt att folk dumpar dem och dumpar djur på det sättet.",
-          "translation": "– Just this summer I've been to six different places. It's so tragic that people dump them and dump animals in that way."
+          "translation": "– Just this summer I have been to six different places. It's so tragic that people dump them and dump animals in that way."
         },
         {
-          "id": "custom-1778624861811-3",
+          "id": "custom-1778626145501-3",
           "text": "Vem som har släppt ut guldfiskarna i dammarna vet man inte. Fredrik Larsson som jobbar på Länsstyrelsen i Västra Götaland säger att ekosystemet i dammarna, alltså vilka växter och djur som lever där, kan förändras av fiskarna.",
-          "translation": "Who released the goldfish into the ponds is unknown. Fredrik Larsson, who works at the County Administrative Board of Västra Götaland, says the ecosystem of the ponds, meaning which plants and animals live there, can be changed by the fish."
+          "translation": "Who released the goldfish into the ponds is unknown. Fredrik Larsson, who works at the County Administrative Board of Västra Götaland, says that the ecosystem in the ponds, meaning which plants and animals live there, can be changed by the fish."
         },
         {
-          "id": "custom-1778624861811-4",
+          "id": "custom-1778626145501-4",
           "text": "– Många dammar är naturligt fisklösa vilket innebär att släpper man då helt plötsligt i fisk i de dammarna så kommer man att ändra ekosystemet i den dammen.",
-          "translation": "– Many ponds are naturally fishless, which means if you suddenly release fish into those ponds, you will change the ecosystem of that pond."
+          "translation": "– Many ponds are naturally fishless, which means that if you suddenly introduce fish into those ponds, you will change the ecosystem in that pond."
         },
         {
-          "id": "custom-1778624861811-5",
+          "id": "custom-1778626145501-5",
           "text": "Cheyenne van Keeken säger att det är svårt att få plats med alla guldfiskar hemma. Hon låter några av dem bo i badkaret. Hon säger att hon behåller några fiskar själv och lämnar några vidare till andra personer.",
-          "translation": "Cheyenne van Keeken says it's difficult to find room for all the goldfish at home. She lets some of them live in the bathtub. She says she keeps some fish herself and passes some on to other people."
+          "translation": "Cheyenne van Keeken says it's difficult to find room for all the goldfish at home. She lets some of them live in the bathtub. She says she keeps some fish herself and passes others on to other people."
         },
         {
-          "id": "custom-1778624861811-6",
+          "id": "custom-1778626145501-6",
           "text": "– Guldfiskarna som har varit väldigt fina har jag ju valt att behålla själv. Men de allra största så har jag ju på direkten omplacerat dem för det går inte att ha dem här hemma. Jag har inte plats för dem.",
           "translation": "– The goldfish that have been very nice I have chosen to keep myself. But the very largest ones I have immediately rehomed because it's not possible to have them here at home. I don't have room for them."
         }
       ],
       "audioUrl": "https://lyssna-cdn.sr.se/isidor/2024/07/program_hon_har_raddat_400_guldfiskar_20240724_1507172154_a96.m4a?_h_publicationId=8717940"
+    },
+    {
+      "id": "custom-1778623690101",
+      "topic": "världen",
+      "topicLabel": "Världen",
+      "topicEmoji": "🌍",
+      "difficulty": "A2",
+      "title": "Kungskobran på Skansenakvariet har hittats",
+      "summary": "The escaped king cobra at Skansenakvariet in Stockholm has been located inside a wall near its enclosure. Staff plan to cut a hole to capture it.",
+      "keyVocab": [
+        {
+          "word": "djurskötare",
+          "def": "animal keeper"
+        },
+        {
+          "word": "rymde",
+          "def": "escaped"
+        },
+        {
+          "word": "giftig",
+          "def": "poisonous"
+        },
+        {
+          "word": "kungskobra",
+          "def": "king cobra"
+        },
+        {
+          "word": "väsa",
+          "def": "hiss"
+        },
+        {
+          "word": "fånga in",
+          "def": "capture"
+        },
+        {
+          "word": "botemedel",
+          "def": "antidote"
+        },
+        {
+          "word": "kvävas",
+          "def": "suffocate"
+        }
+      ],
+      "isCustom": true,
+      "content": [
+        {
+          "id": "custom-1778626157002-1",
+          "text": "Djurskötare har hittat den giftiga ormen som rymde från sin bur i lördags. Ormen är kvar på djurparken Skansenakvariet i Stockholm. Ormen är en kungskobra. Den är två och en halv meter lång och mycket giftig.",
+          "translation": "Animal keepers have found the poisonous snake that escaped from its cage last Saturday. The snake is still at the Skansen Aquarium zoo in Stockholm. The snake is a king cobra. It is two and a half meters long and very poisonous."
+        },
+        {
+          "id": "custom-1778626157002-2",
+          "text": "Ormen är inne i en vägg nära sin bur. Djurskötarna har sett ormen med en speciell liten kamera. De har också hört kobran väsa. Det säger Skansenakvariets ägare Jonas Wahlström till P1 morgon.",
+          "translation": "The snake is inside a wall near its cage. The animal keepers have seen the snake with a special small camera. They have also heard the cobra hiss. That's what Skansen Aquarium's owner Jonas Wahlström says to P1 Morning."
+        },
+        {
+          "id": "custom-1778626157002-3",
+          "text": "– Vi såg honom och hörde honom till och med väsa.",
+          "translation": "– We saw him and even heard him hiss."
+        },
+        {
+          "id": "custom-1778626157002-4",
+          "text": "Nu ska de som jobbar i djurparken göra ett hål i väggen och försöka fånga in kobran.",
+          "translation": "Now the people who work at the zoo will make a hole in the wall and try to catch the cobra."
+        },
+        {
+          "id": "custom-1778626157002-5",
+          "text": "Kobran rymde från sin bur för nästan en vecka sedan. Händelsen har fått mycket uppmärksamhet både i Sverige och i andra länder. Flera medier i USA har till exempel rapporterat om ormen.",
+          "translation": "The cobra escaped from its cage almost a week ago. The event has received a lot of attention both in Sweden and in other countries. Several media outlets in the USA, for example, have reported about the snake."
+        },
+        {
+          "id": "custom-1778626157002-6",
+          "text": "Kungskobran är världens längsta giftiga orm. Den kan bli fem och en halv meter lång. Om en människa blir biten av ormen måste hen få ett botemedel snabbt. Annars kan giftet döda personen inom en timme. Giftet gör att offret kvävs. Ormen i Stockholm har varit lös länge, men ingen har blivit skadad.",
+          "translation": "The king cobra is the world's longest poisonous snake. It can become five and a half meters long. If a person is bitten by the snake, they must get an antidote quickly. Otherwise, the poison can kill the person within an hour. The poison causes the victim to suffocate. The snake in Stockholm has been loose for a long time, but no one has been injured."
+        }
+      ],
+      "audioUrl": "https://lyssna-cdn.sr.se/isidor/2022/10/program_djurskotare_har_hittat_den_gif_20221028_1528286119_a96.m4a?_h_publicationId=8174692"
     }
   ],
   "hiddenIds": [],
-  "syncedAt": "2026-05-20T21:17:33.700Z"
+  "syncedAt": "2026-05-21T21:56:03.232Z"
 }
